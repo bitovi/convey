@@ -1,4 +1,4 @@
-# VyBit MCP — Copilot Instructions
+# Convey MCP — Copilot Instructions
 
 ## Project Overview
 

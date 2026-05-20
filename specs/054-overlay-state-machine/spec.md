@@ -111,7 +111,7 @@ type ToolbarVisual = {
 };
 
 interface OverlayState {
-  active: boolean;                   // VyBit is open
+  active: boolean;                   // Convey is open
   mode: AppMode;                     // from panel (source of truth)
   editTool: EditTool;                // from panel (source of truth)
 

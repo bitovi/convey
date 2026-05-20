@@ -164,7 +164,7 @@ export function createKeydownHandler(deps: KeyboardHandlerDeps): (e: KeyboardEve
 		// ── Cmd+V — Paste ─────────────────────────────────────────────────
 		if (isMod && e.key === "v") {
 			const clip = getClipboard();
-			if (!clip) return; // No VyBit clipboard — let native paste through
+			if (!clip) return; // No Convey clipboard — let native paste through
 			e.preventDefault();
 
 			console.log(`[paste-debug] Cmd+V: selectModeOn=${state.selectModeOn}, currentTargetEl=${!!state.currentTargetEl}, lockedInsert=${!!getLockedInsert()}`);

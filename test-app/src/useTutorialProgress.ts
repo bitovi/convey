@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 
-const STORAGE_KEY = 'vybit-tutorial-progress'
+const STORAGE_KEY = 'convey-tutorial-progress'
 
 function loadProgress(): Set<number> {
   try {
@@ -20,7 +20,7 @@ function saveProgress(steps: Set<number>) {
 }
 
 interface ServerMessage {
-  __vybit?: boolean
+  __convey?: boolean
   type: string
   role?: string
   connected?: boolean
@@ -109,22 +109,22 @@ export function useTutorialProgress() {
       }
     }
 
-    // vybit:message — dispatched by overlay ws.ts and demo bus.ts
-    function handleVybitMessage(e: Event) {
+    // convey:message — dispatched by overlay ws.ts and demo bus.ts
+    function handleConveyMessage(e: Event) {
       processMessage((e as CustomEvent<ServerMessage>).detail)
     }
 
     // message — cross-origin postMessage from the panel iframe (real server flow)
     function handleWindowMessage(e: MessageEvent) {
-      if (e.data?.__vybit) {
+      if (e.data?.__convey) {
         processMessage(e.data as ServerMessage)
       }
     }
 
-    window.addEventListener('vybit:message', handleVybitMessage)
+    window.addEventListener('convey:message', handleConveyMessage)
     window.addEventListener('message', handleWindowMessage)
     return () => {
-      window.removeEventListener('vybit:message', handleVybitMessage)
+      window.removeEventListener('convey:message', handleConveyMessage)
       window.removeEventListener('message', handleWindowMessage)
     }
   }, [completeStep])

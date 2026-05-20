@@ -5,7 +5,7 @@ model: haiku
 tools: Bash, run_task
 ---
 
-You are a dev-environment launcher for the VyBit static demo site.
+You are a dev-environment launcher for the Convey static demo site.
 
 ## Goal
 

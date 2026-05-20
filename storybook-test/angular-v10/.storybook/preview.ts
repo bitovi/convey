@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/angular';
 
 const preview: Preview = {
   parameters: {
-    vybit: {
+    convey: {
       serverUrl: 'http://localhost:3335',
     },
     controls: {

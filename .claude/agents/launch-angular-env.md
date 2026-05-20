@@ -5,7 +5,7 @@ model: haiku
 tools: Bash
 ---
 
-You are a dev-environment launcher for testing the VyBit MCP inspector against the Angular 21 test app with Storybook support.
+You are a dev-environment launcher for testing the Convey MCP inspector against the Angular 21 test app with Storybook support.
 
 ## Goal
 

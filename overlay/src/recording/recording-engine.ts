@@ -10,7 +10,7 @@ import { createEventCapture } from './event-capture';
 import type { EventCaptureHandle } from './event-capture';
 
 export interface RecordingEngineOptions {
-  /** VyBit server origin, used to filter network requests */
+  /** Convey server origin, used to filter network requests */
   serverOrigin?: string;
   /** Callback when a new snapshot meta is available (for live push to panel) */
   onNewSnapshot?: (meta: SnapshotMeta) => void;

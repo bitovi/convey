@@ -1,7 +1,7 @@
 # Bitovi Brand Assets
 
 This document describes official Bitovi brand assets. The source assets live at:
-`https://github.com/bitovi/vybit/tree/bitovi/context/bitovi/brand-assets`
+`https://github.com/bitovi/convey/tree/bitovi/context/bitovi/brand-assets`
 
 ---
 

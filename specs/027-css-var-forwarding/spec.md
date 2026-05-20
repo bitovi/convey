@@ -129,7 +129,7 @@ When an element is selected (`ELEMENT_SELECTED`):
 1. Extract all Tailwind classes from the incoming `classes` string
 2. Call `POST /css` with those classes
 3. Combine the generated utility CSS with a `:root { ... }` block built from the stored CSS vars snapshot
-4. Inject into a dedicated `<style id="vybit-target-css">` tag in `document.head`, replacing any previous injection
+4. Inject into a dedicated `<style id="convey-target-css">` tag in `document.head`, replacing any previous injection
 
 ```ts
 async function injectTargetCss(classes: string[], cssVars: Record<string, string>) {
@@ -145,10 +145,10 @@ async function injectTargetCss(classes: string[], cssVars: Record<string, string
 
   const combined = `:root {\n${rootBlock}\n}\n\n${utilityCSS}`;
 
-  let styleEl = document.getElementById('vybit-target-css') as HTMLStyleElement | null;
+  let styleEl = document.getElementById('convey-target-css') as HTMLStyleElement | null;
   if (!styleEl) {
     styleEl = document.createElement('style');
-    styleEl.id = 'vybit-target-css';
+    styleEl.id = 'convey-target-css';
     document.head.appendChild(styleEl);
   }
   styleEl.textContent = combined;
@@ -200,7 +200,7 @@ interface CssVarsSnapshotMessage {
 | `POST /css` fails | Fall back to existing hex-based `style={{}}` rendering |
 | Tailwind v3 vs v4 | Both adapters implement `generateCssForClasses` — no change needed at the call site |
 | Classes with special characters (e.g. `bg-[#abc123]`) | Pass through verbatim to `POST /css`; the compiler handles arbitrary values |
-| Panel `<style>` injection conflicts | Single `id="vybit-target-css"` tag — always replaced, never appended |
+| Panel `<style>` injection conflicts | Single `id="convey-target-css"` tag — always replaced, never appended |
 | No vars yet (first load race) | `injectTargetCss` called only after `CSS_VARS_SNAPSHOT` received; use empty object as fallback |
 
 ---

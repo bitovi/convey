@@ -4,7 +4,7 @@
 
 type MessageHandler = (data: any) => void;
 
-const CHANNEL_NAME = 'vybit-demo';
+const CHANNEL_NAME = 'convey-demo';
 const channel = new BroadcastChannel(CHANNEL_NAME);
 
 const handlers = new Set<MessageHandler>();
@@ -17,7 +17,7 @@ let _connected = false;
 channel.onmessage = (event) => {
   const data = event.data;
   for (const handler of handlers) handler(data);
-  window.dispatchEvent(new CustomEvent('vybit:message', { detail: data }));
+  window.dispatchEvent(new CustomEvent('convey:message', { detail: data }));
 };
 
 export function connect(_url?: string): void {
@@ -43,13 +43,13 @@ export function send(data: object): void {
     try {
       channel.postMessage(JSON.parse(JSON.stringify(data)));
     } catch {
-      console.warn('[vybit-bus] Failed to post message:', (err as Error).message);
+      console.warn('[convey-bus] Failed to post message:', (err as Error).message);
     }
   }
   // Also deliver locally (BroadcastChannel doesn't echo to sender)
   queueMicrotask(() => {
     for (const handler of handlers) handler(data);
-    window.dispatchEvent(new CustomEvent('vybit:message', { detail: data }));
+    window.dispatchEvent(new CustomEvent('convey:message', { detail: data }));
   });
 }
 
@@ -65,7 +65,7 @@ export function sendTo(role: string, data: object): void {
     try {
       channel.postMessage(JSON.parse(JSON.stringify(msg)));
     } catch {
-      console.warn('[vybit-bus] Failed to post message:', (err as Error).message);
+      console.warn('[convey-bus] Failed to post message:', (err as Error).message);
     }
   }
 }

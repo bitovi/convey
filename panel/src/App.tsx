@@ -65,13 +65,13 @@ function InspectorApp() {
 	const [themeConfig, setThemeConfig] = useState<any>(null);
 	const [modalCommit, setModalCommit] = useState<Commit | null>(null);
 	const [colorScheme, setColorScheme] = useState<'dark' | 'light'>(() => {
-		try { return (localStorage.getItem('vybit-color-scheme') as 'dark' | 'light') || 'dark'; } catch { return 'dark'; }
+		try { return (localStorage.getItem('convey-color-scheme') as 'dark' | 'light') || 'dark'; } catch { return 'dark'; }
 	});
 
 	// Apply .light class to document root + persist + notify overlay
 	useEffect(() => {
 		document.documentElement.classList.toggle('light', colorScheme === 'light');
-		try { localStorage.setItem('vybit-color-scheme', colorScheme); } catch { /* ignore */ }
+		try { localStorage.setItem('convey-color-scheme', colorScheme); } catch { /* ignore */ }
 		sendTo('overlay', { type: 'COLOR_SCHEME_CHANGED', colorScheme });
 	}, [colorScheme]);
 
@@ -317,8 +317,8 @@ function InspectorApp() {
 		}
 	}, [draftPatches]);
 
-	const VYBIT_PROMPT =
-		"Please implement the next change and continue implementing changes with VyBit.";
+	const CONVEY_PROMPT =
+		"Please implement the next change and continue implementing changes with Convey.";
 
 	async function copyToClipboard(text: string) {
 		if (navigator.clipboard) {
@@ -340,7 +340,7 @@ function InspectorApp() {
 	}
 
 	function handleCopyPrompt() {
-		copyToClipboard(VYBIT_PROMPT);
+		copyToClipboard(CONVEY_PROMPT);
 		setPromptCopied(true);
 		setTimeout(() => setPromptCopied(false), 2000);
 	}
@@ -424,7 +424,7 @@ function InspectorApp() {
 						<span className="flex-1 text-[10px] font-medium leading-tight min-w-0" style={{ color: 'var(--color-bit-warn-text-sub)' }}>
 							<span style={{ color: 'var(--color-bit-warn-text)' }}>{agentWarning.text}</span> —{" "}
 							<a
-								href="https://github.com/bitovi/vybit?tab=readme-ov-file#telling-your-agent-to-start-making-features"
+								href="https://github.com/bitovi/convey?tab=readme-ov-file#telling-your-agent-to-start-making-features"
 								target="_blank"
 								rel="noreferrer"
 								className="underline transition-colors"
@@ -466,7 +466,7 @@ function InspectorApp() {
 									el.style.color = 'var(--color-bit-warn-btn-text)';
 								}
 							}}
-							title={`Copy: "${VYBIT_PROMPT}"`}
+							title={`Copy: "${CONVEY_PROMPT}"`}
 						>
 							{promptCopied ? "Copied!" : "Copy prompt"}
 						</button>

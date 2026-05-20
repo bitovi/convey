@@ -31,11 +31,11 @@ Run via **Terminal → Run Task**:
 | 5175 | Test App v3 | Tailwind v3 React app |
 | 5176 | Test App Astro | Astro framework test app |
 | 6006 | Panel Storybook | Panel component stories (internal dev) |
-| 6007 | SB8: Test App | Storybook 8 with test-app stories + Vybit addon |
-| 6008 | SB10: Test App | Storybook 10 with test-app stories + Vybit addon |
+| 6007 | SB8: Test App | Storybook 8 with test-app stories + Convey addon |
+| 6008 | SB10: Test App | Storybook 10 with test-app stories + Convey addon |
 | 3335 | MCP Server Angular | Runs from `test-app-angular/` cwd (resolves TW v4) |
 | 5177 | Test App Angular | Angular 21 + Tailwind v4 app |
-| 6009 | SB10: Angular | Storybook 10 with Angular test-app stories + Vybit addon |
+| 6009 | SB10: Angular | Storybook 10 with Angular test-app stories + Convey addon |
 
 ## Service Dependency Rules
 
@@ -83,7 +83,7 @@ The default setup for working on overlay, panel, or server features.
 
 **Task:** `Dev: SB8`
 
-Test the Vybit addon in Storybook 8.
+Test the Convey addon in Storybook 8.
 
 **Services:**
 1. Watch: Overlay
@@ -92,13 +92,13 @@ Test the Vybit addon in Storybook 8.
 4. Storybook: Test App (port 6007) — from `storybook-test/v8/`
 5. Test App (port 5173)
 
-**Open:** http://localhost:6007 — Vybit addon panel appears in the right sidebar
+**Open:** http://localhost:6007 — Convey addon panel appears in the right sidebar
 
 ### 3. Storybook 10 Integration
 
 **Task:** `Dev: SB10`
 
-Test the Vybit addon in Storybook 10.
+Test the Convey addon in Storybook 10.
 
 **Services:**
 1. Watch: Overlay
@@ -107,7 +107,7 @@ Test the Vybit addon in Storybook 10.
 4. Storybook 10: Test App (port 6008) — from `storybook-test/v10/`
 5. Test App (port 5173)
 
-**Open:** http://localhost:6008 — Vybit addon panel appears in the right sidebar
+**Open:** http://localhost:6008 — Convey addon panel appears in the right sidebar
 
 ### 4. Tailwind v3 Testing
 
@@ -141,7 +141,7 @@ Test the inspector with Angular 21 apps.
 
 **Task:** `Dev: SB Angular`
 
-Test the Vybit addon in Storybook 10 with Angular components.
+Test the Convey addon in Storybook 10 with Angular components.
 
 **Services:**
 1. Watch: Overlay
@@ -150,7 +150,7 @@ Test the Vybit addon in Storybook 10 with Angular components.
 4. Storybook Angular (port 6009) — from `storybook-test/angular-v10/`
 5. Test App Angular (port 5177)
 
-**Open:** http://localhost:6009 — Vybit addon panel appears in the right sidebar
+**Open:** http://localhost:6009 — Convey addon panel appears in the right sidebar
 
 ### 7. Astro Testing
 

@@ -6,7 +6,7 @@ Add always-on background recording to the overlay and a **Bug Report** mode to t
 
 ## Motivation
 
-Currently VyBit can only send *known changes* (class swaps, text edits, component drops) to the agent. There's no way to say "something is broken, go fix it." A recording + bug report pipeline gives users a way to capture exactly what happened — console errors, DOM state, screenshots — and hand it to the agent as a rich, contextual bug report.
+Currently Convey can only send *known changes* (class swaps, text edits, component drops) to the agent. There's no way to say "something is broken, go fix it." A recording + bug report pipeline gives users a way to capture exactly what happened — console errors, DOM state, screenshots — and hand it to the agent as a rich, contextual bug report.
 
 ---
 
@@ -165,7 +165,7 @@ Recording starts automatically when the overlay initializes. It runs silently in
 | **Page load** | `startRecording()` call | Yes | Full (always keyframe) |
 
 - **MutationObserver** is the primary trigger. Observes `document.body` with `{ subtree: true, childList: true, attributes: true, characterData: true }`.
-- VyBit's own shadow DOM (`#tw-visual-editor-host`) mutations are excluded.
+- Convey's own shadow DOM (`#tw-visual-editor-host`) mutations are excluded.
 - Scroll and input events do NOT trigger snapshots — MutationObserver catches their DOM effects.
 
 #### Adaptive Keyframe/Diff Compression
@@ -212,12 +212,12 @@ Captures page changes — both SPA-style and traditional full-page navigations.
 #### Network Error Interceptor
 
 - Wraps `window.fetch` to capture non-ok responses and thrown errors
-- Filters out requests to VyBit's own server origin (avoid noise)
+- Filters out requests to Convey's own server origin (avoid noise)
 - In-memory buffer (100 entry cap), flushed into each snapshot
 
 #### IndexedDB Storage
 
-- DB: `vybit-recording`, store: `snapshots`
+- DB: `convey-recording`, store: `snapshots`
 - **100-snapshot rolling buffer** — oldest pruned on insert
 - **Keyframe promotion on prune**: when pruning a keyframe, reconstruct the full DOM for the next diff snapshot in the chain and promote it to keyframe (ensures reconstruction chain stays intact)
 - DOM reconstruction: walk backward through diffs to nearest keyframe, apply patches forward via `jsdiff`

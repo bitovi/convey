@@ -203,7 +203,7 @@ async function clickDrawerQueue(page: Page): Promise<void> {
 // ── Tutorial section titles (indexed by step number) ─────────────────────
 const SECTION_TITLES = [
   '', // placeholder for 0-index
-  'Welcome to VyBit',
+  'Welcome to Convey',
   'Open the Panel',
   'Your First Change',
   'Send a Voice Message',
@@ -228,7 +228,7 @@ const TOTAL_STEPS = 14;
 async function getProgress(page: Page): Promise<Set<number>> {
   const arr = await page.evaluate(() => {
     try {
-      const raw = localStorage.getItem('vybit-tutorial-progress');
+      const raw = localStorage.getItem('convey-tutorial-progress');
       return raw ? JSON.parse(raw) : [];
     } catch { return []; }
   });
@@ -346,9 +346,9 @@ async function doStep3(page: Page): Promise<void> {
 
 async function doStep4(page: Page): Promise<void> {
   // Headless Chrome doesn't support SpeechRecognition.
-  // Dispatch synthetic vybit:message to trigger tutorial auto-completion.
+  // Dispatch synthetic convey:message to trigger tutorial auto-completion.
   await page.evaluate(() => {
-    window.dispatchEvent(new CustomEvent('vybit:message', {
+    window.dispatchEvent(new CustomEvent('convey:message', {
       detail: { type: 'MESSAGE_STAGE', inputMethod: 'voice', message: 'test voice message' },
     }));
   });
@@ -915,7 +915,7 @@ async function doStep15(page: Page): Promise<void> {
   // make .text-xl elements compute to 32px (2rem × 16px base).
   await expect.poll(async () => {
     const info = await page.evaluate(() => {
-      const styleEl = document.getElementById('vybit-theme-preview');
+      const styleEl = document.getElementById('convey-theme-preview');
       const el = document.querySelector('.text-xl.font-bold') as HTMLElement;
       return {
         styleExists: !!styleEl,
@@ -933,7 +933,7 @@ async function doStep15(page: Page): Promise<void> {
   // useTutorialProgress. Dispatch a synthetic event as fallback (same
   // pattern as step 4's voice message).
   await page.evaluate(() => {
-    window.dispatchEvent(new CustomEvent('vybit:message', {
+    window.dispatchEvent(new CustomEvent('convey:message', {
       detail: { type: 'MESSAGE_STAGE', elementKey: 'theme', message: 'theme edit' },
     }));
   });
@@ -966,7 +966,7 @@ async function doStep14(page: Page): Promise<void> {
   // Cross-origin postMessage from the panel iframe doesn't reliably reach
   // useTutorialProgress. Dispatch a synthetic event as fallback.
   await page.evaluate(() => {
-    window.dispatchEvent(new CustomEvent('vybit:message', {
+    window.dispatchEvent(new CustomEvent('convey:message', {
       detail: { type: 'BUG_REPORT_STAGE' },
     }));
   });
@@ -979,7 +979,7 @@ export async function runTutorial(page: Page): Promise<void> {
   await page.waitForTimeout(2000);
 
   // Clear any previous progress
-  await page.evaluate(() => localStorage.removeItem('vybit-tutorial-progress'));
+  await page.evaluate(() => localStorage.removeItem('convey-tutorial-progress'));
 
   // Run all steps sequentially
   const STEPS: Array<{ step: number; fn: (page: Page) => Promise<void> }> = [

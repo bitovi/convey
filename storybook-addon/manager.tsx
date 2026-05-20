@@ -2,17 +2,17 @@ import React from 'react';
 import { addons, types } from '@storybook/manager-api';
 import { AddonPanel } from '@storybook/components';
 
-const ADDON_ID = 'vybit';
+const ADDON_ID = 'convey';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
 addons.register(ADDON_ID, (api) => {
   addons.add(PANEL_ID, {
     type: types.PANEL,
-    title: 'VyBit',
-    paramKey: 'vybit',
+    title: 'Convey',
+    paramKey: 'convey',
     render: ({ active }) => {
       const serverUrl =
-        api.getCurrentParameter<{ serverUrl?: string }>('vybit')?.serverUrl
+        api.getCurrentParameter<{ serverUrl?: string }>('convey')?.serverUrl
         ?? 'http://localhost:3333';
 
       if (active) {
@@ -25,7 +25,7 @@ addons.register(ADDON_ID, (api) => {
             <iframe
               src={`${serverUrl}/panel/?embedded=storybook`}
               style={{ width: '100%', height: '100%', border: 'none' }}
-              title="Vybit Panel"
+              title="Convey Panel"
             />
           </div>
         </AddonPanel>

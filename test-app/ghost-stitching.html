@@ -264,7 +264,7 @@
 
         // Build URL with args
         const argsParam = buildArgsParam(testCase.args);
-        let src = `/storybook/iframe.html?id=${encodeURIComponent(testCase.storyId)}&viewMode=story&vybit-ghost=1`;
+        let src = `/storybook/iframe.html?id=${encodeURIComponent(testCase.storyId)}&viewMode=story&convey-ghost=1`;
         if (argsParam) {
           src += `&args=${argsParam}`;
         }

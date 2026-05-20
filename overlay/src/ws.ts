@@ -1,4 +1,4 @@
-import { debugLog, debugWarn, isDebug } from "../../shared/vybit-env";
+import { debugLog, debugWarn, isDebug } from "../../shared/convey-env";
 
 let socket: WebSocket | null = null;
 let eventSource: EventSource | null = null;
@@ -93,7 +93,7 @@ export function connect(url: string = 'ws://localhost:3333', httpOrigin?: string
         const data = JSON.parse(event.data);
         debugLog('tw-overlay', `WS ← ${data.type ?? 'unknown'}`, data);
         for (const handler of handlers) handler(data);
-        window.dispatchEvent(new CustomEvent('vybit:message', { detail: data }));
+        window.dispatchEvent(new CustomEvent('convey:message', { detail: data }));
       } catch (err) {
         console.error('[tw-overlay] Failed to parse message:', err);
       }
@@ -128,7 +128,7 @@ export function connect(url: string = 'ws://localhost:3333', httpOrigin?: string
         if (transport !== 'sse') return;
         debugLog('tw-overlay', `SSE ← ${data.type ?? 'unknown'}`, data);
         for (const handler of handlers) handler(data);
-        window.dispatchEvent(new CustomEvent('vybit:message', { detail: data }));
+        window.dispatchEvent(new CustomEvent('convey:message', { detail: data }));
       } catch (err) {
         console.error('[tw-overlay] Failed to parse SSE message:', err);
       }
@@ -187,7 +187,7 @@ export function send(data: object): void {
   }
 
   // Echo outgoing messages so page-level listeners (e.g. tutorial progress) can observe them
-  window.dispatchEvent(new CustomEvent('vybit:message', { detail: data }));
+  window.dispatchEvent(new CustomEvent('convey:message', { detail: data }));
 }
 
 export function onMessage(handler: MessageHandler): void {

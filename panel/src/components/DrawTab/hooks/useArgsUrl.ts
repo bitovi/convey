@@ -11,7 +11,7 @@ export function buildArgsUrl(
   args: Record<string, unknown> = {},
   base = STORYBOOK_BASE,
 ): string {
-  const url = `${base}/iframe.html?id=${encodeURIComponent(storyId)}&viewMode=story&vybit-ghost=1`;
+  const url = `${base}/iframe.html?id=${encodeURIComponent(storyId)}&viewMode=story&convey-ghost=1`;
   const entries = Object.entries(args).filter(([, v]) => v !== undefined && v !== null);
   if (entries.length === 0) return url;
 

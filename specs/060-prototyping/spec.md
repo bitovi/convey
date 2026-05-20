@@ -2,50 +2,50 @@
 
 ## Problem
 
-Today the VyBit agent loop is single-track: the user queues a change, the agent implements it, and moves on. There's no mechanism for the agent to **propose multiple options** and let the user pick the best one before committing to implementation.
+Today the Convey agent loop is single-track: the user queues a change, the agent implements it, and moves on. There's no mechanism for the agent to **propose multiple options** and let the user pick the best one before committing to implementation.
 
 This is a significant gap. Many design tasks are exploratory — "make this hero section more modern", "try a different layout for the sidebar", "suggest some color schemes." The right answer isn't known upfront; the user wants to see options and choose.
 
-Superpowers (obra/superpowers) solves this with a `brainstorming` skill that proposes 2-3 approaches, a `visual-companion` that renders HTML mockups in-browser for the user to click-select, and `subagent-driven-development` that can dispatch parallel agents to build variants. VyBit can adopt a similar approach: the agent generates complete HTML mockup files, writes them to `.vybit/prototypes/`, and the panel presents them for the user to compare and choose.
+Superpowers (obra/superpowers) solves this with a `brainstorming` skill that proposes 2-3 approaches, a `visual-companion` that renders HTML mockups in-browser for the user to click-select, and `subagent-driven-development` that can dispatch parallel agents to build variants. Convey can adopt a similar approach: the agent generates complete HTML mockup files, writes them to `.convey/prototypes/`, and the panel presents them for the user to compare and choose.
 
 ## Goals
 
 1. **Agent can propose options.** The MCP response can instruct the agent to generate 2+ prototype variants and present them for user selection.
 2. **User sees options visually.** Prototypes are presented in a way that makes comparison easy — either in the panel, in the page, or both.
 3. **User picks a winner.** The selected prototype feeds back into the agent loop as the next thing to implement.
-4. **Local storage.** VyBit gets a `.vybit/` directory for persisting prototypes, session state, and future extensibility.
+4. **Local storage.** Convey gets a `.convey/` directory for persisting prototypes, session state, and future extensibility.
 5. **No new MCP tools.** The existing `implement_next_change` loop is preserved, but the response vocabulary is expanded so the agent can receive different _kinds_ of instructions (not just "implement this class change").
 
 ## Non-Goals (for now)
 
 - Parallel subagent execution (one agent generating options sequentially is fine for v1)
 - Version control / undo of prototype selections
-- Prototype persistence across server restarts (in-memory is fine for v1; `.vybit/` is the future home)
+- Prototype persistence across server restarts (in-memory is fine for v1; `.convey/` is the future home)
 
 ---
 
 ## Key Design Decisions
 
-### 1. `.vybit/` local storage directory
+### 1. `.convey/` local storage directory
 
-VyBit needs a project-local storage directory for prototypes and (eventually) session data, preferences, and cached state.
+Convey needs a project-local storage directory for prototypes and (eventually) session data, preferences, and cached state.
 
 ```
 <project-root>/
-  .vybit/
+  .convey/
     prototypes/          ← prototype HTML/artifacts
     sessions/            ← future: session logs
-    config.json          ← future: project-level VyBit config
+    config.json          ← future: project-level Convey config
 ```
 
 **Location resolution** (same precedence as project root):
-1. `--vybit-dir` CLI flag
-2. `VYBIT_DIR` env var
-3. `<cwd>/.vybit/`
+1. `--convey-dir` CLI flag
+2. `CONVEY_DIR` env var
+3. `<cwd>/.convey/`
 
-The server creates `.vybit/` on first use (lazy). It should be added to `.gitignore` by default.
+The server creates `.convey/` on first use (lazy). It should be added to `.gitignore` by default.
 
-**Open question:** Should VyBit auto-append `.vybit/` to the project's `.gitignore`, or just warn?
+**Open question:** Should Convey auto-append `.convey/` to the project's `.gitignore`, or just warn?
 
 ### 2. Expanding the MCP response vocabulary (no new tools)
 
@@ -56,7 +56,7 @@ Rather than adding new MCP tools, we expand the commit/instruction vocabulary so
 | Action | Today | New |
 |--------|-------|-----|
 | `implement` | Apply class changes to source files | unchanged |
-| `prototype` | — | Generate N variants, write to `.vybit/prototypes/`, report back |
+| `prototype` | — | Generate N variants, write to `.convey/prototypes/`, report back |
 | `choose` | — | Present options to user, wait for selection |
 
 This means the MCP tool name could evolve. Options:
@@ -273,9 +273,9 @@ Full-screen overlay (like an image lightbox) that dims the user's app and shows 
 ```
 
 **Pros:** Full attention on the mockup. Doesn't navigate away. Familiar pattern (lightbox).
-**Cons:** Overlay-on-overlay can feel heavy. Must coexist with VyBit's existing shadow DOM overlay.
+**Cons:** Overlay-on-overlay can feel heavy. Must coexist with Convey's existing shadow DOM overlay.
 
-**Recommendation:** Start with **Picker Idea C (carousel)** as the simplest MVP. The carousel could render inside the panel (replacing current content while prototypes are pending) or as a lightbox overlay (Idea F). The server already serves static files — adding a route for `.vybit/prototypes/` HTML files is straightforward.
+**Recommendation:** Start with **Picker Idea C (carousel)** as the simplest MVP. The carousel could render inside the panel (replacing current content while prototypes are pending) or as a lightbox overlay (Idea F). The server already serves static files — adding a route for `.convey/prototypes/` HTML files is straightforward.
 
 ---
 
@@ -283,7 +283,7 @@ Full-screen overlay (like an image lightbox) that dims the user's app and shows 
 
 For v1, prototypes are **complete HTML files** generated by the agent. Each file is a self-contained page that the user can view in an iframe or full-screen.
 
-The agent has full creative freedom: the mockup can be a whole page layout, a single component rendered in isolation, a design comp with inline styles, or anything else expressible as HTML. The mockup files live in `.vybit/prototypes/<commitId>/` alongside a `manifest.json` that describes the options.
+The agent has full creative freedom: the mockup can be a whole page layout, a single component rendered in isolation, a design comp with inline styles, or anything else expressible as HTML. The mockup files live in `.convey/prototypes/<commitId>/` alongside a `manifest.json` that describes the options.
 
 Future prototype types (class-bundle overlays, component variant code, theme overrides) can be added later by extending the manifest schema.
 
@@ -304,13 +304,13 @@ Future prototype types (class-bundle overlays, component variant code, theme ove
      elementKey: "...",
      count: 3,
      instructions: "Generate 3 HTML mockup files showing different directions.
-       Write each as a complete HTML file to .vybit/prototypes/<commitId>/.
+       Write each as a complete HTML file to .convey/prototypes/<commitId>/.
        Create a manifest.json describing all options.
        When done, call mark_change_implemented with the prototype manifest path."
    }
 
-3. Agent generates 3 HTML mockup files, writes to .vybit/prototypes/:
-   .vybit/prototypes/<commitId>/
+3. Agent generates 3 HTML mockup files, writes to .convey/prototypes/:
+   .convey/prototypes/<commitId>/
      manifest.json       ← { options: [...], request, elementKey }
      option-a.html        ← complete HTML mockup
      option-b.html
@@ -351,7 +351,7 @@ interface PrototypeOption {
   id: string;
   label: string;              // "Option A", "Modern Minimal", etc.
   description: string;
-  htmlPath: string;            // relative to .vybit/prototypes/, e.g. "<commitId>/option-a.html"
+  htmlPath: string;            // relative to .convey/prototypes/, e.g. "<commitId>/option-a.html"
   thumbnailDataUrl?: string;   // optional agent-generated screenshot for thumbnail cards
 }
 
@@ -387,10 +387,10 @@ REQUEST: "Make this hero section more modern"
 ELEMENT: <section class="bg-white p-8 text-center">...</section>
 COMPONENT: HeroSection (src/components/HeroSection.tsx)
 COUNT: 3
-PROTOTYPE_DIR: .vybit/prototypes/<commitId>/
+PROTOTYPE_DIR: .convey/prototypes/<commitId>/
 
 INSTRUCTIONS:
-1. Create the directory .vybit/prototypes/<commitId>/
+1. Create the directory .convey/prototypes/<commitId>/
 2. Generate 3 complete HTML mockup files, each showing a different design direction.
    - Each file should be a self-contained HTML page (inline CSS/JS is fine).
    - Name them descriptively: e.g. modern-minimal.html, bold-gradient.html, etc.
@@ -403,7 +403,7 @@ INSTRUCTIONS:
      ]
    }
 4. Call mark_change_implemented with commitId and:
-   { prototypes: { manifestPath: ".vybit/prototypes/<commitId>/manifest.json" } }
+   { prototypes: { manifestPath: ".convey/prototypes/<commitId>/manifest.json" } }
 5. Then call implement_next_change again to continue the loop.
 ```
 
@@ -444,10 +444,10 @@ When a `PROTOTYPE_OPTIONS` message arrives:
 
 ## Server Changes
 
-### `.vybit/` directory management
+### `.convey/` directory management
 
 Add to `server/index.ts`:
-- On startup, resolve `.vybit/` path (CLI flag > env var > `<cwd>/.vybit/`)
+- On startup, resolve `.convey/` path (CLI flag > env var > `<cwd>/.convey/`)
 - Lazy-create on first write
 - Expose path to MCP tools via deps
 
@@ -488,7 +488,7 @@ When `prototypes` is present, the server:
 
 3. **Cost/speed.** Generating 3 full HTML mockups takes real agent time. Should we show options incrementally as they're generated (streaming prototype files), or wait until all are ready? Incremental display would require the agent to update the manifest after each file.
 
-4. **Serving mockup files.** The server needs a new static-file route to serve HTML from `.vybit/prototypes/`. Security consideration: these files run in iframes — should they be sandboxed (`sandbox` attribute) to prevent scripts from affecting the parent panel?
+4. **Serving mockup files.** The server needs a new static-file route to serve HTML from `.convey/prototypes/`. Security consideration: these files run in iframes — should they be sandboxed (`sandbox` attribute) to prevent scripts from affecting the parent panel?
 
 5. **Explore button color.** What color differentiates "Explore" from Queue (teal border) and Commit (teal fill)? Candidates: bit-orange, a new purple/violet, or a gradient.
 
@@ -499,7 +499,7 @@ When `prototypes` is present, the server:
 ## Implementation Phases
 
 ### Phase 1: Foundation
-- `.vybit/` directory management (server-side)
+- `.convey/` directory management (server-side)
 - `PrototypeOption` and `PrototypeManifest` types in `shared/types.ts`
 - "Explore" button in element drawer (State B) and draw canvas footer
 - `prototype: true` flag on message patches, server-side detection
@@ -508,7 +508,7 @@ When `prototypes` is present, the server:
 
 ### Phase 2: Panel UI
 - `PrototypePicker` component (modlet) — thumbnail cards + carousel viewer
-- Iframe rendering of HTML mockups served from `.vybit/prototypes/`
+- Iframe rendering of HTML mockups served from `.convey/prototypes/`
 - Selection flow → feeds back into agent loop
 
 ### Phase 3: MCP Integration

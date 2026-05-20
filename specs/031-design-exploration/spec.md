@@ -2,15 +2,15 @@
 
 ## Problem
 
-Users can visually tweak existing Tailwind classes on a running app, but they can't explore *new* design ideas. If someone selects a `<div>` and thinks "this should be a file uploader," there's no way to say that, see options, and iterate toward a solution — they'd have to leave VyBit entirely, describe the idea to an agent in a separate tool, review code diffs, and hope it looks right.
+Users can visually tweak existing Tailwind classes on a running app, but they can't explore *new* design ideas. If someone selects a `<div>` and thinks "this should be a file uploader," there's no way to say that, see options, and iterate toward a solution — they'd have to leave Convey entirely, describe the idea to an agent in a separate tool, review code diffs, and hope it looks right.
 
 The same gap exists at page scale: a user might draw a full dashboard layout on the canvas with many components and annotations, then want to say "give me variations of this" — and there's no way to go from canvas sketch to live rendered alternatives and back.
 
-The gap is: **VyBit edits what exists, but can't help you explore what could exist.**
+The gap is: **Convey edits what exists, but can't help you explore what could exist.**
 
 ## Goal
 
-Let users describe what they want (via text prompt, canvas sketch, or both), have an AI agent generate multiple design options as real Storybook stories, browse those options in a full-body iframe, directly edit a chosen option on the Fabric canvas, and iterate through unlimited rounds — all within the VyBit workflow. The story code serves as the implementation draft.
+Let users describe what they want (via text prompt, canvas sketch, or both), have an AI agent generate multiple design options as real Storybook stories, browse those options in a full-body iframe, directly edit a chosen option on the Fabric canvas, and iterate through unlimited rounds — all within the Convey workflow. The story code serves as the implementation draft.
 
 ---
 
@@ -85,7 +85,7 @@ BROWSE (Iframe)                                          │
 | Refinement modes | **Three parallel paths** | Chat ("Refine..."), direct manipulation ("Edit this" → canvas), or accept ("Use this"). User picks the right tool for the change. |
 | Option count | **Agent decides (2–5)** | Based on prompt complexity. User can override ("show me 4 options"). |
 | Story structure | **One story per file** | `Option1.stories.tsx`, `Option2.stories.tsx`, etc. Clean for cleanup and agent reasoning. |
-| Temp directory | **`src/__vybit_explore__/{taskId}/`** | Under target project root. `.gitignore`d. Deleted after implementation or cancellation. |
+| Temp directory | **`src/__convey_explore__/{taskId}/`** | Under target project root. `.gitignore`d. Deleted after implementation or cancellation. |
 | Storybook availability | **Reuse `StorybookConnect` warning** | Same pattern as Components tab — detect via `/api/storybook-data`. |
 | Agent guidance | **Skill file** | `.github/skills/explore-design/SKILL.md` — projects customize component preferences, layout conventions, theming. |
 
@@ -159,7 +159,7 @@ Tasks have priority over commits in the queue. Commits continue to work exactly 
            │  - Story file template                    │
            │                                           │
            │  Agent writes:                            │
-           │    src/__vybit_explore__/{taskId}/         │
+           │    src/__convey_explore__/{taskId}/         │
            │      Option1.stories.tsx                   │
            │      Option2.stories.tsx                   │
            │      Option3.stories.tsx                   │
@@ -493,7 +493,7 @@ The user wants to explore design options for an element on their page.
 
 ## Instructions
 1. Create 3 design options as separate Storybook story files.
-2. Write each to: `src/__vybit_explore__/{taskId}/OptionN.stories.tsx`
+2. Write each to: `src/__convey_explore__/{taskId}/OptionN.stories.tsx`
    ...
 ```
 
@@ -521,7 +521,7 @@ The user sketched a layout and wants variations.
 ## Instructions
 1. Use the canvas sketch as visual reference for layout and composition.
 2. Create 3 design options as separate Storybook story files.
-3. Write each to: `src/__vybit_explore__/{taskId}/OptionN.stories.tsx`
+3. Write each to: `src/__convey_explore__/{taskId}/OptionN.stories.tsx`
    ...
 ```
 
@@ -538,7 +538,7 @@ const OptionN = () => (
 );
 
 const meta: Meta<typeof OptionN> = {
-  title: '__vybit_explore__/{taskId}/Option N Title',
+  title: '__convey_explore__/{taskId}/Option N Title',
   component: OptionN,
 };
 export default meta;
@@ -572,7 +572,7 @@ Story file: `{selectedOption.storyFilePath}`
 ## Instructions
 1. Revise the story files based on the feedback.
    - You may update the selected option, create new variations, or replace all options.
-2. Write updated stories to: `src/__vybit_explore__/{taskId}/`
+2. Write updated stories to: `src/__convey_explore__/{taskId}/`
 3. Call `submit_design_options` with the updated option list.
 4. Then call `implement_next_change` to wait for the user's next decision.
 ```
@@ -752,10 +752,10 @@ This follows the existing `DESIGN_SUBMIT` flow — canvas screenshot + element p
 
 #### 5.3 Cleanup
 
-- **After implementation:** Server deletes `src/__vybit_explore__/{taskId}/` directory. Triggered when the implementation commit is marked done via `mark_change_implemented` and the commit originated from an exploration.
+- **After implementation:** Server deletes `src/__convey_explore__/{taskId}/` directory. Triggered when the implementation commit is marked done via `mark_change_implemented` and the commit originated from an exploration.
 - **After cancellation:** Server deletes temp directory immediately.
-- **Startup sweep:** On server boot, `fs.rm` any `__vybit_explore__` directories found under the project root (orphan safety from crashes).
-- **`.gitignore`:** Add `__vybit_explore__/` to prevent accidental commits of temp stories.
+- **Startup sweep:** On server boot, `fs.rm` any `__convey_explore__` directories found under the project root (orphan safety from crashes).
+- **`.gitignore`:** Add `__convey_explore__/` to prevent accidental commits of temp stories.
 
 ### Phase 6: Agent Skill File
 
@@ -848,8 +848,8 @@ Spec 032 can be implemented independently — it serves the general Screenshot &
 | 13 | **Chat refinement:** browse options → "Refine: make it darker" → agent revises → new options appear | Manual E2E |
 | 14 | Cancel: explore → cancel → preview dismissed → temp files cleaned | Manual E2E |
 | 15 | Mock MCP client implement loop works unchanged (backward compat) | Manual E2E |
-| 16 | Temp `__vybit_explore__/` directories deleted after implementation | Manual E2E |
-| 17 | Orphaned `__vybit_explore__/` directories cleaned on server restart | Manual E2E |
+| 16 | Temp `__convey_explore__/` directories deleted after implementation | Manual E2E |
+| 17 | Orphaned `__convey_explore__/` directories cleaned on server restart | Manual E2E |
 | 18 | Full-page story renders correctly in iframe preview mode | Manual E2E |
 
 ---
@@ -863,7 +863,7 @@ Spec 032 can be implemented independently — it serves the general Screenshot &
 | Agent goes off-brand (arbitrary Tailwind instead of design system) | Options don't match project's design language | `get_design_system_inventory` provides component catalog. Skill file provides guardrails. |
 | "Edit this" decomposition fails on complex story DOM | Blank or incomplete Fabric canvas | Fall back to composite screenshot as single Fabric image (same as spec 032 fallback). |
 | Cross-origin iframe access for story decomposition | Can't access story iframe's DOM for "Edit this" | Stories are served through `/storybook` proxy (same origin). Verify proxy preserves DOM access. |
-| Orphaned temp directories accumulate | Disk clutter, confusing Storybook sidebar | Startup sweep deletes all `__vybit_explore__/` dirs. `.gitignore` prevents commits. |
+| Orphaned temp directories accumulate | Disk clutter, confusing Storybook sidebar | Startup sweep deletes all `__convey_explore__/` dirs. `.gitignore` prevents commits. |
 | Multiple concurrent explorations | Queue/preview confusion | For v1: only one active exploration at a time. ExplorePrompt disabled while another is in progress. |
 | Storybook not running | Feature is inaccessible | Reuse `StorybookConnect` component — same UX as Components tab. |
 | Full-page stories overwhelm browser (heavy components) | Slow preview transitions | One iframe at a time (re-point src, don't pre-load all). Consider `loading="lazy"` patterns. |

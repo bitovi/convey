@@ -68,7 +68,7 @@ export function createWsMessageHandler(deps: WsHandlerDeps): (msg: any) => void 
 		} else if (msg.type === "COLOR_SCHEME_CHANGED") {
 			const scheme = msg.colorScheme as 'dark' | 'light';
 			dom.shadowHost.classList.toggle('light', scheme === 'light');
-			try { localStorage.setItem('vybit-color-scheme', scheme); } catch { /* ignore */ }
+			try { localStorage.setItem('convey-color-scheme', scheme); } catch { /* ignore */ }
 		} else if (msg.type === "TAB_CHANGED") {
 			dispatch({ type: 'CMD_TAB_CHANGED', tab: msg.tab });
 			state.replaceDirection = (msg.tab === 'replace' && state.currentTargetEl) ? 'element-first' : null;
@@ -81,7 +81,7 @@ export function createWsMessageHandler(deps: WsHandlerDeps): (msg: any) => void 
 			state.currentEquivalentNodes.length > 0 &&
 			!isTextEditing()
 		) {
-			console.log(`[vybit-index] PATCH_PREVIEW received old="${msg.oldClass}" new="${msg.newClass}" nodes=${state.currentEquivalentNodes.length}`);
+			console.log(`[convey-index] PATCH_PREVIEW received old="${msg.oldClass}" new="${msg.newClass}" nodes=${state.currentEquivalentNodes.length}`);
 			applyPreview(
 				state.currentEquivalentNodes,
 				msg.oldClass,
@@ -126,7 +126,7 @@ export function createWsMessageHandler(deps: WsHandlerDeps): (msg: any) => void 
 				// Update injected CSS
 				if (msg.ghostCss) {
 					const compName = msg.componentName ?? ghostEl.dataset.twDroppedComponent ?? 'unknown';
-					const styleId = `vybit-ghost-css-${compName}`;
+					const styleId = `convey-ghost-css-${compName}`;
 					let styleEl = document.getElementById(styleId);
 					if (!styleEl) {
 						styleEl = document.createElement('style');
@@ -197,8 +197,8 @@ export function createWsMessageHandler(deps: WsHandlerDeps): (msg: any) => void 
 
 			deps.showToast("Change staged");
 
-			console.log(`[vybit-index] PATCH_STAGE received old="${msg.oldClass}" new="${msg.newClass}" hasPreviewState=${!!previewState} nodes=${state.currentEquivalentNodes.length}`);
-			console.log(`[vybit-index] PATCH_STAGE target className="${state.currentTargetEl?.className}"`);
+			console.log(`[convey-index] PATCH_STAGE received old="${msg.oldClass}" new="${msg.newClass}" hasPreviewState=${!!previewState} nodes=${state.currentEquivalentNodes.length}`);
+			console.log(`[convey-index] PATCH_STAGE target className="${state.currentTargetEl?.className}"`);
 
 			// The staged change is now the baseline — clear preview tracking so the
 			// next preview captures the current DOM state (with the staged class).
@@ -206,11 +206,11 @@ export function createWsMessageHandler(deps: WsHandlerDeps): (msg: any) => void 
 			// the new class was never applied to the DOM. Apply it now, then commit
 			// once the CSS is injected so the class renders immediately.
 			if (!previewState && !msg.oldClass && msg.newClass) {
-				console.log(`[vybit-index] PATCH_STAGE branch: ADD (no preview, no oldClass) → applyPreview+commitPreview`);
+				console.log(`[convey-index] PATCH_STAGE branch: ADD (no preview, no oldClass) → applyPreview+commitPreview`);
 				applyPreview(state.currentEquivalentNodes, '', msg.newClass, deps.serverOrigin)
 					.then(() => commitPreview());
 			} else {
-				console.log(`[vybit-index] PATCH_STAGE branch: COMMIT (has preview or has oldClass) → commitPreview+ensureCommittedCss`);
+				console.log(`[convey-index] PATCH_STAGE branch: COMMIT (has preview or has oldClass) → commitPreview+ensureCommittedCss`);
 				commitPreview();
 				// Guard against PATCH_PREVIEW→PATCH_STAGE race: if the preview's
 				// CSS fetch was still in-flight when we committed, the CSS was never
@@ -219,7 +219,7 @@ export function createWsMessageHandler(deps: WsHandlerDeps): (msg: any) => void 
 				for (const node of state.currentEquivalentNodes) {
 					if (msg.oldClass) node.classList.remove(msg.oldClass);
 					if (msg.newClass) node.classList.add(msg.newClass);
-					console.log(`[vybit-index] PATCH_STAGE forced classList: node.className="${node.className}"`);
+					console.log(`[convey-index] PATCH_STAGE forced classList: node.className="${node.className}"`);
 				}
 				if (msg.newClass) {
 					ensureCommittedCss(msg.newClass, deps.serverOrigin);

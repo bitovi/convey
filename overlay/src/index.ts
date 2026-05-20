@@ -1,6 +1,6 @@
 import { armInsert, armGenericInsert, armElementSelect, cancelInsert, replaceElement, placeAtLockedInsert, startBrowse, getLockedInsert, clearLockedInsert, isActive as isDropZoneActive, findGhostAncestor, repositionOnScroll as repositionDropZone, injectGhostCss, buildSelector } from "./drop-zone";
 import { isTextEditing, handleTextEditingClick, endTextEdit } from "./text-edit";
-import { debugLog } from "../../shared/vybit-env";
+import { debugLog } from "../../shared/convey-env";
 import type { ContainerName } from "./containers/IContainer";
 import { ModalContainer } from "./containers/ModalContainer";
 import { PopoverContainer } from "./containers/PopoverContainer";
@@ -10,7 +10,7 @@ import { buildContext, buildDeleteContext } from "./context";
 import { detectComponent } from "./framework-detect";
 import './design-canvas/index';
 import { css, SHADOW_HOST, OVERLAY_CSS } from './styles';
-import { VYBIT_LOGO_SVG } from './svg-icons';
+import { CONVEY_LOGO_SVG } from './svg-icons';
 import { saveScrollRatio } from './preserve-scroll';
 import { findExactMatches } from "./grouping";
 import { initDragDrop } from "./drag-drop";
@@ -62,7 +62,7 @@ function onBrowseLocked(target: HTMLElement): void {
 	updateInstanceCount(state.currentEquivalentNodes.length);
 }
 
-const THEME_PREVIEW_STYLE_ID = "vybit-theme-preview";
+const THEME_PREVIEW_STYLE_ID = "convey-theme-preview";
 
 /**
  * Read all CSS custom properties declared in :root / :host rules from every
@@ -639,22 +639,22 @@ function getDefaultContainer(): ContainerName {
 }
 
 function init(): void {
-	// Running inside the VyBit panel itself — do not activate the overlay.
+	// Running inside the Convey panel itself — do not activate the overlay.
 	// This prevents infinite nesting when the panel is embedded in a sidebar.
-	if ((window as any).__VYBIT_PANEL__) return;
+	if ((window as any).__CONVEY_PANEL__) return;
 
 	// Ghost frames used for component extraction must not run the overlay —
 	// they would send spurious RESET_SELECTION messages. Ghost frames get
-	// ?vybit-ghost=1 from AdaptiveIframe.
+	// ?convey-ghost=1 from AdaptiveIframe.
 	const params = new URLSearchParams(location.search);
-	if (params.get('vybit-ghost') === '1') return;
+	if (params.get('convey-ghost') === '1') return;
 
 	dom.shadowHost = document.createElement("div");
 	dom.shadowHost.id = "tw-visual-editor-host";
 	dom.shadowHost.style.cssText = css(SHADOW_HOST);
 	// Restore color scheme preference
 	try {
-		const scheme = localStorage.getItem('vybit-color-scheme');
+		const scheme = localStorage.getItem('convey-color-scheme');
 		if (scheme === 'light') dom.shadowHost.classList.add('light');
 	} catch { /* ignore */ }
 	document.body.appendChild(dom.shadowHost);
@@ -827,8 +827,8 @@ function init(): void {
 
 	const btn = document.createElement("button");
 	btn.className = "toggle-btn";
-	btn.setAttribute("aria-label", "Open VyBit inspector");
-	btn.innerHTML = VYBIT_LOGO_SVG;
+	btn.setAttribute("aria-label", "Open Convey inspector");
+	btn.innerHTML = CONVEY_LOGO_SVG;
 	btn.addEventListener("click", () => toggleInspect(btn));
 	if (insideStorybook) {
 		btn.style.display = 'none';
@@ -888,11 +888,11 @@ function init(): void {
 	}));
 
 	// WebSocket connection — derive WS URL from script src
-	// In proxy mode (overlay served from same origin), use /__vybit_ws path
-	// so Vite can proxy the WebSocket to the VyBit server.
+	// In proxy mode (overlay served from same origin), use /__convey_ws path
+	// so Vite can proxy the WebSocket to the Convey server.
 	const isProxied = SERVER_ORIGIN === window.location.origin;
 	const wsUrl = isProxied
-		? `${window.location.origin.replace(/^http/, "ws")}/__vybit_ws`
+		? `${window.location.origin.replace(/^http/, "ws")}/__convey_ws`
 		: SERVER_ORIGIN.replace(/^http/, "ws");
 	debugLog('tw-overlay', `Connecting WebSocket to: ${wsUrl} (proxied=${isProxied})`);
 	connect(wsUrl, SERVER_ORIGIN);

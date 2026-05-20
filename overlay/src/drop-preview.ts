@@ -146,7 +146,7 @@ export function createDropPreview(onActivate?: () => void): DropPreviewHandle {
       s.hiddenTargetDisplay = '';
     }
     if (s.injectedCssName) {
-      const styleEl = document.getElementById(`vybit-ghost-css-${s.injectedCssName}`);
+      const styleEl = document.getElementById(`convey-ghost-css-${s.injectedCssName}`);
       if (styleEl) styleEl.remove();
       s.injectedCssName = null;
     }
@@ -229,7 +229,7 @@ export function createDropPreview(onActivate?: () => void): DropPreviewHandle {
     s.lockedRect = null;
     // Leave injected CSS in place — drop will re-inject under the real name.
     if (s.injectedCssName) {
-      const styleEl = document.getElementById(`vybit-ghost-css-${s.injectedCssName}`);
+      const styleEl = document.getElementById(`convey-ghost-css-${s.injectedCssName}`);
       if (styleEl) styleEl.remove();
       s.injectedCssName = null;
     }

@@ -1,11 +1,11 @@
 ---
 name: naming-guide
-description: Canonical naming for all VyBit UI parts, features, and concepts. Reference when discussing, documenting, or writing code for any part of the app. Ensures consistent terminology across humans and AI agents.
+description: Canonical naming for all Convey UI parts, features, and concepts. Reference when discussing, documenting, or writing code for any part of the app. Ensures consistent terminology across humans and AI agents.
 ---
 
-# VyBit Naming Guide
+# Convey Naming Guide
 
-Canonical names for every part of VyBit, organized as a visual topology. Use these names in code comments, docs, specs, conversations, and prompts.
+Canonical names for every part of Convey, organized as a visual topology. Use these names in code comments, docs, specs, conversations, and prompts.
 
 **Path notation example:** `Panel > Design Tab > Box Model > Side Slots`
 
@@ -14,7 +14,7 @@ Canonical names for every part of VyBit, organized as a visual topology. Use the
 ## Topology
 
 ```
-VyBit
+Convey
 ├── Overlay
 │   ├── Toggle Button
 │   ├── Selection Mode
@@ -131,7 +131,7 @@ The Overlay is the layer injected into the user's running app. It handles elemen
 
 | Name | Description | File |
 |------|-------------|------|
-| **Toggle Button** | Fixed circle at bottom-right that activates/deactivates VyBit | `index.ts` |
+| **Toggle Button** | Fixed circle at bottom-right that activates/deactivates Convey | `index.ts` |
 | **Selection Mode** | Crosshair cursor state where hovering highlights elements for picking | `index.ts` |
 | **Hover Outline** | Teal border that follows the mouse during Selection Mode | `index.ts` |
 | **Hover Tooltip** | Floating pill showing `<ComponentName> tag.class` during hover | `index.ts` |
@@ -244,7 +244,7 @@ The Panel is the React inspector UI where users edit Tailwind classes, place com
 
 | Name | Description | File |
 |------|-------------|------|
-| **Addon Panel** | Iframe embedding the VyBit Panel as a tab inside Storybook | `manager.tsx` / `manager-v10.tsx` |
+| **Addon Panel** | Iframe embedding the Convey Panel as a tab inside Storybook | `manager.tsx` / `manager-v10.tsx` |
 | **Preview Decorator** | Injects `overlay.js` into story iframes so the overlay runs per-story | `preview.ts` / `preview-v10.ts` |
 | **Preset** | Auto-detects SB8 vs SB10 and routes to the correct entry points | `preset.js` |
 

@@ -1,7 +1,7 @@
 import type { RecordingSnapshot, SnapshotMeta } from '../../../../shared/types';
 import { DomDiffer } from '../dom-differ';
 
-const DB_NAME = 'vybit-recording';
+const DB_NAME = 'convey-recording';
 const STORE_NAME = 'snapshots';
 const DB_VERSION = 1;
 const MAX_SNAPSHOTS = 100;

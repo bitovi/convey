@@ -29,7 +29,7 @@ Since the tutorial was written, several things changed:
 
 | Old # | New # | Title | Change |
 |-------|-------|-------|--------|
-| 1 | 1 | Welcome to VyBit | No change |
+| 1 | 1 | Welcome to Convey | No change |
 | 2 | 2 | Open the Panel | Rewrite button descriptions |
 | 3 | 3 | Your First Change | Update Select location |
 | 4 | 4 | Send a Voice Message | Update Select location |

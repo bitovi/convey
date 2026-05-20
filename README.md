@@ -1,65 +1,65 @@
 # Convey (we are renaming and under construction)
 
-[![CI](https://img.shields.io/github/actions/workflow/status/bitovi/vybit/ci.yml?branch=main&label=CI)](https://github.com/bitovi/vybit/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@bitovi/vybit)](https://www.npmjs.com/package/@bitovi/vybit)
-[![npm downloads](https://img.shields.io/npm/dm/@bitovi/vybit)](https://www.npmjs.com/package/@bitovi/vybit)
-[![License: MIT](https://img.shields.io/npm/l/@bitovi/vybit)](https://github.com/bitovi/vybit/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/bitovi/vybit)](https://github.com/bitovi/vybit/stargazers)
+[![CI](https://img.shields.io/github/actions/workflow/status/bitovi/convey/ci.yml?branch=main&label=CI)](https://github.com/bitovi/convey/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@bitovi/convey)](https://www.npmjs.com/package/@bitovi/convey)
+[![npm downloads](https://img.shields.io/npm/dm/@bitovi/convey)](https://www.npmjs.com/package/@bitovi/convey)
+[![License: MIT](https://img.shields.io/npm/l/@bitovi/convey)](https://github.com/bitovi/convey/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/bitovi/convey)](https://github.com/bitovi/convey/stargazers)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 
-Suggest features, change designs, draw mockups, and report bugs __in your browser__ and send them to your favorite coding agent (Claude, Cursor, Copilot, etc) to be implemented. VyBit works with React or Angular apps built with Tailwind v3 or v4. 
+Suggest features, change designs, draw mockups, and report bugs __in your browser__ and send them to your favorite coding agent (Claude, Cursor, Copilot, etc) to be implemented. Convey works with React or Angular apps built with Tailwind v3 or v4. 
 
-![VyBit - Click and Change - HD 1080p](https://github.com/user-attachments/assets/df8d7c56-68af-4580-b046-c84a943f6b68)
+![Convey - Click and Change - HD 1080p](https://github.com/user-attachments/assets/df8d7c56-68af-4580-b046-c84a943f6b68)
 
-| [Watch a video going over its features](https://www.youtube.com/watch?v=dE2rYcyC2xk) | [Try a live demo in your browser](https://bitovi.github.io/vybit/) |
+| [Watch a video going over its features](https://www.youtube.com/watch?v=dE2rYcyC2xk) | [Try a live demo in your browser](https://bitovi.github.io/convey/) |
 |----------|----------|
-| [![Watch the video](https://github.com/user-attachments/assets/c6b866a8-c917-4ff3-a0e4-536d334e3d1a)](https://www.youtube.com/watch?v=dE2rYcyC2xk)  | [![Interactive Tutoral](https://github.com/user-attachments/assets/8f282b8f-ed51-4d1a-abfb-7080cf453fc7)](https://bitovi.github.io/vybit/)  |
+| [![Watch the video](https://github.com/user-attachments/assets/c6b866a8-c917-4ff3-a0e4-536d334e3d1a)](https://www.youtube.com/watch?v=dE2rYcyC2xk)  | [![Interactive Tutoral](https://github.com/user-attachments/assets/8f282b8f-ed51-4d1a-abfb-7080cf453fc7)](https://bitovi.github.io/convey/)  |
 
 
 
 
-`VyBit` changes how you can design and build an app or website. Instead of building your design system and page designs in Sketch or Figma and then implementing it in code, you:
+`Convey` changes how you can design and build an app or website. Instead of building your design system and page designs in Sketch or Figma and then implementing it in code, you:
 
 | Step No | Task | How |
 |----------|----------|----------|
 | 1    | Vibe code your design system    | `Claude, build a button, card and badge. Add storybook.`    |
-| 2    | __Use VyBit to fine-tune your design system in Storybook__ - Adjust colors, spacing, shadows, layout and more | <img  alt="image" src="https://github.com/user-attachments/assets/79ca04be-db8f-458f-8632-87cc040875db" />    |
-| 3a   | __Use VyBit to design features__ - drop your design system components into pages | <img width="1481" height="922" alt="image" src="https://github.com/user-attachments/assets/415acdb7-102a-4c31-910b-10536c59ee4a" /> |
-| 3b  | __Use VyBit to design features__ -  sketch a feature with the design canvas | <img width="1482" height="924" alt="image" src="https://github.com/user-attachments/assets/924e9733-baf6-4492-b9da-05fd27c2df93" /> | 
-| 3c | __Use VyBit to report bugs__ - send recent errors, console.logs, DOM snapshots, and events | <img width="1482" height="1080" alt="Untitled Project" src="https://github.com/user-attachments/assets/7754ccb4-0d4c-4f02-8ea3-dca45943fd9a" /> |
+| 2    | __Use Convey to fine-tune your design system in Storybook__ - Adjust colors, spacing, shadows, layout and more | <img  alt="image" src="https://github.com/user-attachments/assets/79ca04be-db8f-458f-8632-87cc040875db" />    |
+| 3a   | __Use Convey to design features__ - drop your design system components into pages | <img width="1481" height="922" alt="image" src="https://github.com/user-attachments/assets/415acdb7-102a-4c31-910b-10536c59ee4a" /> |
+| 3b  | __Use Convey to design features__ -  sketch a feature with the design canvas | <img width="1482" height="924" alt="image" src="https://github.com/user-attachments/assets/924e9733-baf6-4492-b9da-05fd27c2df93" /> | 
+| 3c | __Use Convey to report bugs__ - send recent errors, console.logs, DOM snapshots, and events | <img width="1482" height="1080" alt="Untitled Project" src="https://github.com/user-attachments/assets/7754ccb4-0d4c-4f02-8ea3-dca45943fd9a" /> |
 | 4 | Add text or voice messages for extra context | <img width="376" height="261" alt="image" src="https://github.com/user-attachments/assets/546ea987-a0ad-4809-85c6-52fb91fb987e" /> | 
 
-Plus, VyBit always knows what page, components, and elements you're editing, making it easier for agents to know exactly what you want!
+Plus, Convey always knows what page, components, and elements you're editing, making it easier for agents to know exactly what you want!
 
 
 
 ## Installation
 
-To use VyBit:
+To use Convey:
 
 1. Add its MCP tools to your agent
 2. Start the MCP connection
-3. Have your app or website load the VyBit Editor script
+3. Have your app or website load the Convey Editor script
 
 ### Add MCP tools to your agent 
 
-VyBit uses MCP to tell your agent to implement the changes you commit. 
+Convey uses MCP to tell your agent to implement the changes you commit. 
 
-Add VyBit to your Agent's MCP configuration. Below we've listed what these configurations might look like for different agents.  The most important things to know are:
+Add Convey to your Agent's MCP configuration. Below we've listed what these configurations might look like for different agents.  The most important things to know are:
 
-- VyBit is a Node project. So you will need [NodeJS](https://nodejs.org/en) `>= 18`.
-- VyBit runs using STDIO (not HTTP), so you will often need some sort of `command` or `stdio` configuration.
-- VyBit needs to run where your React app's `package.json` is. 
+- Convey is a Node project. So you will need [NodeJS](https://nodejs.org/en) `>= 18`.
+- Convey runs using STDIO (not HTTP), so you will often need some sort of `command` or `stdio` configuration.
+- Convey needs to run where your React app's `package.json` is. 
 
 __Copilot__ in `.vscode/mcp.json`
 
 ```json
 {
 	"servers": {
-		"vybit": {
+		"convey": {
 			"type": "stdio",
 			"command": "npx",
-			"args": ["@bitovi/vybit"],
+			"args": ["@bitovi/convey"],
 			"cwd": "${workspaceFolder}/packages/client"
 		}
 	},
@@ -72,9 +72,9 @@ __Claude Code__ in `.mcp.json`
 ```json
 {
   "mcpServers": {
-    "vybit": {
+    "convey": {
       "command": "npx",
-      "args": ["@bitovi/vybit"],
+      "args": ["@bitovi/convey"],
       "cwd": "/path/to/your/project"
     }
   }
@@ -83,16 +83,16 @@ __Claude Code__ in `.mcp.json`
 
 #### Running inside Docker
 
-If your app runs in a Docker container, run VyBit **inside the container** instead of on the host. This is necessary because VyBit needs access to your project's `node_modules` to resolve Tailwind — which only exist inside the container, not on the host.
+If your app runs in a Docker container, run Convey **inside the container** instead of on the host. This is necessary because Convey needs access to your project's `node_modules` to resolve Tailwind — which only exist inside the container, not on the host.
 
 Replace the `npx` command with `docker exec`. For example, Claude Code in `.mcp.json`:
 
 ```json
 {
   "mcpServers": {
-    "vybit": {
+    "convey": {
       "command": "docker",
-      "args": ["exec", "-i", "<your-container-name>", "npx", "@bitovi/vybit"]
+      "args": ["exec", "-i", "<your-container-name>", "npx", "@bitovi/convey"]
     }
   }
 }
@@ -123,12 +123,12 @@ Click start
 
 ### Add the Editor script
 
-The Editor script adds the VyBit editor panel. The script needs to be added to any pages you want to edit.
+The Editor script adds the Convey editor panel. The script needs to be added to any pages you want to edit.
 
 The best way to add the editor script is to have your agent do it! Paste the following into your agent:
 
 ```markdown
-I would like to use [VyBit](https://github.com/bitovi/vybit) on every page of this application.
+I would like to use [Convey](https://github.com/bitovi/convey) on every page of this application.
 Please make sure we can load the overlay script at `http://localhost:3333/overlay.js` in a non-blocking way.
 Here's some suggested code to add in the `<head>` of every page in development mode:
 
@@ -156,7 +156,7 @@ To start a session, you need to:
 In your agent, run the following prompt:
 
 ```
-Please implement the next change and continue implementing changes with VyBit.
+Please implement the next change and continue implementing changes with Convey.
 ```
 
 This will have your agent start a loop where it waits for changes, implements them, and then waits for new ones.
@@ -186,39 +186,39 @@ Once you have the changes you want to make, you can click the drafts button. Thi
 
 ## Storybook Integrations
 
-VyBit offers two separate Storybook integrations. Each requires its own setup. Both work with **Storybook 8** and **Storybook 10**.
+Convey offers two separate Storybook integrations. Each requires its own setup. Both work with **Storybook 8** and **Storybook 10**.
 
 ### 1. Drag Components from Storybook into Your Page
 
-The VyBit editor's **Components** tab lists your Storybook stories so you can drag them directly onto your page. VyBit's MCP server auto-detects your running Storybook by scanning ports 6006–6010. No extra installation is needed — just make sure Storybook is running before starting VyBit.
+The Convey editor's **Components** tab lists your Storybook stories so you can drag them directly onto your page. Convey's MCP server auto-detects your running Storybook by scanning ports 6006–6010. No extra installation is needed — just make sure Storybook is running before starting Convey.
 
 To use a different port or URL, set the `STORYBOOK_URL` environment variable:
 
 ```bash
-STORYBOOK_URL=http://localhost:7000 npx @bitovi/vybit
+STORYBOOK_URL=http://localhost:7000 npx @bitovi/convey
 ```
 
-### 2. Use the VyBit Panel Inside Storybook
+### 2. Use the Convey Panel Inside Storybook
 
-You can embed the VyBit editor panel as a tab directly inside your Storybook UI. The addon auto-detects whether you're running Storybook 8 or 10 and loads the correct entry points.
+You can embed the Convey editor panel as a tab directly inside your Storybook UI. The addon auto-detects whether you're running Storybook 8 or 10 and loads the correct entry points.
 
-Because VyBit is typically run via `npx` in the MCP config (not installed locally), you need to add it as a dev dependency so Storybook can resolve the addon.
+Because Convey is typically run via `npx` in the MCP config (not installed locally), you need to add it as a dev dependency so Storybook can resolve the addon.
 
 Install it in the same package where Storybook is a dependency (this may be a subdirectory in a monorepo):
 
 ```bash
-npm install --save-dev @bitovi/vybit
+npm install --save-dev @bitovi/convey
 ```
 
 Then register the addon in `.storybook/main.ts`:
 
 ```ts
 export default {
-  addons: ['@bitovi/vybit/storybook-addon'],
+  addons: ['@bitovi/convey/storybook-addon'],
 };
 ```
 
-The VyBit editor panel will now appear as a "Vybit" tab inside your Storybook.
+The Convey editor panel will now appear as a "Convey" tab inside your Storybook.
 
 ## MCP Tools
 
@@ -237,12 +237,12 @@ There are other MCP tools you can use if you don't want to work in the implement
 Use the `PORT` environment variable to change the server port (default: `3333`):
 
 ```bash
-PORT=4000 npx @bitovi/vybit
+PORT=4000 npx @bitovi/convey
 ```
 
 ## Contributing
 
-Issues and PRs welcome at [github.com/bitovi/vybit](https://github.com/bitovi/vybit).
+Issues and PRs welcome at [github.com/bitovi/convey](https://github.com/bitovi/convey).
 
 ## License
 

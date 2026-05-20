@@ -34,7 +34,7 @@ export function createEventCapture(onSnapshot: SnapshotCallback, options?: { isC
 
   // MutationObserver
   const observer = new MutationObserver((mutations: MutationRecord[]) => {
-    const relevant = mutations.filter(m => !isVyBitElement(m.target));
+    const relevant = mutations.filter(m => !isConveyElement(m.target));
     if (relevant.length === 0) return;
 
     if (suppressNextMutation) {
@@ -63,7 +63,7 @@ export function createEventCapture(onSnapshot: SnapshotCallback, options?: { isC
   const clickHandler = (e: MouseEvent) => {
     const target = e.target as HTMLElement | null;
     if (!target) return;
-    if (isVyBitElement(target)) return;
+    if (isConveyElement(target)) return;
     if (options?.isClickSuppressed?.()) return;
     onSnapshot('click', extractElementInfo(target));
   };
@@ -90,7 +90,7 @@ export function createEventCapture(onSnapshot: SnapshotCallback, options?: { isC
   };
 }
 
-function isVyBitElement(el: Node): boolean {
+function isConveyElement(el: Node): boolean {
   if ('id' in el && (el as HTMLElement).id === SHADOW_HOST_ID) return true;
 
   if (typeof el.getRootNode === 'function') {
@@ -193,12 +193,12 @@ function extractDomChanges(mutations: MutationRecord[]): DomChange[] {
       }
       seen.add(key);
       const addedHTML = Array.from(m.addedNodes)
-        .filter(n => !isVyBitElement(n))
+        .filter(n => !isConveyElement(n))
         .map(n => n instanceof HTMLElement ? n.outerHTML : n.textContent ?? '')
         .join('')
         .slice(0, 1000);
       const removedHTML = Array.from(m.removedNodes)
-        .filter(n => !isVyBitElement(n))
+        .filter(n => !isConveyElement(n))
         .map(n => n instanceof HTMLElement ? n.outerHTML : n.textContent ?? '')
         .join('')
         .slice(0, 1000);

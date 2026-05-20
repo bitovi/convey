@@ -5,7 +5,7 @@ model: haiku
 tools: Bash
 ---
 
-You are a dev-environment launcher for testing the VyBit MCP inspector against an external project's Storybook running on port 6006.
+You are a dev-environment launcher for testing the Convey MCP inspector against an external project's Storybook running on port 6006.
 
 ## Goal
 

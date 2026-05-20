@@ -367,7 +367,7 @@ export function createStoryExtractor(opts?: StoryExtractorOptions): StoryExtract
 
     // If no story has loaded yet, do a full load
     if (!hasLoaded) {
-      const src = `/storybook/iframe.html?id=${encodeURIComponent(storyId)}&viewMode=story&vybit-ghost=1`;
+      const src = `/storybook/iframe.html?id=${encodeURIComponent(storyId)}&viewMode=story&convey-ghost=1`;
       load(src, callbacks);
       return;
     }

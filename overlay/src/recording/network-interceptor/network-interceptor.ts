@@ -17,7 +17,7 @@ export interface NetworkInterceptorHandle {
 
 /**
  * Start intercepting fetch() to capture non-ok responses and thrown errors.
- * Filters out requests to VyBit's own server origin.
+ * Filters out requests to Convey's own server origin.
  *
  * Usage:
  *   const network = createNetworkInterceptor({ serverOrigin: 'http://localhost:3333' });

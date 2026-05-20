@@ -298,11 +298,11 @@
     .queue-footer span { display: flex; align-items: center; gap: 4px; }
 
     /* ═══════════════════════════════════════════════════════════
-       SECTION 1 — VyBit TOGGLE BUTTON DESIGNS (AI GLOW)
+       SECTION 1 — Convey TOGGLE BUTTON DESIGNS (AI GLOW)
     ═══════════════════════════════════════════════════════════ */
 
     /* --- Shared toggle base --- */
-    .vybit-toggle {
+    .convey-toggle {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -318,18 +318,18 @@
       z-index: 1;
     }
 
-    .vybit-toggle svg {
+    .convey-toggle svg {
       width: 20px;
       height: 20px;
       position: relative;
       z-index: 2;
     }
 
-    .vybit-toggle:hover {
+    .convey-toggle:hover {
       transform: scale(1.08);
     }
 
-    .vybit-toggle:active {
+    .convey-toggle:active {
       transform: scale(0.95);
     }
 
@@ -356,11 +356,11 @@
     }
 
     /* --- Option A: Gradient Halo (rotating conic-gradient border) --- */
-    .vybit-halo {
+    .convey-halo {
       background: transparent;
     }
 
-    .vybit-halo::before {
+    .convey-halo::before {
       content: '';
       position: absolute;
       inset: -3px;
@@ -378,7 +378,7 @@
       opacity: 0.5;
     }
 
-    .vybit-halo::after {
+    .convey-halo::after {
       content: '';
       position: absolute;
       inset: 2px;
@@ -387,23 +387,23 @@
       z-index: 0;
     }
 
-    .vybit-halo:hover::before {
+    .convey-halo:hover::before {
       opacity: 0.85;
       filter: brightness(1.2);
     }
 
-    .vybit-halo.active::before {
+    .convey-halo.active::before {
       opacity: 1;
       animation-duration: 1.5s;
       inset: -4px;
       filter: brightness(1.1);
     }
 
-    .vybit-halo.active::after {
+    .convey-halo.active::after {
       background: rgba(0, 132, 139, 0.04);
     }
 
-    .vybit-halo.active {
+    .convey-halo.active {
       color: var(--teal);
     }
 
@@ -412,7 +412,7 @@
     }
 
     /* --- Option B: Breathing Pulse --- */
-    .vybit-pulse {
+    .convey-pulse {
       box-shadow:
         0 0 0 0 rgba(0, 132, 139, 0.0),
         0 2px 8px rgba(0, 0, 0, 0.08);
@@ -420,7 +420,7 @@
       animation: pulse-breathe 3s ease-in-out infinite;
     }
 
-    .vybit-pulse:hover {
+    .convey-pulse:hover {
       border-color: var(--teal);
       box-shadow:
         0 0 0 4px rgba(0, 132, 139, 0.12),
@@ -428,7 +428,7 @@
         0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .vybit-pulse.active {
+    .convey-pulse.active {
       border-color: transparent;
       animation: pulse-active 2s ease-in-out infinite;
       color: var(--teal);
@@ -464,13 +464,13 @@
     }
 
     /* --- Option C: Shimmer Sweep --- */
-    .vybit-shimmer {
+    .convey-shimmer {
       border: 1.5px solid var(--border);
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .vybit-shimmer::before {
+    .convey-shimmer::before {
       content: '';
       position: absolute;
       inset: -2px;
@@ -487,7 +487,7 @@
       z-index: 0;
     }
 
-    .vybit-shimmer:hover::before {
+    .convey-shimmer:hover::before {
       animation-duration: 1.5s;
       background: linear-gradient(
         110deg,
@@ -499,12 +499,12 @@
       background-size: 200% 100%;
     }
 
-    .vybit-shimmer.active {
+    .convey-shimmer.active {
       border-color: var(--teal);
       color: var(--teal);
     }
 
-    .vybit-shimmer.active::before {
+    .convey-shimmer.active::before {
       animation-duration: 2s;
       background: linear-gradient(
         110deg,
@@ -522,7 +522,7 @@
     }
 
     /* --- Option D: Orbiting Dots --- */
-    .vybit-orbit {
+    .convey-orbit {
       border: 1.5px solid var(--border);
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
@@ -558,24 +558,24 @@
       background: var(--orange);
     }
 
-    .vybit-orbit:hover .orbit-ring {
+    .convey-orbit:hover .orbit-ring {
       animation-duration: 2s;
     }
 
-    .vybit-orbit:hover .orbit-dot {
+    .convey-orbit:hover .orbit-dot {
       box-shadow: 0 0 10px currentColor;
     }
 
-    .vybit-orbit.active {
+    .convey-orbit.active {
       border-color: var(--teal);
       color: var(--teal);
     }
 
-    .vybit-orbit.active .orbit-ring {
+    .convey-orbit.active .orbit-ring {
       animation-duration: 2.5s;
     }
 
-    .vybit-orbit.active .orbit-dot {
+    .convey-orbit.active .orbit-dot {
       width: 6px;
       height: 6px;
       box-shadow: 0 0 12px currentColor;
@@ -1017,7 +1017,7 @@
 
   <h1>Select Elements UX — Prototype Exploration</h1>
   <p class="page-subtitle">
-    Exploring how users open the VyBit panel, enter element selection mode, preview elements on hover,
+    Exploring how users open the Convey panel, enter element selection mode, preview elements on hover,
     and manage multi-select (matching and non-matching elements). This decouples the toggle button
     (panel visibility) from element selection (a separate action inside the panel).
   </p>
@@ -1025,15 +1025,15 @@
   <div class="sections">
 
     <!-- ═══════════════════════════════════════════════════════
-         SECTION 1: VYBIT TOGGLE BUTTON — AI GLOW DESIGNS
+         SECTION 1: CONVEY TOGGLE BUTTON — AI GLOW DESIGNS
     ═══════════════════════════════════════════════════════ -->
     <div class="section">
       <div class="section-header">
         <span class="section-tag blue">1</span>
-        <span class="section-title">VyBit Toggle Button — AI Glow Designs</span>
+        <span class="section-title">Convey Toggle Button — AI Glow Designs</span>
       </div>
       <p class="section-desc">
-        The floating ⊕ button is replaced with a branded VyBit toggle that <strong>only opens/closes the panel</strong>.
+        The floating ⊕ button is replaced with a branded Convey toggle that <strong>only opens/closes the panel</strong>.
         It no longer activates element selection. The AI-glow treatment signals this is an assistive AI tool.
         Four animated variants are shown below in idle, hover (simulated), and active (panel open) states.
       </p>
@@ -1052,7 +1052,7 @@
           <div class="toggle-states">
             <div class="toggle-state-group">
               <span class="toggle-state-label">Idle</span>
-              <button class="vybit-toggle vybit-halo" title="VyBit — open panel">
+              <button class="convey-toggle convey-halo" title="Convey — open panel">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:2">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                   <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -1062,7 +1062,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Hover</span>
-              <button class="vybit-toggle vybit-halo" style="transform: scale(1.08);" title="VyBit — open panel">
+              <button class="convey-toggle convey-halo" style="transform: scale(1.08);" title="Convey — open panel">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:2">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                   <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -1072,7 +1072,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Active (panel open)</span>
-              <button class="vybit-toggle vybit-halo active" title="VyBit — close panel">
+              <button class="convey-toggle convey-halo active" title="Convey — close panel">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:2">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                   <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -1095,7 +1095,7 @@
           <div class="toggle-states">
             <div class="toggle-state-group">
               <span class="toggle-state-label">Idle</span>
-              <button class="vybit-toggle vybit-pulse" title="VyBit — open panel">
+              <button class="convey-toggle convey-pulse" title="Convey — open panel">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                   <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -1105,7 +1105,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Hover</span>
-              <button class="vybit-toggle vybit-pulse" title="VyBit — open panel"
+              <button class="convey-toggle convey-pulse" title="Convey — open panel"
                 style="border-color: var(--teal); box-shadow: 0 0 0 4px rgba(0,132,139,0.12), 0 0 16px rgba(0,132,139,0.15), 0 2px 8px rgba(0,0,0,0.1); transform: scale(1.08); animation: none;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
@@ -1116,7 +1116,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Active (panel open)</span>
-              <button class="vybit-toggle vybit-pulse active" title="VyBit — close panel">
+              <button class="convey-toggle convey-pulse active" title="Convey — close panel">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                   <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -1143,7 +1143,7 @@
           <div class="toggle-states">
             <div class="toggle-state-group">
               <span class="toggle-state-label">Idle</span>
-              <button class="vybit-toggle vybit-shimmer" title="VyBit — open panel">
+              <button class="convey-toggle convey-shimmer" title="Convey — open panel">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:2">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                   <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -1153,7 +1153,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Hover</span>
-              <button class="vybit-toggle vybit-shimmer" title="VyBit — open panel"
+              <button class="convey-toggle convey-shimmer" title="Convey — open panel"
                 style="transform: scale(1.08);">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:2">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
@@ -1164,7 +1164,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Active (panel open)</span>
-              <button class="vybit-toggle vybit-shimmer active" title="VyBit — close panel">
+              <button class="convey-toggle convey-shimmer active" title="Convey — close panel">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:2">
                   <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                   <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -1187,7 +1187,7 @@
           <div class="toggle-states">
             <div class="toggle-state-group">
               <span class="toggle-state-label">Idle</span>
-              <button class="vybit-toggle vybit-orbit" title="VyBit — open panel">
+              <button class="convey-toggle convey-orbit" title="Convey — open panel">
                 <div class="orbit-ring">
                   <span class="orbit-dot"></span>
                   <span class="orbit-dot"></span>
@@ -1201,7 +1201,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Hover</span>
-              <button class="vybit-toggle vybit-orbit" title="VyBit — open panel"
+              <button class="convey-toggle convey-orbit" title="Convey — open panel"
                 style="transform: scale(1.08);">
                 <div class="orbit-ring" style="animation-duration: 2s;">
                   <span class="orbit-dot" style="box-shadow: 0 0 10px var(--teal);"></span>
@@ -1216,7 +1216,7 @@
             </div>
             <div class="toggle-state-group">
               <span class="toggle-state-label">Active (panel open)</span>
-              <button class="vybit-toggle vybit-orbit active" title="VyBit — close panel">
+              <button class="convey-toggle convey-orbit active" title="Convey — close panel">
                 <div class="orbit-ring" style="animation-duration: 2.5s;">
                   <span class="orbit-dot" style="width:6px;height:6px;box-shadow: 0 0 12px var(--teal);"></span>
                   <span class="orbit-dot" style="width:6px;height:6px;box-shadow: 0 0 12px var(--orange);"></span>
@@ -1243,7 +1243,7 @@
         <div class="note">
           <strong>Behavior change:</strong> The button now <strong>only toggles the panel open/closed</strong>.
           It no longer activates element selection mode or changes the cursor. From the user's perspective, clicking
-          the VyBit button is like clicking the DevTools icon — it shows the tool panel.
+          the Convey button is like clicking the DevTools icon — it shows the tool panel.
         </div>
         <div class="note">
           <strong>Icon:</strong> The ⊕ symbol is replaced with a sparkle/stars SVG icon.
@@ -1564,7 +1564,7 @@
           </div>
           <div class="note">
             <strong>No preview on:</strong> The overlay itself (shadow DOM), iframes, or elements smaller
-            than 10 × 10px. Also skips the VyBit toggle button and panel container.
+            than 10 × 10px. Also skips the Convey toggle button and panel container.
           </div>
         </div>
 
@@ -2130,15 +2130,15 @@
         <span class="section-title">Full Selection Flow — End to End</span>
       </div>
       <p class="section-desc">
-        Putting it all together: the complete journey from opening VyBit to editing an element.
+        Putting it all together: the complete journey from opening Convey to editing an element.
         This shows the page and panel side by side at each step.
       </p>
 
       <div style="display: flex; flex-direction: column; gap: 24px;">
 
-        <!-- Step 1: VyBit button visible, panel closed -->
+        <!-- Step 1: Convey button visible, panel closed -->
         <div>
-          <span class="annotation">Step 1 — VyBit button visible on page, panel is closed</span>
+          <span class="annotation">Step 1 — Convey button visible on page, panel is closed</span>
           <div class="demo-row" style="align-items: center;">
             <div class="page-sim" style="width: 400px; position: relative;">
               <div class="page-sim-bar">
@@ -2155,9 +2155,9 @@
                   <p>More content…</p>
                 </div>
               </div>
-              <!-- VyBit toggle (bottom-right) -->
+              <!-- Convey toggle (bottom-right) -->
               <div style="position: absolute; bottom: 12px; right: 12px;">
-                <button class="vybit-toggle vybit-halo" style="width: 36px; height: 36px;" title="Open VyBit panel">
+                <button class="convey-toggle convey-halo" style="width: 36px; height: 36px;" title="Open Convey panel">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 17px; height: 17px; position:relative;z-index:2">
                     <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                     <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -2168,14 +2168,14 @@
             </div>
             <div style="font-size: 20px; color: var(--muted);">→</div>
             <div style="font-size: 11px; color: var(--text-mid); max-width: 200px;">
-              User sees the VyBit toggle in the bottom-right. The AI glow signals it's an AI-powered tool. Click to open the panel.
+              User sees the Convey toggle in the bottom-right. The AI glow signals it's an AI-powered tool. Click to open the panel.
             </div>
           </div>
         </div>
 
         <!-- Step 2: Panel opens, no element selected -->
         <div>
-          <span class="annotation">Step 2 — User clicks VyBit toggle → panel opens</span>
+          <span class="annotation">Step 2 — User clicks Convey toggle → panel opens</span>
           <div class="demo-row" style="align-items: center;">
             <div class="page-sim" style="width: 400px; position: relative;">
               <div class="page-sim-bar">
@@ -2193,7 +2193,7 @@
                 </div>
               </div>
               <div style="position: absolute; bottom: 12px; right: 12px;">
-                <button class="vybit-toggle vybit-halo active" style="width: 36px; height: 36px;" title="Close VyBit panel">
+                <button class="convey-toggle convey-halo active" style="width: 36px; height: 36px;" title="Close Convey panel">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 17px; height: 17px; position:relative;z-index:2">
                     <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                     <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -2251,7 +2251,7 @@
                 </div>
               </div>
               <div style="position: absolute; bottom: 12px; right: 12px;">
-                <button class="vybit-toggle vybit-halo active" style="width: 36px; height: 36px;">
+                <button class="convey-toggle convey-halo active" style="width: 36px; height: 36px;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 17px; height: 17px; position:relative;z-index:2">
                     <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                     <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -2300,7 +2300,7 @@
                 </div>
               </div>
               <div style="position: absolute; bottom: 12px; right: 12px;">
-                <button class="vybit-toggle vybit-halo active" style="width: 36px; height: 36px;">
+                <button class="convey-toggle convey-halo active" style="width: 36px; height: 36px;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 17px; height: 17px; position:relative;z-index:2">
                     <path d="M12 3l1.5 3.2 3.5.5-2.5 2.5.6 3.5L12 11l-3.1 1.7.6-3.5-2.5-2.5 3.5-.5z"/>
                     <path d="M5 17l.8 1.7 1.8.3-1.3 1.3.3 1.8L5 21l-1.6 1.1.3-1.8-1.3-1.3 1.8-.3z" opacity="0.5"/>
@@ -2347,7 +2347,7 @@
         <div class="rec-note">
           <strong>Summary of the new flow:</strong>
           <ol style="margin-top: 6px; padding-left: 16px; font-size: 10px; line-height: 1.7;">
-            <li>VyBit toggle opens/closes the panel (replaces ⊕)</li>
+            <li>Convey toggle opens/closes the panel (replaces ⊕)</li>
             <li>Panel shows select-element button + empty state</li>
             <li>Click select button (or <kbd>⌘⇧C</kbd>) → selection mode</li>
             <li>Hover to preview (teal outline + tooltip)</li>
@@ -2362,7 +2362,7 @@
           <ul style="margin-top: 4px;">
             <li><kbd>⌘⇧C</kbd> / <kbd>Ctrl+Shift+C</kbd> — toggle selection mode</li>
             <li><kbd>Esc</kbd> — cancel selection mode</li>
-            <li>VyBit toggle button click — open/close panel</li>
+            <li>Convey toggle button click — open/close panel</li>
           </ul>
         </div>
       </div>

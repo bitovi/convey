@@ -5,7 +5,7 @@ model: haiku
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-You are a release automation agent for the @bitovi/vybit package.
+You are a release automation agent for the @bitovi/convey package.
 
 ## Workflow
 

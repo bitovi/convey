@@ -24,7 +24,7 @@ All modules live under `overlay/src/recording/`, each in its own modlet-style fo
 - **API:** `createNetworkInterceptor({ serverOrigin? }) → NetworkInterceptorHandle`
 - **Handle:** `{ flush(), peek(), size(), teardown() }`
 - Wraps `window.fetch` to capture non-ok responses (4xx/5xx) and thrown errors
-- Filters out requests to VyBit's own server origin (avoids noise)
+- Filters out requests to Convey's own server origin (avoids noise)
 - 100-entry rolling buffer
 - `teardown()` restores original `window.fetch`
 - **Tests:** 12
@@ -46,7 +46,7 @@ All modules live under `overlay/src/recording/`, each in its own modlet-style fo
 - MutationObserver on `document.body` (subtree, childList, attributes, characterData)
 - Click and error event listeners on `document` / `window`
 - 500ms debounce on mutation snapshots
-- Excludes VyBit's own shadow DOM host mutations
+- Excludes Convey's own shadow DOM host mutations
 - `suppressNext()` skips one mutation callback (used by RecordingEngine after navigations)
 - **Tests:** 9
 
@@ -64,7 +64,7 @@ All modules live under `overlay/src/recording/`, each in its own modlet-style fo
 
 - **API:** `new SnapshotStore()` (class — async open/close lifecycle)
 - Methods: `open()`, `close()`, `addSnapshot()`, `getSnapshot()`, `getAllSnapshots()`, `getSnapshotMetas()`, `getRange()`, `clear()`
-- IndexedDB database: `vybit-recording`, object store: `snapshots`
+- IndexedDB database: `convey-recording`, object store: `snapshots`
 - 100-snapshot rolling buffer — oldest pruned on insert
 - Keyframe promotion on prune: when pruning a keyframe, reconstructs full DOM for next diff snapshot and promotes it (keeps reconstruction chain intact)
 - **Tests:** 9

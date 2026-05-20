@@ -8,7 +8,7 @@ import { App } from '../panel/src/App';
 import { onConnect, send } from './bus';
 
 // Prevent the overlay from activating inside the panel page
-(window as any).__VYBIT_PANEL__ = true;
+(window as any).__CONVEY_PANEL__ = true;
 
 // In the real WS system, panel/src/ws.ts sends REGISTER inside the WebSocket
 // open handler. The demo bus alias replaces that file, so we send it here.

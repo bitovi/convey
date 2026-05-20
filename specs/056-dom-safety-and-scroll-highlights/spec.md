@@ -16,12 +16,12 @@ Reparenting highlights into the user's DOM creates a new hazard: any code that t
 
 **Concrete breakages identified (26 call sites across 7 files):**
 
-- **`adjustForEdgeChild`** — checks `previousElementSibling` / `nextElementSibling` to decide whether a drop should become `first-child`/`last-child`. A vybit element as the first or last child prevents this promotion, so the drop indicator renders as a line instead of a full container outline.
-- **`findChildInGap`** — builds `Array.from(container.children)` to detect cursor position in CSS gaps. A vybit child shifts all indices and corrupts gap/padding detection.
-- **`getChildIndex` / `isSamePosition`** — count and index children to compute move positions and no-op detection. Vybit children inflate counts and shift indices, causing moves to land at the wrong position and preventing no-op short-circuiting.
-- **`nextSibling` references in drag-move and drop-preview** — these record the original next sibling as a revert reference. If a vybit element is next, revert places the moved element at the wrong position.
-- **`buildLevel` / `buildInsertLevel` / `buildDeleteLevel` in context.ts** — iterate children to build context strings sent to the AI agent. Vybit children appear as real elements in those strings.
-- **`findExactMatches` in grouping.ts** — `document.querySelectorAll(tag)` scans the whole document; body-level vybit elements with no class could match classless tag queries.
+- **`adjustForEdgeChild`** — checks `previousElementSibling` / `nextElementSibling` to decide whether a drop should become `first-child`/`last-child`. A convey element as the first or last child prevents this promotion, so the drop indicator renders as a line instead of a full container outline.
+- **`findChildInGap`** — builds `Array.from(container.children)` to detect cursor position in CSS gaps. A convey child shifts all indices and corrupts gap/padding detection.
+- **`getChildIndex` / `isSamePosition`** — count and index children to compute move positions and no-op detection. Convey children inflate counts and shift indices, causing moves to land at the wrong position and preventing no-op short-circuiting.
+- **`nextSibling` references in drag-move and drop-preview** — these record the original next sibling as a revert reference. If a convey element is next, revert places the moved element at the wrong position.
+- **`buildLevel` / `buildInsertLevel` / `buildDeleteLevel` in context.ts** — iterate children to build context strings sent to the AI agent. Convey children appear as real elements in those strings.
+- **`findExactMatches` in grouping.ts** — `document.querySelectorAll(tag)` scans the whole document; body-level convey elements with no class could match classless tag queries.
 
 ### 3. No convention for "overlay elements in user DOM"
 
@@ -29,8 +29,8 @@ Several overlay elements already live directly in `document.body` (not the shado
 
 ## Goal
 
-1. Create a `dom-helpers` module that provides DOM read operations filtered to exclude vybit-injected elements.
-2. Establish a `data-vybit-overlay` attribute as the universal marker for all overlay-owned elements in the user DOM.
+1. Create a `dom-helpers` module that provides DOM read operations filtered to exclude convey-injected elements.
+2. Establish a `data-convey-overlay` attribute as the universal marker for all overlay-owned elements in the user DOM.
 3. Migrate the 26 affected call sites to use the helpers.
 4. Implement scroll-aware highlight positioning (reparenting into scroll containers).
 5. Create an agent skill that enforces use of the helpers in future overlay code.
@@ -75,17 +75,17 @@ A new module that exports filtered DOM read operations. All functions require th
 
 ```ts
 /** Attribute placed on every overlay-owned element inserted into the user DOM. */
-export const VYBIT_ATTR = 'data-vybit-overlay';
+export const CONVEY_ATTR = 'data-convey-overlay';
 
 /**
  * Returns true if `el` is an overlay-owned element (either inside the shadow
- * host or marked with data-vybit-overlay).
+ * host or marked with data-convey-overlay).
  */
-export function isVybitElement(el: Element): boolean;
+export function isConveyElement(el: Element): boolean;
 
 /**
  * Returns the children of `el` that belong to the user's DOM
- * (excludes elements marked with data-vybit-overlay).
+ * (excludes elements marked with data-convey-overlay).
  */
 export function getUserChildren(el: Element): HTMLElement[];
 
@@ -102,18 +102,18 @@ export function getFirstUserChild(el: Element): HTMLElement | null;
 export function getLastUserChild(el: Element): HTMLElement | null;
 
 /**
- * Next user-owned sibling element, skipping any vybit elements.
- * Equivalent to nextElementSibling but ignores vybit elements.
+ * Next user-owned sibling element, skipping any convey elements.
+ * Equivalent to nextElementSibling but ignores convey elements.
  */
 export function getNextUserSibling(el: Element): HTMLElement | null;
 
 /**
- * Previous user-owned sibling element, skipping any vybit elements.
+ * Previous user-owned sibling element, skipping any convey elements.
  */
 export function getPrevUserSibling(el: Element): HTMLElement | null;
 
 /**
- * document.querySelectorAll filtered to exclude vybit elements.
+ * document.querySelectorAll filtered to exclude convey elements.
  */
 export function queryUserElements(
   selector: string,
@@ -121,17 +121,17 @@ export function queryUserElements(
 ): HTMLElement[];
 
 /**
- * document.elementFromPoint that skips vybit elements.
- * Temporarily hides the topmost vybit hit and retries until a user
+ * document.elementFromPoint that skips convey elements.
+ * Temporarily hides the topmost convey hit and retries until a user
  * element is found (or null if nothing is underneath).
  */
 export function userElementFromPoint(x: number, y: number): HTMLElement | null;
 ```
 
-**`isVybitElement` logic:**
+**`isConveyElement` logic:**
 ```ts
-export function isVybitElement(el: Element): boolean {
-  return el.hasAttribute(VYBIT_ATTR) || state.shadowHost.contains(el);
+export function isConveyElement(el: Element): boolean {
+  return el.hasAttribute(CONVEY_ATTR) || state.shadowHost.contains(el);
 }
 ```
 
@@ -141,7 +141,7 @@ export function userElementFromPoint(x: number, y: number): HTMLElement | null {
   const hidden: HTMLElement[] = [];
   let el: Element | null;
   while ((el = document.elementFromPoint(x, y)) !== null) {
-    if (!isVybitElement(el)) return el as HTMLElement;
+    if (!isConveyElement(el)) return el as HTMLElement;
     (el as HTMLElement).style.visibility = 'hidden';
     hidden.push(el as HTMLElement);
   }
@@ -149,11 +149,11 @@ export function userElementFromPoint(x: number, y: number): HTMLElement | null {
   return null;
 }
 ```
-> Note: This is safe because vybit elements all have `pointer-events: none` — but temporarily hiding ensures `elementFromPoint` skips them correctly regardless.
+> Note: This is safe because convey elements all have `pointer-events: none` — but temporarily hiding ensures `elementFromPoint` skips them correctly regardless.
 
 ### Phase 2 — Mark all overlay-owned elements in user DOM
 
-Every element the overlay inserts into the user DOM (outside the shadow root) must have `data-vybit-overlay` set at creation time.
+Every element the overlay inserts into the user DOM (outside the shadow root) must have `data-convey-overlay` set at creation time.
 
 **Elements to mark and where:**
 
@@ -175,7 +175,7 @@ Every element the overlay inserts into the user DOM (outside the shadow root) mu
 | Hidden adaptive iframe | overlay/src/adaptive-iframe/adaptive-iframe.ts | ~90 |
 | Screenshot ghost | overlay/src/screenshot.ts | ~64 |
 
-> Ghost elements (`data-tw-dropped-*`) are a special case — they are user-facing content placed by the agent. Do **not** mark them with `data-vybit-overlay`. The overlay's own drop-preview/indicator elements surrounding the ghost should be marked, but the ghost itself should remain unmarked so the user's DOM traversal (via `getUserChildren`) includes ghosts as real elements.
+> Ghost elements (`data-tw-dropped-*`) are a special case — they are user-facing content placed by the agent. Do **not** mark them with `data-convey-overlay`. The overlay's own drop-preview/indicator elements surrounding the ghost should be marked, but the ghost itself should remain unmarked so the user's DOM traversal (via `getUserChildren`) includes ghosts as real elements.
 
 ### Phase 3 — Migrate 26 Call Sites
 
@@ -205,7 +205,7 @@ These directly affect where components get inserted and where the insertion indi
 
 #### P2 — Context Generation (affects AI agent accuracy)
 
-These build the text context strings sent to the AI agent describing the DOM structure. Vybit children appearing in context strings would confuse the agent.
+These build the text context strings sent to the AI agent describing the DOM structure. Convey children appearing in context strings would confuse the agent.
 
 | # | File | Line(s) | Function | Change |
 |---|------|---------|----------|--------|
@@ -254,7 +254,7 @@ export function highlightElement(el: HTMLElement): void {
 
   const overlay = document.createElement('div');
   overlay.className = 'highlight-overlay';
-  overlay.setAttribute(VYBIT_ATTR, '');
+  overlay.setAttribute(CONVEY_ATTR, '');
   overlay.style.position = 'absolute';
   overlay.style.top  = `${rect.top  - containerRect.top  + scrollAdj  - 4}px`;
   overlay.style.left = `${rect.left - containerRect.left + scrollAdjX - 4}px`;
@@ -269,7 +269,7 @@ export function highlightElement(el: HTMLElement): void {
 
 **Update `repositionHighlights`:** No longer needs to be called on `scroll` events. It is still called on `resize` (window resize changes all `getBoundingClientRect` values). The scroll listener in `index.ts` (or wherever `repositionHighlights` is called on scroll) should be removed.
 
-**Update `clearHighlights`:** Currently queries shadow root. After this change, highlights are in scroll containers throughout the page. Use a shared array (`state.activeHighlightEls`) to track and remove them, or query `document.querySelectorAll('[data-vybit-overlay].highlight-overlay')`.
+**Update `clearHighlights`:** Currently queries shadow root. After this change, highlights are in scroll containers throughout the page. Use a shared array (`state.activeHighlightEls`) to track and remove them, or query `document.querySelectorAll('[data-convey-overlay].highlight-overlay')`.
 
 **CSS change in `overlay/src/styles.ts`:** Remove `position: fixed` from `.highlight-overlay` and `.hover-target-outline` (both are now set inline as `position: absolute`).
 
@@ -278,9 +278,9 @@ export function highlightElement(el: HTMLElement): void {
 A skill that agents must read before modifying any file in `overlay/src/` or `shared/`.
 
 Contents:
-- **Why this exists** — brief explanation of the vybit-element-in-user-DOM problem
+- **Why this exists** — brief explanation of the convey-element-in-user-DOM problem
 - **The golden rule** — "never use raw DOM traversal APIs on user DOM; always use dom-helpers"
-- **`VYBIT_ATTR` convention** — when and how to mark elements you create
+- **`CONVEY_ATTR` convention** — when and how to mark elements you create
 - **Function reference table** — every export from `dom-helpers.ts` with one-line description
 - **Before/after examples** — side-by-side showing raw API vs helper
 - **Ghost element exception** — `data-tw-dropped-*` elements are user content and must NOT be marked
@@ -320,4 +320,4 @@ Contents:
 6. **Insert in gap** — hover in a CSS gap between children → indicator appears at the correct gap
 7. **Drag revert** — drag an element to a new position → drag back → element returns to exact original position
 8. **No-op drag** — drag an element and drop it on itself → no move occurs
-9. **AI context** — commit a patch involving an element in an `overflow: auto` container → verify the MCP context string doesn't contain vybit element references
+9. **AI context** — commit a patch involving an element in an `overflow: auto` container → verify the MCP context string doesn't contain convey element references

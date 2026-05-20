@@ -383,10 +383,10 @@ export const OVERLAY_CSS = `
     padding: 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
-    animation: vybit-breathe 3s ease-in-out infinite;
+    animation: convey-breathe 3s ease-in-out infinite;
     pointer-events: auto;
   }
-  @keyframes vybit-breathe {
+  @keyframes convey-breathe {
     0%, 100% { box-shadow: 0 0 0 0 rgba(0,132,139,0), 0 2px 8px rgba(0,0,0,0.08); }
     50%       { box-shadow: 0 0 0 3px rgba(0,132,139,0.09), 0 0 12px rgba(0,132,139,0.07), 0 2px 8px rgba(0,0,0,0.08); }
   }

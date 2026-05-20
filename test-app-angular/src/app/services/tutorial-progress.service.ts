@@ -1,9 +1,9 @@
 import { Injectable, signal, computed } from '@angular/core';
 
-const STORAGE_KEY = 'vybit-tutorial-progress';
+const STORAGE_KEY = 'convey-tutorial-progress';
 
 interface ServerMessage {
-  __vybit?: boolean;
+  __convey?: boolean;
   type: string;
   role?: string;
   connected?: boolean;
@@ -115,12 +115,12 @@ export class TutorialProgressService {
   }
 
   private listenForMessages(): void {
-    window.addEventListener('vybit:message', (e: Event) => {
+    window.addEventListener('convey:message', (e: Event) => {
       this.processMessage((e as CustomEvent<ServerMessage>).detail);
     });
 
     window.addEventListener('message', (e: MessageEvent) => {
-      if (e.data?.__vybit) {
+      if (e.data?.__convey) {
         this.processMessage(e.data as ServerMessage);
       }
     });

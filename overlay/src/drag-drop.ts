@@ -108,7 +108,7 @@ export function isDragActive(): boolean {
 
 /**
  * Initialize the drag-drop listener. Call once from overlay init.
- * Listens for postMessage events with __vybitDrag marker.
+ * Listens for postMessage events with __conveyDrag marker.
  *
  * @param onStart — called when drag starts; returns 'replace' (Select active) or 'insert'.
  *                  The callback should prepare mode state (e.g. activate Insert if idle)
@@ -378,12 +378,12 @@ function updateDragPosition(clientX: number, clientY: number): void {
     if (activeCanvasIframe !== canvasIframe) {
       // Left a previous canvas? Send leave.
       if (activeCanvasIframe) {
-        postToCanvas(activeCanvasIframe, { __vybitCanvasDrag: true, type: 'CANVAS_DRAG_LEAVE' });
+        postToCanvas(activeCanvasIframe, { __conveyCanvasDrag: true, type: 'CANVAS_DRAG_LEAVE' });
       }
       activeCanvasIframe = canvasIframe;
       // Entered a new canvas — send enter with full component data.
       postToCanvas(canvasIframe, {
-        __vybitCanvasDrag: true,
+        __conveyCanvasDrag: true,
         type: 'CANVAS_DRAG_ENTER',
         componentName: session.componentName,
         storyId: session.storyId,
@@ -397,7 +397,7 @@ function updateDragPosition(clientX: number, clientY: number): void {
     } else {
       // Still over the same canvas — send move.
       postToCanvas(canvasIframe, {
-        __vybitCanvasDrag: true,
+        __conveyCanvasDrag: true,
         type: 'CANVAS_DRAG_MOVE',
         x: local.x,
         y: local.y,
@@ -414,7 +414,7 @@ function updateDragPosition(clientX: number, clientY: number): void {
 
   // Cursor left the design canvas — notify it and restore drag preview
   if (activeCanvasIframe) {
-    postToCanvas(activeCanvasIframe, { __vybitCanvasDrag: true, type: 'CANVAS_DRAG_LEAVE' });
+    postToCanvas(activeCanvasIframe, { __conveyCanvasDrag: true, type: 'CANVAS_DRAG_LEAVE' });
     activeCanvasIframe = null;
     if (dom.preview) dom.preview.style.display = 'flex';
   }
@@ -551,7 +551,7 @@ function executeDrop(clientX: number, clientY: number): void {
   if (canvasIframe) {
     const local = toCanvasLocal(canvasIframe, clientX, clientY);
     postToCanvas(canvasIframe, {
-      __vybitCanvasDrag: true,
+      __conveyCanvasDrag: true,
       type: 'CANVAS_DRAG_DROP',
       x: local.x,
       y: local.y,
@@ -666,7 +666,7 @@ function endSession(cancelled: boolean): void {
 
   // Notify any active design canvas that the drag ended
   if (activeCanvasIframe) {
-    postToCanvas(activeCanvasIframe, { __vybitCanvasDrag: true, type: 'CANVAS_DRAG_LEAVE' });
+    postToCanvas(activeCanvasIframe, { __conveyCanvasDrag: true, type: 'CANVAS_DRAG_LEAVE' });
     activeCanvasIframe = null;
   }
 

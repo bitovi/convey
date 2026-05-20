@@ -2,11 +2,11 @@
 
 ## Overview & Motivation
 
-The current VyBit toggle button combines two concerns — panel visibility and element selection — into a single click. This creates confusion: users can't have the panel open without the crosshair cursor, and closing the panel clears their selection. Additionally, the plain ⊕ button doesn't communicate that VyBit is an AI-powered tool.
+The current Convey toggle button combines two concerns — panel visibility and element selection — into a single click. This creates confusion: users can't have the panel open without the crosshair cursor, and closing the panel clears their selection. Additionally, the plain ⊕ button doesn't communicate that Convey is an AI-powered tool.
 
 This spec decouples these concerns and introduces:
 
-1. **Redesigned VyBit toggle** — AI-glow branding, only toggles panel visibility
+1. **Redesigned Convey toggle** — AI-glow branding, only toggles panel visibility
 2. **Select-element button** — inside the panel header, Chrome DevTools-style
 3. **Hover preview** — teal outline + component tooltip while in selection mode
 4. **Multi-select UX** — add matching instances or different elements after initial selection
@@ -20,7 +20,7 @@ See [select-elements-prototype.html](./select-elements-prototype.html) for the i
 
 | Term | Definition |
 |---|---|
-| **VyBit toggle** | Floating button (bottom-right of page) that opens/closes the inspector panel. Replaces the current ⊕ button. |
+| **Convey toggle** | Floating button (bottom-right of page) that opens/closes the inspector panel. Replaces the current ⊕ button. |
 | **Selection mode** | A transient state where the overlay intercepts clicks and shows hover previews. Activated from the panel's select-element button or keyboard shortcut. |
 | **Hover preview** | Lightweight visual feedback (2px teal outline + tooltip) shown when hovering over elements while selection mode is active. |
 | **Select-element button** | A button in the panel header (cursor-in-box icon) that toggles selection mode. |
@@ -33,8 +33,8 @@ See [select-elements-prototype.html](./select-elements-prototype.html) for the i
 ## User Flow
 
 ```
-1. User visits page → VyBit toggle visible (bottom-right, AI glow animation)
-2. User clicks VyBit toggle → panel opens, shows empty state
+1. User visits page → Convey toggle visible (bottom-right, AI glow animation)
+2. User clicks Convey toggle → panel opens, shows empty state
    └─ Toggle changes to "active" state (glow intensifies)
 3. User clicks select-element button in panel header (or presses ⌘⇧C)
    └─ Selection mode activates: cursor → crosshair, overlay listens for clicks
@@ -57,7 +57,7 @@ See [select-elements-prototype.html](./select-elements-prototype.html) for the i
 
 ---
 
-## VyBit Toggle Button
+## Convey Toggle Button
 
 ### Behavior Change
 
@@ -127,7 +127,7 @@ When selection mode is active, hovering over elements on the page shows:
 - **No background tint** — keep it lightweight, the full highlight only appears after clicking
 
 ### Excluded Elements
-- The VyBit toggle button itself
+- The Convey toggle button itself
 - The panel container (shadow DOM)
 - iframes
 - Elements smaller than 10 × 10px
@@ -237,7 +237,7 @@ The existing `ELEMENT_SELECTED` message adds a `selectionId` field for tracking 
 
 ## Implementation Phases
 
-### Phase 1 — VyBit Toggle (Visual Only)
+### Phase 1 — Convey Toggle (Visual Only)
 - Replace ⊕ with sparkle SVG icon
 - Add AI glow CSS animation (Option A — Gradient Halo)
 - Keep existing toggle behavior (still coupled to selection mode)

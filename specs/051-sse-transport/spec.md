@@ -151,7 +151,7 @@ Currently in `overlay/src/index.ts`:
 ```ts
 const isProxied = SERVER_ORIGIN === window.location.origin;
 const wsUrl = isProxied
-  ? `${window.location.origin.replace(/^http/, "ws")}/__vybit_ws`
+  ? `${window.location.origin.replace(/^http/, "ws")}/__convey_ws`
   : SERVER_ORIGIN.replace(/^http/, "ws");
 ```
 

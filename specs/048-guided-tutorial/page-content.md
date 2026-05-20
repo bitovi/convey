@@ -11,18 +11,18 @@ All playground elements are parts of a single cohesive app: **Acme Project Track
 A minimal top bar. No navigation — just the title and a reset link.
 
 ```
-VyBit Interactive Tutorial                        [↺ Start Over]
+Convey Interactive Tutorial                        [↺ Start Over]
 ```
 
 ---
 
-## Section 1: Welcome to VyBit
+## Section 1: Welcome to Convey
 
 ### Title
-**Welcome to VyBit**
+**Welcome to Convey**
 
 ### Instructions
-> VyBit is a visual editing tool that works alongside your running app. You select elements, describe changes in plain language or tweak styles visually, and VyBit sends precise instructions to an AI coding agent that implements the changes in your source code.
+> Convey is a visual editing tool that works alongside your running app. You select elements, describe changes in plain language or tweak styles visually, and Convey sends precise instructions to an AI coding agent that implements the changes in your source code.
 >
 > This tutorial will walk you through the most common features. Each section has a small exercise — try them in any order. Completed sections get a checkmark so you can track your progress.
 >
@@ -41,13 +41,13 @@ VyBit Interactive Tutorial                        [↺ Start Over]
 **Meet the Three Modes**
 
 ### Instructions
-> VyBit has three modes, controlled by the buttons at the top of the panel:
+> Convey has three modes, controlled by the buttons at the top of the panel:
 >
 > **Select** — Click elements in your app to inspect and change them. This is where you'll spend most of your time. Select an element, then describe what you want changed, tweak spacing, adjust colors, or edit text directly.
 >
 > **Insert** — Add new content to the page. Click a spot where you want something new, then describe it, sketch it, or pick a component from your design system.
 >
-> **Bug Report** — Record and describe issues. Pick an element, describe what's wrong, and VyBit captures a timeline snapshot for context.
+> **Bug Report** — Record and describe issues. Pick an element, describe what's wrong, and Convey captures a timeline snapshot for context.
 >
 > You'll try all three in the exercises below.
 
@@ -62,7 +62,7 @@ VyBit Interactive Tutorial                        [↺ Start Over]
 **Open the Panel**
 
 ### Instructions
-> See the round button in the bottom-right corner of the page? That's the **VyBit toggle button**. Click it to open the inspector panel.
+> See the round button in the bottom-right corner of the page? That's the **Convey toggle button**. Click it to open the inspector panel.
 >
 > The panel will slide in as a sidebar on the right side of the page.
 
@@ -79,7 +79,7 @@ VyBit Interactive Tutorial                        [↺ Start Over]
 **Your First Change**
 
 ### Instructions
-> Let's make your first change. **Click the issue card below** to select it, then tell VyBit what to do.
+> Let's make your first change. **Click the issue card below** to select it, then tell Convey what to do.
 >
 > 1. Click the card below — it will highlight with a teal border
 > 2. In the panel's message area, type something like: *"Make the priority tag red and add a due date field"*
@@ -121,7 +121,7 @@ This is a real `<Card>` component the user can click to select in the overlay.
 **Send a Voice Message**
 
 ### Instructions
-> Sometimes it's easier to talk than type. VyBit has a microphone button for voice messages.
+> Sometimes it's easier to talk than type. Convey has a microphone button for voice messages.
 >
 > 1. Click the action buttons below to select them
 > 2. In the panel, click the **microphone icon** (🎤) next to the message input
@@ -287,7 +287,7 @@ The user sketches a bar chart below it to visualize the trend.
 **Place a Component**
 
 ### Instructions
-> VyBit can browse your component library and place components directly onto the page.
+> Convey can browse your component library and place components directly onto the page.
 >
 > 1. Switch to **Insert** mode if not already active
 > 2. In the panel, you'll see the **Components** tab with your available components
@@ -322,7 +322,7 @@ Rendered as:
 **Build with Nested Components**
 
 ### Instructions
-> Some components accept other components as props. For example, the Button component has **leftIcon** and **rightIcon** slots that accept an Icon component. VyBit lets you fill these slots from the component drawer.
+> Some components accept other components as props. For example, the Button component has **leftIcon** and **rightIcon** slots that accept an Icon component. Convey lets you fill these slots from the component drawer.
 >
 > 1. In **Insert** mode, find the **Button** component in the Components tab
 > 2. Click the expand arrow to open the component detail drawer
@@ -357,7 +357,7 @@ The user places a new Button with an Icon in its `leftIcon` slot — e.g., a sta
 **Fine-Tune the Design**
 
 ### Instructions
-> VyBit isn't just for big changes — you can precisely adjust Tailwind classes too. Scrub spacing values, pick colors from a palette, adjust shadows, and see changes live as you drag.
+> Convey isn't just for big changes — you can precisely adjust Tailwind classes too. Scrub spacing values, pick colors from a palette, adjust shadows, and see changes live as you drag.
 >
 > 1. Switch to **Select** mode
 > 2. Click the banner below — it will show its Tailwind properties in the panel
@@ -402,7 +402,7 @@ The banner uses a single container div (no extra wrapper) so users can click it 
 **Report a Bug**
 
 ### Instructions
-> Found something broken? VyBit's Bug Report mode captures element context, console errors, network failures, and a visual timeline so the AI agent knows exactly what to fix.
+> Found something broken? Convey's Bug Report mode captures element context, console errors, network failures, and a visual timeline so the AI agent knows exactly what to fix.
 >
 > 1. First, click **"Refresh Invoice"** below — it will trigger a failed API call and a console error
 > 2. In the panel header, switch to **Bug Report** mode
@@ -455,7 +455,7 @@ Rendered as:
 </div>
 ```
 
-The absurd negative overage charge is the obvious visual "bug". The **Refresh Invoice** button fires a `console.error` and a failed `fetch` to `/api/billing/invoice/1042/refresh`, populating the Bug Report timeline with console-error and network-error badges so the user can see how VyBit captures runtime context.
+The absurd negative overage charge is the obvious visual "bug". The **Refresh Invoice** button fires a `console.error` and a failed `fetch` to `/api/billing/invoice/1042/refresh`, populating the Bug Report timeline with console-error and network-error badges so the user can see how Convey captures runtime context.
 
 **Auto-detection:** `BUG_REPORT_STAGE` message received.
 
@@ -467,7 +467,7 @@ The absurd negative overage charge is the obvious visual "bug". The **Refresh In
 **You did it!**
 
 ### Instructions
-> You've explored every major VyBit feature:
+> You've explored every major Convey feature:
 >
 > ✓ Selecting elements and sending change messages
 > ✓ Voice messages
@@ -482,7 +482,7 @@ The absurd negative overage charge is the obvious visual "bug". The **Refresh In
 > In a real project, every committed change triggers the MCP `implement_next_change` tool. Your AI agent (Copilot, Cursor, Claude, etc.) receives the change description, context, and instructions — then writes the code.
 >
 > **Ready to try it for real?**
-> → [Install VyBit](https://github.com/bitovi/vybit) and connect it to your project
+> → [Install Convey](https://github.com/bitovi/convey) and connect it to your project
 
 ### Playground
 *No interactive playground.* A celebratory completion state with a link to the GitHub repo and a **"↺ Start Over"** button to reset the tutorial.

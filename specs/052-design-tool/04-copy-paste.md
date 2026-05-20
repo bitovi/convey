@@ -20,7 +20,7 @@ When an element is selected and the user presses Cmd+C:
 4. Brief visual confirmation (toast or element flash)
 
 ```ts
-interface VyBitClipboard {
+interface ConveyClipboard {
   ghostHtml: string;
   ghostCss: string;
   sourceSelector: string;

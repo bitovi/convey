@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>VyBit Toggle — Eggburt Logo Concepts</title>
+  <title>Convey Toggle — Eggburt Logo Concepts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -151,17 +151,17 @@
       100% { fill: #ff4040; filter: drop-shadow(0 0 5px #ff4040); }
     }
 
-    /* Trigger on any .vybit-btn hover */
-    .vybit-btn:hover .ee-l {
+    /* Trigger on any .convey-btn hover */
+    .convey-btn:hover .ee-l {
       animation: rainbow-eyes 1.8s linear infinite;
     }
-    .vybit-btn:hover .ee-r {
+    .convey-btn:hover .ee-r {
       animation: rainbow-eyes 1.8s linear infinite;
       animation-delay: -0.45s; /* offset so eyes cycle slightly apart */
     }
 
     /* ─── BASE BUTTON ─────────────────────────────────────────── */
-    .vybit-btn {
+    .convey-btn {
       position: relative;
       border-radius: 50%;
       border: none;
@@ -173,26 +173,26 @@
       transition: transform 0.15s;
       z-index: 0;
     }
-    .vybit-btn:hover  { transform: scale(1.08); }
-    .vybit-btn:active { transform: scale(0.95); }
+    .convey-btn:hover  { transform: scale(1.08); }
+    .convey-btn:active { transform: scale(0.95); }
 
     /* SVG inside button */
-    .vybit-btn svg { position: relative; z-index: 2; display: block; flex-shrink: 0; }
+    .convey-btn svg { position: relative; z-index: 2; display: block; flex-shrink: 0; }
 
     /* Sizes */
-    .vybit-btn        { width: 44px; height: 44px; }
-    .vybit-btn svg    { width: 28px; height: 28px; }
-    .vybit-btn.sz36   { width: 36px; height: 36px; }
-    .vybit-btn.sz36 svg { width: 22px; height: 22px; }
-    .vybit-btn.sz56   { width: 56px; height: 56px; }
-    .vybit-btn.sz56 svg { width: 36px; height: 36px; }
-    .vybit-btn.sz64   { width: 64px; height: 64px; }
-    .vybit-btn.sz64 svg { width: 44px; height: 44px; }
+    .convey-btn        { width: 44px; height: 44px; }
+    .convey-btn svg    { width: 28px; height: 28px; }
+    .convey-btn.sz36   { width: 36px; height: 36px; }
+    .convey-btn.sz36 svg { width: 22px; height: 22px; }
+    .convey-btn.sz56   { width: 56px; height: 56px; }
+    .convey-btn.sz56 svg { width: 36px; height: 36px; }
+    .convey-btn.sz64   { width: 64px; height: 64px; }
+    .convey-btn.sz64 svg { width: 44px; height: 44px; }
 
     /* ═══════════════════════════════════════════════════════════
        OPTION A — RAINBOW HALO (conic-gradient spinning ring)
     ═══════════════════════════════════════════════════════════ */
-    .vybit-rainbow::before {
+    .convey-rainbow::before {
       content: '';
       position: absolute;
       inset: -3px;
@@ -210,7 +210,7 @@
       animation: halo-spin 5s linear infinite;
       opacity: 0.55;
     }
-    .vybit-rainbow::after {
+    .convey-rainbow::after {
       content: '';
       position: absolute;
       inset: 2px;
@@ -218,11 +218,11 @@
       background: var(--bg);
       z-index: 1;
     }
-    .vybit-rainbow svg { z-index: 3; }
+    .convey-rainbow svg { z-index: 3; }
 
-    .vybit-rainbow:hover::before      { opacity: 0.9; animation-duration: 2s; }
-    .vybit-rainbow.active::before     { opacity: 1; animation-duration: 1.5s; inset: -5px; }
-    .vybit-rainbow.active::after      { background: rgba(0,132,139,0.03); }
+    .convey-rainbow:hover::before      { opacity: 0.9; animation-duration: 2s; }
+    .convey-rainbow.active::before     { opacity: 1; animation-duration: 1.5s; inset: -5px; }
+    .convey-rainbow.active::after      { background: rgba(0,132,139,0.03); }
 
     @keyframes halo-spin { to { transform: rotate(360deg); } }
 
@@ -232,12 +232,12 @@
       40%  { transform: scale(1.12); opacity: 0.8; }
       100% { transform: scale(0.3); opacity: 0; pointer-events: none; }
     }
-    .vybit-btn.gone { animation: btn-disappear 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    .convey-btn.gone { animation: btn-disappear 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 
     /* ═══════════════════════════════════════════════════════════
        OPTION B — BRAND COLORS GLOW (teal→orange conic ring)
     ═══════════════════════════════════════════════════════════ */
-    .vybit-brand::before {
+    .convey-brand::before {
       content: '';
       position: absolute;
       inset: -3px;
@@ -252,7 +252,7 @@
       animation: halo-spin 4s linear infinite;
       opacity: 0.5;
     }
-    .vybit-brand::after {
+    .convey-brand::after {
       content: '';
       position: absolute;
       inset: 2px;
@@ -260,10 +260,10 @@
       background: var(--bg);
       z-index: 1;
     }
-    .vybit-brand svg { z-index: 3; }
+    .convey-brand svg { z-index: 3; }
 
-    .vybit-brand:hover::before  { opacity: 0.9; animation-duration: 1.8s; }
-    .vybit-brand.active::before { opacity: 1; animation-duration: 1.5s; inset: -5px; }
+    .convey-brand:hover::before  { opacity: 0.9; animation-duration: 1.8s; }
+    .convey-brand.active::before { opacity: 1; animation-duration: 1.5s; inset: -5px; }
 
     /* Pulsing box-shadow on top of the ring */
     @keyframes brand-pulse {
@@ -285,13 +285,13 @@
                     0 0 34px rgba(245,83,45,0.12);
       }
     }
-    .vybit-brand        { animation: brand-pulse 3s ease-in-out infinite; }
-    .vybit-brand.active { animation: brand-pulse-active 2s ease-in-out infinite; }
+    .convey-brand        { animation: brand-pulse 3s ease-in-out infinite; }
+    .convey-brand.active { animation: brand-pulse-active 2s ease-in-out infinite; }
 
     /* ═══════════════════════════════════════════════════════════
        OPTION C — BREATHING PULSE (no ring, just shadow)
     ═══════════════════════════════════════════════════════════ */
-    .vybit-pulse {
+    .convey-pulse {
       border: 1.5px solid var(--border);
       animation: pulse-breathe 3s ease-in-out infinite;
     }
@@ -304,7 +304,7 @@
                     0 2px 8px rgba(0,0,0,0.08);
       }
     }
-    .vybit-pulse:hover {
+    .convey-pulse:hover {
       border-color: var(--teal);
       animation: none;
       box-shadow: 0 0 0 5px rgba(0,132,139,0.12), 0 0 18px rgba(0,132,139,0.12),
@@ -320,28 +320,28 @@
                     0 0 34px rgba(245,83,45,0.14);
       }
     }
-    .vybit-pulse.active { border-color: transparent; animation: pulse-active 2s ease-in-out infinite; }
+    .convey-pulse.active { border-color: transparent; animation: pulse-active 2s ease-in-out infinite; }
 
     /* ═══════════════════════════════════════════════════════════
        OPTION D — DARK BUTTON (deep teal bg with inner glow)
     ═══════════════════════════════════════════════════════════ */
-    .vybit-dark {
+    .convey-dark {
       background: #0b1f21;
       box-shadow: 0 2px 14px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
     }
-    .vybit-dark:hover {
+    .convey-dark:hover {
       box-shadow: 0 4px 22px rgba(0,132,139,0.45), inset 0 1px 0 rgba(255,255,255,0.07);
     }
-    .vybit-dark.active {
+    .convey-dark.active {
       box-shadow: 0 0 0 3px rgba(0,132,139,0.35), 0 4px 22px rgba(0,132,139,0.3),
                   inset 0 1px 0 rgba(255,255,255,0.07);
     }
 
     /* Rainbow ring on dark variant when halo option selected */
-    .vybit-dark.vybit-rainbow::after { background: #0b1f21; }
+    .convey-dark.convey-rainbow::after { background: #0b1f21; }
 
     /* Shimmer sweep overlay for dark hover */
-    .vybit-dark::after {
+    .convey-dark::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -360,11 +360,11 @@
       z-index: 2;
       pointer-events: none;
     }
-    .vybit-dark:hover::after {
+    .convey-dark:hover::after {
       opacity: 1;
       background-position: -200% 0;
     }
-    .vybit-dark svg { z-index: 3; }
+    .convey-dark svg { z-index: 3; }
 
     /* ─── PAGE SIM ────────────────────────────────────────────── */
     .page-sim {
@@ -416,9 +416,9 @@
 </head>
 <body>
 
-  <h1><span>VyBit</span> Toggle — Eggburt Logo Concepts</h1>
+  <h1><span>Convey</span> Toggle — Eggburt Logo Concepts</h1>
   <p class="page-subtitle">
-    Using the official Bitovi Eggburt mascot as the VyBit toggle button, with AI-glow treatments.
+    Using the official Bitovi Eggburt mascot as the Convey toggle button, with AI-glow treatments.
     <strong>Hover any button to see the rainbow eye glow.</strong>
     The button only lives on the page when the panel is <em>closed</em> — it disappears once the panel opens.
   </p>
@@ -458,23 +458,23 @@
           <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:20px 24px;">
             <div class="size-grid">
               <div class="size-swatch">
-                <button class="vybit-btn sz36" style="width:24px;height:24px;" data-sz="16"></button>
+                <button class="convey-btn sz36" style="width:24px;height:24px;" data-sz="16"></button>
                 <span class="size-label">24px</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn sz36" data-sz="22"></button>
+                <button class="convey-btn sz36" data-sz="22"></button>
                 <span class="size-label">36px</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn" data-sz="28"></button>
+                <button class="convey-btn" data-sz="28"></button>
                 <span class="size-label">44px ★</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn sz56" data-sz="36"></button>
+                <button class="convey-btn sz56" data-sz="36"></button>
                 <span class="size-label">56px</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn sz64" data-sz="44"></button>
+                <button class="convey-btn sz64" data-sz="44"></button>
                 <span class="size-label">64px</span>
               </div>
             </div>
@@ -487,23 +487,23 @@
           <div style="background:#0b1f21; border:1px solid #1a3a3c; border-radius:8px; padding:20px 24px;">
             <div class="size-grid">
               <div class="size-swatch">
-                <button class="vybit-btn sz36 dark-icon" style="background:#0b1f21; width:24px;height:24px;" data-sz="16"></button>
+                <button class="convey-btn sz36 dark-icon" style="background:#0b1f21; width:24px;height:24px;" data-sz="16"></button>
                 <span class="size-label" style="color:#4aafb5;">24px</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn sz36 dark-icon" style="background:#0b1f21;" data-sz="22"></button>
+                <button class="convey-btn sz36 dark-icon" style="background:#0b1f21;" data-sz="22"></button>
                 <span class="size-label" style="color:#4aafb5;">36px</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn dark-icon" style="background:#0b1f21;" data-sz="28"></button>
+                <button class="convey-btn dark-icon" style="background:#0b1f21;" data-sz="28"></button>
                 <span class="size-label" style="color:#4aafb5;">44px ★</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn sz56 dark-icon" style="background:#0b1f21;" data-sz="36"></button>
+                <button class="convey-btn sz56 dark-icon" style="background:#0b1f21;" data-sz="36"></button>
                 <span class="size-label" style="color:#4aafb5;">56px</span>
               </div>
               <div class="size-swatch">
-                <button class="vybit-btn sz64 dark-icon" style="background:#0b1f21;" data-sz="44"></button>
+                <button class="convey-btn sz64 dark-icon" style="background:#0b1f21;" data-sz="44"></button>
                 <span class="size-label" style="color:#4aafb5;">64px</span>
               </div>
             </div>
@@ -553,15 +553,15 @@
           <div class="state-row">
             <div class="state-col">
               <span class="state-label">Idle</span>
-              <button class="vybit-btn vybit-rainbow" data-sz="28" title="Idle state"></button>
+              <button class="convey-btn convey-rainbow" data-sz="28" title="Idle state"></button>
             </div>
             <div class="state-col">
               <span class="state-label">Hover (try it)</span>
-              <button class="vybit-btn vybit-rainbow" data-sz="28" title="Hover me — eyes glow rainbow!"></button>
+              <button class="convey-btn convey-rainbow" data-sz="28" title="Hover me — eyes glow rainbow!"></button>
             </div>
             <div class="state-col">
               <span class="state-label">Panel opened → gone</span>
-              <button class="vybit-btn vybit-rainbow active" id="disappear-demo" data-sz="28"
+              <button class="convey-btn convey-rainbow active" id="disappear-demo" data-sz="28"
                 title="Click to trigger disappear animation"
                 onclick="this.classList.add('gone'); setTimeout(()=>{ this.classList.remove('gone','active'); },600);">
               </button>
@@ -574,15 +574,15 @@
           <div class="state-row" style="align-items:flex-end;">
             <div class="state-col">
               <span class="state-label">36px</span>
-              <button class="vybit-btn sz36 vybit-rainbow" data-sz="22" title="36px"></button>
+              <button class="convey-btn sz36 convey-rainbow" data-sz="22" title="36px"></button>
             </div>
             <div class="state-col">
               <span class="state-label">44px ★</span>
-              <button class="vybit-btn vybit-rainbow" data-sz="28" title="44px"></button>
+              <button class="convey-btn convey-rainbow" data-sz="28" title="44px"></button>
             </div>
             <div class="state-col">
               <span class="state-label">56px</span>
-              <button class="vybit-btn sz56 vybit-rainbow" data-sz="36" title="56px"></button>
+              <button class="convey-btn sz56 convey-rainbow" data-sz="36" title="56px"></button>
             </div>
           </div>
         </div>
@@ -627,15 +627,15 @@
           <div class="state-row">
             <div class="state-col">
               <span class="state-label">Idle</span>
-              <button class="vybit-btn vybit-brand" data-sz="28" title="Idle"></button>
+              <button class="convey-btn convey-brand" data-sz="28" title="Idle"></button>
             </div>
             <div class="state-col">
               <span class="state-label">Hover (rainbow eyes)</span>
-              <button class="vybit-btn vybit-brand" data-sz="28" title="Hover me!"></button>
+              <button class="convey-btn convey-brand" data-sz="28" title="Hover me!"></button>
             </div>
             <div class="state-col">
               <span class="state-label">Click → gone</span>
-              <button class="vybit-btn vybit-brand" data-sz="28"
+              <button class="convey-btn convey-brand" data-sz="28"
                 title="Click to disappear"
                 onclick="this.classList.add('gone'); setTimeout(()=>{ this.classList.remove('gone'); },600);">
               </button>
@@ -649,16 +649,16 @@
             <div class="state-row">
               <div class="state-col">
                 <span class="state-label" style="color:#4aafb5;">Idle</span>
-                <button class="vybit-btn vybit-brand dark-icon" style="background:#0b1f21;" data-sz="28"></button>
+                <button class="convey-btn convey-brand dark-icon" style="background:#0b1f21;" data-sz="28"></button>
               </div>
               <div class="state-col">
                 <span class="state-label" style="color:#4aafb5;">Hover</span>
-                <button class="vybit-btn vybit-brand dark-icon" style="background:#0b1f21;" data-sz="28"></button>
+                <button class="convey-btn convey-brand dark-icon" style="background:#0b1f21;" data-sz="28"></button>
               </div>
             </div>
           </div>
           <div style="margin-top:-4px;">
-            <div class="vybit-brand::after" style="display:none;"></div>
+            <div class="convey-brand::after" style="display:none;"></div>
           </div>
         </div>
 
@@ -700,15 +700,15 @@
           <div class="state-row">
             <div class="state-col">
               <span class="state-label">Idle (breathing)</span>
-              <button class="vybit-btn vybit-pulse" data-sz="28" title="Idle — gentle pulse"></button>
+              <button class="convey-btn convey-pulse" data-sz="28" title="Idle — gentle pulse"></button>
             </div>
             <div class="state-col">
               <span class="state-label">Hover (rainbow eyes)</span>
-              <button class="vybit-btn vybit-pulse" data-sz="28" title="Hover me!"></button>
+              <button class="convey-btn convey-pulse" data-sz="28" title="Hover me!"></button>
             </div>
             <div class="state-col">
               <span class="state-label">Click → gone</span>
-              <button class="vybit-btn vybit-pulse" data-sz="28"
+              <button class="convey-btn convey-pulse" data-sz="28"
                 title="Click to disappear"
                 onclick="this.classList.add('gone'); setTimeout(()=>{ this.classList.remove('gone'); },600);">
               </button>
@@ -754,15 +754,15 @@
           <div class="state-row">
             <div class="state-col">
               <span class="state-label">Idle</span>
-              <button class="vybit-btn vybit-dark" data-sz="28" title="Idle"></button>
+              <button class="convey-btn convey-dark" data-sz="28" title="Idle"></button>
             </div>
             <div class="state-col">
               <span class="state-label">Hover (shimmer + eyes)</span>
-              <button class="vybit-btn vybit-dark" data-sz="28" title="Hover me!"></button>
+              <button class="convey-btn convey-dark" data-sz="28" title="Hover me!"></button>
             </div>
             <div class="state-col">
               <span class="state-label">With rainbow ring</span>
-              <button class="vybit-btn vybit-dark vybit-rainbow" data-sz="28" title="Dark + rainbow ring"></button>
+              <button class="convey-btn convey-dark convey-rainbow" data-sz="28" title="Dark + rainbow ring"></button>
             </div>
           </div>
         </div>
@@ -772,15 +772,15 @@
           <div class="state-row" style="align-items:flex-end;">
             <div class="state-col">
               <span class="state-label">36px</span>
-              <button class="vybit-btn sz36 vybit-dark" data-sz="22"></button>
+              <button class="convey-btn sz36 convey-dark" data-sz="22"></button>
             </div>
             <div class="state-col">
               <span class="state-label">44px ★</span>
-              <button class="vybit-btn vybit-dark" data-sz="28"></button>
+              <button class="convey-btn convey-dark" data-sz="28"></button>
             </div>
             <div class="state-col">
               <span class="state-label">56px</span>
-              <button class="vybit-btn sz56 vybit-dark" data-sz="36"></button>
+              <button class="convey-btn sz56 convey-dark" data-sz="36"></button>
             </div>
           </div>
         </div>
@@ -837,8 +837,8 @@
             </div>
             <!-- Eggburt button -->
             <div id="sim-btn-wrap" style="position:absolute; bottom:12px; right:12px;">
-              <button class="vybit-btn sz36 vybit-rainbow" id="sim-toggle" data-sz="22"
-                title="Click to open VyBit panel"
+              <button class="convey-btn sz36 convey-rainbow" id="sim-toggle" data-sz="22"
+                title="Click to open Convey panel"
                 onclick="openSimPanel();">
               </button>
             </div>
@@ -868,7 +868,7 @@
             </div>
             <div class="panel-sim">
               <div class="panel-sim-header">
-                <span>VyBit</span>
+                <span>Convey</span>
                 <button onclick="void(0);" style="background:none; border:none; cursor:pointer; color:var(--muted); font-size:14px; line-height:1;" title="Close panel">✕</button>
               </div>
               <div class="panel-sim-body">
@@ -910,7 +910,7 @@
             </div>
             <div class="panel-sim" style="animation: panel-slide-in 0.35s ease-out both;">
               <div class="panel-sim-header">
-                <span>VyBit</span>
+                <span>Convey</span>
                 <button style="background:none; border:none; cursor:pointer; color:var(--muted); font-size:14px; line-height:1;" title="Close panel"
                   onclick="closeSimPanel();">✕</button>
               </div>
