@@ -2,12 +2,12 @@
 
 ## Goal
 
-Transform the shared test-app/demo page from a component showcase into a step-by-step guided tutorial that teaches new users how to use VyBit. The page walks users through every major feature — selecting elements, sending messages, voice recording, text editing, inserting content, placing components, tweaking design, and reporting bugs — with auto-detection of completed steps.
+Transform the shared test-app/demo page from a component showcase into a step-by-step guided tutorial that teaches new users how to use Convey. The page walks users through every major feature — selecting elements, sending messages, voice recording, text editing, inserting content, placing components, tweaking design, and reporting bugs — with auto-detection of completed steps.
 
 ## Motivation
 
 - The current demo page is a wall of components with no guidance — users don't know what to do
-- A guided tutorial turns the demo into an onboarding experience that sells VyBit in 5 minutes
+- A guided tutorial turns the demo into an onboarding experience that sells Convey in 5 minutes
 - Each section teaches one feature, builds on the previous, and confirms completion before advancing
 - Console output already shows the MCP tool calls — the tutorial frames *why* that matters
 
@@ -27,7 +27,7 @@ test-app/src/
 ```
 
 - `useTutorialProgress` tracks `completedSteps` (Set) — no linear ordering
-- Persists to `localStorage('vybit-tutorial-progress')` so progress survives refresh
+- Persists to `localStorage('convey-tutorial-progress')` so progress survives refresh
 - Exposes `completeStep(n)`, `resetProgress()`
 - All sections are visible and expanded by default — users can explore in any order
 - Completed sections show a checkmark and can optionally collapse, but never lock
@@ -37,7 +37,7 @@ test-app/src/
 `demo/bootstrap.ts` already listens to all BroadcastChannel messages. We add a parallel listener that dispatches `CustomEvent`s to `window`:
 
 ```ts
-window.dispatchEvent(new CustomEvent('vybit-tutorial', {
+window.dispatchEvent(new CustomEvent('convey-tutorial', {
   detail: { action: 'patch-committed' }
 }));
 ```
@@ -50,7 +50,7 @@ For the real dev test-app (no demo bus), the tutorial events won't fire, but the
 
 | Step | Title | Detection | Fallback |
 |------|-------|-----------|----------|
-| 1 | Welcome to VyBit | — | "Next" button |
+| 1 | Welcome to Convey | — | "Next" button |
 | 2 | Meet the Three Modes | — | "Next" button |
 | 3 | Open the Panel | `REGISTER` message from panel role | "I opened it" button |
 | 4 | Your First Change | `PATCH_COMMIT` received | "Done" button |
@@ -100,7 +100,7 @@ In `demo/bootstrap.ts`, remove `sessionStorage.setItem('tw-inspector-panel-open'
 
 ## Page layout
 
-The page is a vertically scrolling list of tutorial sections. No sidebar nav, no header nav — just the content. A small floating "Reset Tutorial" button sits at the bottom-right (below the VyBit toggle button).
+The page is a vertically scrolling list of tutorial sections. No sidebar nav, no header nav — just the content. A small floating "Reset Tutorial" button sits at the bottom-right (below the Convey toggle button).
 
 The page background is light (`bg-gray-50`). Each section is a white card with rounded corners and a subtle shadow. The current step's card has a teal left border accent.
 

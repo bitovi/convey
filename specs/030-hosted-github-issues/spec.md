@@ -2,8 +2,8 @@
 
 ## Overview
 
-A "hosted mode" for VyBit where the panel and overlay are served from a central server
-(`vybit.bitovi.com`) rather than a local MCP server. Non-developer users — stakeholders,
+A "hosted mode" for Convey where the panel and overlay are served from a central server
+(`convey.bitovi.com`) rather than a local MCP server. Non-developer users — stakeholders,
 designers, content editors — visit a live website with the overlay injected, visually suggest
 Tailwind CSS changes, and send those suggestions as GitHub issues assigned to Copilot for
 automatic implementation. No local tooling, no MCP agent, no terminal required.
@@ -18,7 +18,7 @@ This spec covers:
 
 ## Problem
 
-VyBit currently requires a local MCP server running on the developer's machine. This limits
+Convey currently requires a local MCP server running on the developer's machine. This limits
 feedback to developers who can run the toolchain. There is no way for a designer, product
 manager, or stakeholder to suggest visual changes on a staging site and route those suggestions
 to a developer workflow without setting up the local stack.
@@ -67,18 +67,18 @@ issues that Copilot picks up — provides a lower-friction path that works witho
 
 ```
 Customer site (app.customer.com)
-  └─ <script src="https://vybit.bitovi.com/overlay.js"
+  └─ <script src="https://convey.bitovi.com/overlay.js"
              data-repo="owner/repo"
              data-site-key="sk_xxx">    ← optional abuse prevention
       ├─ Overlay JS runs in customer's page origin
-      ├─ Connects: wss://vybit.bitovi.com?session=<id>   (role: overlay)
-      └─ Creates: <iframe src="https://vybit.bitovi.com/panel?session=<id>">
-                    └─ Panel JS runs in vybit.bitovi.com origin
-                       ├─ Connects: wss://vybit.bitovi.com?session=<id>  (role: panel)
+      ├─ Connects: wss://convey.bitovi.com?session=<id>   (role: overlay)
+      └─ Creates: <iframe src="https://convey.bitovi.com/panel?session=<id>">
+                    └─ Panel JS runs in convey.bitovi.com origin
+                       ├─ Connects: wss://convey.bitovi.com?session=<id>  (role: panel)
                        ├─ fetch('/api/auth/me')          ← HttpOnly cookie auto-sent ✓
                        └─ fetch('/api/github/issues')    ← HttpOnly cookie auto-sent ✓
 
-Central Server (vybit.bitovi.com)
+Central Server (convey.bitovi.com)
   ├─ Static: /overlay.js, /panel/**
   ├─ WebSocket hub (session-scoped routing)
   ├─ Auth: /auth/github, /auth/github/callback, /api/auth/me, /api/auth/logout
@@ -92,11 +92,11 @@ GitHub.com
 
 ### Why the iframe origin solves the credential problem
 
-The panel is rendered as `<iframe src="https://vybit.bitovi.com/panel">`. Even though it is
-embedded on a third-party site, the iframe's JavaScript runs in the `vybit.bitovi.com` browser
+The panel is rendered as `<iframe src="https://convey.bitovi.com/panel">`. Even though it is
+embedded on a third-party site, the iframe's JavaScript runs in the `convey.bitovi.com` browser
 origin. This means:
 
-- HttpOnly cookies set by `vybit.bitovi.com` are automatically included in every `fetch()` the
+- HttpOnly cookies set by `convey.bitovi.com` are automatically included in every `fetch()` the
   panel makes, with no JavaScript access required
 - The GitHub token never touches the host page DOM, localStorage, or JavaScript scope
 - The overlay script runs in the customer's origin but has no access to the panel's cookies or
@@ -104,7 +104,7 @@ origin. This means:
 
 **Required cookie attributes:** `Secure; HttpOnly; SameSite=None` — the `SameSite=None` flag
 is mandatory for cookies to be sent from a cross-site iframe. This requires HTTPS on
-`vybit.bitovi.com`.
+`convey.bitovi.com`.
 
 ---
 
@@ -115,8 +115,8 @@ first load and persisted to `sessionStorage`. This ID is passed as a query param
 WebSocket connection and the panel iframe URL:
 
 ```
-wss://vybit.bitovi.com?session=abc123
-https://vybit.bitovi.com/panel?session=abc123
+wss://convey.bitovi.com?session=abc123
+https://convey.bitovi.com/panel?session=abc123
 ```
 
 The central server's WebSocket hub routes messages only within a session, providing isolation
@@ -133,19 +133,19 @@ user can authenticate once and that auth session persists across multiple page v
 
 ```
 1. User clicks "Sign in with GitHub" in panel
-2. Panel calls window.open('https://vybit.bitovi.com/auth/github', 'vybit-auth', 'popup,...')
+2. Panel calls window.open('https://convey.bitovi.com/auth/github', 'convey-auth', 'popup,...')
 3. Popup redirects to:
    https://github.com/login/oauth/authorize
      ?client_id=<GITHUB_CLIENT_ID>
      &scope=repo
      &state=<csrf_token>        ← stored in server session, verified on callback
-     &redirect_uri=https://vybit.bitovi.com/auth/github/callback
+     &redirect_uri=https://convey.bitovi.com/auth/github/callback
 4. User approves → GitHub redirects to callback URL with ?code=...&state=...
 5. Server exchanges code for access_token (server-to-server, never exposed to browser)
 6. Server stores token in express-session (HttpOnly cookie)
 7. Callback page renders:
    <script>
-     window.opener?.postMessage({ type: 'VYBIT_AUTH_COMPLETE' }, 'https://vybit.bitovi.com');
+     window.opener?.postMessage({ type: 'CONVEY_AUTH_COMPLETE' }, 'https://convey.bitovi.com');
      window.close();
    </script>
 8. Panel receives postMessage, re-fetches /api/auth/me, updates auth state
@@ -194,7 +194,7 @@ user can authenticate once and that auth session persists across multiple page v
   repo: "owner/repo",          // from data-repo or user override
   title: string,               // auto-generated or user-edited
   body: string,                // formatted markdown (see below)
-  labels?: string[],           // e.g. ["vybit", "visual-change"]
+  labels?: string[],           // e.g. ["convey", "visual-change"]
   assignees?: string[],        // ["copilot"] when toggle is on
 }
 ```
@@ -213,7 +213,7 @@ and implement it as a Tailwind class swap.
 ```markdown
 ## Visual Change Request
 
-> Suggested via [VyBit](https://vybit.bitovi.com) visual editor
+> Suggested via [Convey](https://convey.bitovi.com) visual editor
 
 ### Changes
 
@@ -244,7 +244,7 @@ and implement it as a Tailwind class swap.
 
 ---
 
-*Created by [VyBit](https://vybit.bitovi.com) · [View element on page](https://app.example.com/dashboard)*
+*Created by [Convey](https://convey.bitovi.com) · [View element on page](https://app.example.com/dashboard)*
 ```
 
 ### Assigning to Copilot
@@ -259,14 +259,14 @@ further developer effort beyond review.
 ## Storybook in Hosted Mode
 
 In local mode the server proxies the user's Storybook (`/storybook` route). In hosted mode
-this is not possible — VyBit has no access to the customer's local Storybook.
+this is not possible — Convey has no access to the customer's local Storybook.
 
 **Solution:** The Storybook addon (already in `storybook-addon/`) is **mandatory** in hosted
 mode. It runs inside Storybook and handles all integration without a proxy:
 
-- `preview.ts` — injects overlay from `https://vybit.bitovi.com/overlay.js` (configurable via
-  `vybit.serverUrl` parameter, which already exists in the current addon code)
-- `manager.tsx` — renders panel as `<iframe src="https://vybit.bitovi.com/panel">` inside
+- `preview.ts` — injects overlay from `https://convey.bitovi.com/overlay.js` (configurable via
+  `convey.serverUrl` parameter, which already exists in the current addon code)
+- `manager.tsx` — renders panel as `<iframe src="https://convey.bitovi.com/panel">` inside
   Storybook's shell
 
 No changes to existing addon code are required for basic hosted mode. The Storybook proxy
@@ -311,7 +311,7 @@ this to `Map<sessionId, Map<WebSocket, role>>` so messages route only within a s
 
 WebSocket upgrade:
 ```
-wss://vybit.bitovi.com?session=abc123
+wss://convey.bitovi.com?session=abc123
 ```
 
 Server reads `session` from the URL query string during the `upgrade` event and maps the
@@ -352,8 +352,8 @@ The overlay generates a `sessionId` (UUID v4) on first load, stores it in `sessi
 and appends it to both the WebSocket URL and the panel iframe `src`:
 
 ```typescript
-const sessionId = sessionStorage.getItem('vybit-session') ?? crypto.randomUUID();
-sessionStorage.setItem('vybit-session', sessionId);
+const sessionId = sessionStorage.getItem('convey-session') ?? crypto.randomUUID();
+sessionStorage.setItem('convey-session', sessionId);
 ```
 
 ---
@@ -376,9 +376,9 @@ interface AuthContext {
 
 `login()` implementation:
 ```typescript
-const popup = window.open(`${SERVER_ORIGIN}/auth/github`, 'vybit-auth', 'popup,width=600,height=700');
+const popup = window.open(`${SERVER_ORIGIN}/auth/github`, 'convey-auth', 'popup,width=600,height=700');
 window.addEventListener('message', (e) => {
-  if (e.origin === SERVER_ORIGIN && e.data?.type === 'VYBIT_AUTH_COMPLETE') {
+  if (e.origin === SERVER_ORIGIN && e.data?.type === 'CONVEY_AUTH_COMPLETE') {
     popup?.close();
     refetchAuthState();
   }
@@ -402,12 +402,12 @@ appears.
 
 ## Site Owner Setup
 
-Complete setup for a site owner wanting to embed VyBit in hosted mode:
+Complete setup for a site owner wanting to embed Convey in hosted mode:
 
 ```html
 <!-- In your staging site's <head> -->
 <script
-  src="https://vybit.bitovi.com/overlay.js"
+  src="https://convey.bitovi.com/overlay.js"
   data-repo="myorg/myrepo"
   data-site-key="sk_xxxxxxxxxx"
 ></script>
@@ -419,18 +419,18 @@ routing, and the user authenticates with GitHub directly in the panel.
 For Storybook integration, the addon must be installed:
 
 ```bash
-npm install -D @bitovi/vybit
+npm install -D @bitovi/convey
 ```
 
 ```typescript
 // .storybook/main.ts
 export default {
-  addons: ['@bitovi/vybit/storybook-addon'],
+  addons: ['@bitovi/convey/storybook-addon'],
 };
 
 // .storybook/preview.ts
 export const parameters = {
-  vybit: { serverUrl: 'https://vybit.bitovi.com' },
+  convey: { serverUrl: 'https://convey.bitovi.com' },
 };
 ```
 
@@ -488,6 +488,6 @@ export const parameters = {
 - `?mode=hosted` param on panel iframe URL
 
 ### Phase 5 — Storybook Hosted Mode
-- Verify existing addon works with `serverUrl: 'https://vybit.bitovi.com'`
+- Verify existing addon works with `serverUrl: 'https://convey.bitovi.com'`
 - Document addon-mandatory constraint for hosted mode
 - Extend `preview.ts` for `postMessage`-based metadata forwarding (component drop support)

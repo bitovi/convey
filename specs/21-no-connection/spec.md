@@ -39,8 +39,8 @@ When `!wsConnected`, the panel displayed a two-section layout:
 2. **Bottom section (always usable)**:
    - **"No agent watching" warning panel** (amber, light theme at that time):
      - Warning icon
-     - Text: "No agent watching — [ask your agent](https://github.com/bitovi/vybit?tab=readme-ov-file#telling-your-agent-to-start-making-features) to start"
-     - **Copy prompt button** — copies: "Please implement the next change and continue implementing changes with VyBit."
+     - Text: "No agent watching — [ask your agent](https://github.com/bitovi/convey?tab=readme-ov-file#telling-your-agent-to-start-making-features) to start"
+     - **Copy prompt button** — copies: "Please implement the next change and continue implementing changes with Convey."
      - **Click the docs link** to see setup instructions
    
    - **Queue status bar** with all patch counts (fully interactive):
@@ -82,7 +82,7 @@ const queueFooter = (
         <span className="flex-1 leading-tight">
           No agent watching —{' '}
           <a
-            href="https://github.com/bitovi/vybit?tab=readme-ov-file#telling-your-agent-to-start-making-features"
+            href="https://github.com/bitovi/convey?tab=readme-ov-file#telling-your-agent-to-start-making-features"
             target="_blank"
             rel="noreferrer"
             className="underline hover:text-amber-900"
@@ -90,9 +90,9 @@ const queueFooter = (
           {' '}to start
         </span>
         <button
-          onClick={() => copyToClipboard(VYBIT_PROMPT)}
+          onClick={() => copyToClipboard(CONVEY_PROMPT)}
           className="shrink-0 px-1.5 py-0.5 rounded border border-amber-300 bg-amber-100 hover:bg-amber-200 text-amber-700 font-semibold text-[9px] transition-colors"
-          title={`Copy: "${VYBIT_PROMPT}"`}
+          title={`Copy: "${CONVEY_PROMPT}"`}
         >
           Copy prompt
         </button>

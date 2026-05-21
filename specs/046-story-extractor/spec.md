@@ -156,7 +156,7 @@ for (const [idx, story] of stories.entries()) {
   });
 
   ext.load(
-    `/storybook/iframe.html?id=${story.id}&viewMode=story&vybit-ghost=1`,
+    `/storybook/iframe.html?id=${story.id}&viewMode=story&convey-ghost=1`,
     {
       onExtracted: ({ ghostHtml, ghostCss, storyBackground }) => {
         renderShadowGhost(ghostPane, ghostHtml, ghostCss, storyBackground);
@@ -185,7 +185,7 @@ for (const [idx, story] of stories.entries()) {
   await new Promise<void>((resolve) => {
     const ext = createStoryExtractor({ iframeContainer: sourcePane });
     ext.load(
-      `/storybook/iframe.html?id=${story.id}&viewMode=story&vybit-ghost=1`,
+      `/storybook/iframe.html?id=${story.id}&viewMode=story&convey-ghost=1`,
       {
         onExtracted: (data) => {
           renderShadowGhost(ghostPane, data.ghostHtml, data.ghostCss, data.storyBackground);

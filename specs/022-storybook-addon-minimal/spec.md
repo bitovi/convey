@@ -36,7 +36,7 @@ results to the parent window via `postMessage`.
 - Reset body margin/padding on every story iframe (no whitespace around components)
 - Post content height to the parent so the Draw tab can auto-size iframes
 - Wire the addon into the local `test-app` Storybook for immediate use
-- Structure the addon so external users can `npm install @bitovi/vybit` and configure one line
+- Structure the addon so external users can `npm install @bitovi/convey` and configure one line
 
 ## Non-Goals
 
@@ -54,7 +54,7 @@ results to the parent window via `postMessage`.
 | Remove proxy from server? | No — leave it | Proxy may still be useful for other scenarios |
 | Height posting | Yes — `ResizeObserver` | Replaces hardcoded `160px` iframe height |
 | Local wiring | Relative path in `main.ts` | No separate `package.json` needed inside addon |
-| Message namespace | `VYBIT_STORY_HEIGHT` | Avoids collision with Storybook's own channel messages |
+| Message namespace | `CONVEY_STORY_HEIGHT` | Avoids collision with Storybook's own channel messages |
 
 ---
 
@@ -68,7 +68,7 @@ storybook-addon/          ← new directory at workspace root
 
 No `package.json` needed in `storybook-addon/` for local dev — Storybook resolves the preset
 directly from the `.ts` file path when pointed at it in `main.ts`. External users get the
-preset via the `@bitovi/vybit/storybook-addon` export from the root package.
+preset via the `@bitovi/convey/storybook-addon` export from the root package.
 
 ---
 
@@ -100,7 +100,7 @@ import type { Decorator } from '@storybook/react';
 
 let initialized = false;
 
-const withVybitSetup: Decorator = (StoryFn) => {
+const withConveySetup: Decorator = (StoryFn) => {
   if (!initialized) {
     initialized = true;
     document.body.style.margin = '0';
@@ -108,7 +108,7 @@ const withVybitSetup: Decorator = (StoryFn) => {
 
     const observer = new ResizeObserver(() => {
       window.parent.postMessage(
-        { type: 'VYBIT_STORY_HEIGHT', height: document.body.scrollHeight },
+        { type: 'CONVEY_STORY_HEIGHT', height: document.body.scrollHeight },
         '*'
       );
     });
@@ -118,7 +118,7 @@ const withVybitSetup: Decorator = (StoryFn) => {
   return StoryFn();
 };
 
-export const decorators = [withVybitSetup];
+export const decorators = [withConveySetup];
 ```
 
 ### `package.json` (root) — additions
@@ -193,7 +193,7 @@ export function ComponentGroupItem({ group, storybookUrl }: ComponentGroupItemPr
 
 ### `panel/src/components/DrawTab/components/StoryRow/StoryRow.tsx`
 
-Listen for `VYBIT_STORY_HEIGHT` and replace the hardcoded `160` height:
+Listen for `CONVEY_STORY_HEIGHT` and replace the hardcoded `160` height:
 
 ```tsx
 const [iframeHeight, setIframeHeight] = useState(160);
@@ -202,7 +202,7 @@ useEffect(() => {
   if (!isOpen) return;
   function handleMessage(e: MessageEvent) {
     // existing storyPrepared handling ...
-    if (e.data?.type === 'VYBIT_STORY_HEIGHT' && typeof e.data.height === 'number') {
+    if (e.data?.type === 'CONVEY_STORY_HEIGHT' && typeof e.data.height === 'number') {
       setIframeHeight(e.data.height);
     }
   }
@@ -222,14 +222,14 @@ useEffect(() => {
 
 ## External User Setup
 
-Once shipped as `@bitovi/vybit`:
+Once shipped as `@bitovi/convey`:
 
 ```ts
 // .storybook/main.ts
 export default {
   addons: [
     '@storybook/addon-essentials',
-    '@bitovi/vybit/storybook-addon',  // ← one line
+    '@bitovi/convey/storybook-addon',  // ← one line
   ],
 };
 ```
@@ -260,4 +260,4 @@ No `preview.ts` changes needed — the addon handles everything automatically.
 | `test-app/.storybook/main.ts` | Edit — add addon to `addons` array |
 | `panel/src/components/DrawTab/DrawTab.tsx` | Edit — pass `directUrl` as `storybookUrl` |
 | `panel/src/components/DrawTab/components/ComponentGroupItem/ComponentGroupItem.tsx` | Edit — accept `storybookUrl` prop |
-| `panel/src/components/DrawTab/components/StoryRow/StoryRow.tsx` | Edit — dynamic height from `VYBIT_STORY_HEIGHT` |
+| `panel/src/components/DrawTab/components/StoryRow/StoryRow.tsx` | Edit — dynamic height from `CONVEY_STORY_HEIGHT` |

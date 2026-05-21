@@ -8,13 +8,13 @@ Review notes welcome on any step. When this looks good, the implementation will 
 
 ## Step 2 — Open the Panel *(rewrite)*
 
-> See the round button in the bottom-right corner of the page? That's the **VyBit toggle button**. Click it to open the inspector panel. The panel will slide in as a sidebar on the right side of the page.
+> See the round button in the bottom-right corner of the page? That's the **Convey toggle button**. Click it to open the inspector panel. The panel will slide in as a sidebar on the right side of the page.
 
 > Once open, you'll see the panel has three buttons at the top:
 
 > <EditIcon /> **Edit** — The main working mode. Select elements, inspect their styles, send change messages, edit text, and tweak Tailwind classes from here.
 
-> <BugReportIcon /> **Bug Report** — Record and describe issues. Pick an element, describe what's wrong, and VyBit captures a timeline snapshot for context.
+> <BugReportIcon /> **Bug Report** — Record and describe issues. Pick an element, describe what's wrong, and Convey captures a timeline snapshot for context.
 
 > <ThemeIcon /> **Theme** — Browse and adjust your project's Tailwind design tokens — colors, spacing, font sizes — and preview changes live across the whole page.
 
@@ -30,7 +30,7 @@ Review notes welcome on any step. When this looks good, the implementation will 
 
 ## Step 3 — Your First Change *(Select location update)*
 
-> Let's make your first change. **Click the issue card below** to select it, then tell VyBit what to do.
+> Let's make your first change. **Click the issue card below** to select it, then tell Convey what to do.
 
 > 1. Use the **Select** button (<SelectIcon />) at the bottom of the page to enter Select mode
 > 2. Click the card below — it will highlight with a teal border and a small toolbar will appear
@@ -46,7 +46,7 @@ Review notes welcome on any step. When this looks good, the implementation will 
 
 ## Step 4 — Send a Voice Message *(Select location update)*
 
-> Sometimes it's easier to talk than type. VyBit has a microphone button for voice messages.
+> Sometimes it's easier to talk than type. Convey has a microphone button for voice messages.
 
 > 1. Use the **Select** button (<SelectIcon />) at the bottom of the page to enter Select mode
 > 2. Click the **Assign** button below to select it
@@ -94,7 +94,7 @@ Review notes welcome on any step. When this looks good, the implementation will 
 
 ## Step 11 — Place a Component *(was Step 8 — Insert location + drag rewrite)*
 
-> VyBit can browse your component library and place components directly onto the page.
+> Convey can browse your component library and place components directly onto the page.
 
 > 1. Use the **Insert** button (<InsertIcon />) at the bottom of the page if not already active
 > 2. In the panel, you'll see the **Components** tab with your available components
@@ -121,7 +121,7 @@ Review notes welcome on any step. When this looks good, the implementation will 
 
 ## Step 9 — Delete Elements *(NEW)*
 
-> Removing an element is a single keypress. VyBit hides it on the page and queues a delete change for your agent — nothing is permanently removed until the agent writes the code.
+> Removing an element is a single keypress. Convey hides it on the page and queues a delete change for your agent — nothing is permanently removed until the agent writes the code.
 
 > The resolved issue card below is stale and should be cleaned up.
 
@@ -133,7 +133,7 @@ Review notes welcome on any step. When this looks good, the implementation will 
 
 ## Step 10 — Copy and Paste *(NEW)*
 
-> VyBit lets you copy any element and paste it anywhere on the page. Cmd+D gives you an instant duplicate right after the original — no placement flow needed.
+> Convey lets you copy any element and paste it anywhere on the page. Cmd+D gives you an instant duplicate right after the original — no placement flow needed.
 
 > The team roster below has two members. Let's add a third slot.
 
@@ -161,7 +161,7 @@ Review notes welcome on any step. When this looks good, the implementation will 
 
 ## Step 13 — Fine-Tune the Design *(was Step 10 — Select location update)*
 
-> VyBit isn't just for big changes — you can precisely adjust Tailwind classes too. Scrub spacing values, pick colors from a palette, adjust shadows, and see changes live as you drag.
+> Convey isn't just for big changes — you can precisely adjust Tailwind classes too. Scrub spacing values, pick colors from a palette, adjust shadows, and see changes live as you drag.
 
 > 1. Use the **Select** button (<SelectIcon />) at the bottom of the page
 > 2. Click the purple banner below (not the text inside it) — it will show its Tailwind properties in the panel

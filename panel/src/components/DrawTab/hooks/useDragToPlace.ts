@@ -83,7 +83,7 @@ export function useDragToPlace({
     const target = getTarget();
     if (target) {
       try {
-        target.postMessage({ __vybitDrag: true, type: 'DRAG_START', componentName: name, storyId: sid, ghostHtml: ghostHtml ?? undefined, ghostCss: ghostCss ?? undefined, componentPath: cPath, args: cArgs, screenX: e.screenX, screenY: e.screenY, clientX: e.clientX, clientY: e.clientY }, '*');
+        target.postMessage({ __conveyDrag: true, type: 'DRAG_START', componentName: name, storyId: sid, ghostHtml: ghostHtml ?? undefined, ghostCss: ghostCss ?? undefined, componentPath: cPath, args: cArgs, screenX: e.screenX, screenY: e.screenY, clientX: e.clientX, clientY: e.clientY }, '*');
       } catch { /* ignore */ }
     }
     onStart?.();
@@ -102,7 +102,7 @@ export function useDragToPlace({
   const crossFrameMoveHandler = useCallback((e: PointerEvent) => {
     const target = getTarget();
     if (target) {
-      try { target.postMessage({ __vybitDrag: true, type: 'DRAG_MOVE', screenX: e.screenX, screenY: e.screenY, clientX: e.clientX, clientY: e.clientY }, '*'); } catch { /* ignore */ }
+      try { target.postMessage({ __conveyDrag: true, type: 'DRAG_MOVE', screenX: e.screenX, screenY: e.screenY, clientX: e.clientX, clientY: e.clientY }, '*'); } catch { /* ignore */ }
     }
   }, [getTarget]);
 
@@ -111,7 +111,7 @@ export function useDragToPlace({
     document.removeEventListener('pointerup', crossFrameUpHandler);
     const target = getTarget();
     if (target) {
-      try { target.postMessage({ __vybitDrag: true, type: 'DRAG_END', screenX: e.screenX, screenY: e.screenY, clientX: e.clientX, clientY: e.clientY, cancelled: false }, '*'); } catch { /* ignore */ }
+      try { target.postMessage({ __conveyDrag: true, type: 'DRAG_END', screenX: e.screenX, screenY: e.screenY, clientX: e.clientX, clientY: e.clientY, cancelled: false }, '*'); } catch { /* ignore */ }
     }
     latestRef.current.onDragEnd?.();
     cleanup();
@@ -134,7 +134,7 @@ export function useDragToPlace({
         document.removeEventListener('pointerup', crossFrameUpHandler);
         const target = getTarget();
         if (target) {
-          try { target.postMessage({ __vybitDrag: true, type: 'DRAG_END', screenX: 0, screenY: 0, cancelled: true }, '*'); } catch { /* ignore */ }
+          try { target.postMessage({ __conveyDrag: true, type: 'DRAG_END', screenX: 0, screenY: 0, cancelled: true }, '*'); } catch { /* ignore */ }
         }
         latestRef.current.onDragEnd?.();
         cleanup();

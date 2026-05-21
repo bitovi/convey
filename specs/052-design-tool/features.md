@@ -1,6 +1,6 @@
 # 052 — Design Tool
 
-Turn VyBit from a styling inspector into an effortless interface sketcher — closer to Sketch/Figma, but operating on real DOM elements with Tailwind classes and producing agent-ready patches.
+Turn Convey from a styling inspector into an effortless interface sketcher — closer to Sketch/Figma, but operating on real DOM elements with Tailwind classes and producing agent-ready patches.
 
 ## Feature Index (priority order)
 
@@ -57,7 +57,7 @@ These are the minimum set to replace the current Fabric.js canvas with real DOM 
 
 | Question | Options | Current Lean |
 |---|---|---|
-| Where do generic elements live? | Built into panel vs. "VyBit Primitives" Storybook | Built into panel — no Storybook dependency for basic sketching |
+| Where do generic elements live? | Built into panel vs. "Convey Primitives" Storybook | Built into panel — no Storybook dependency for basic sketching |
 | Fabric.js canvas vs. live DOM? | Keep Fabric for freehand/SVG; all element work in live DOM | Live DOM for elements, Fabric only for annotation/SVG |
 | Resize semantics | Arbitrary px → nearest Tailwind class, or Tailwind scale snapping only? | Snap to Tailwind scale, show class in tooltip |
 | Temporary canvas size | Explicit toggle vs. auto-shrink when children overflow | Explicit toggle — auto-shrink is confusing |

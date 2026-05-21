@@ -22,7 +22,7 @@ export const MIC_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1
 
 export const DRAG_GRIP_SVG = `<svg viewBox="0 0 6 10" fill="currentColor"><circle cx="1.5" cy="1.5" r="1"/><circle cx="4.5" cy="1.5" r="1"/><circle cx="1.5" cy="5" r="1"/><circle cx="4.5" cy="5" r="1"/><circle cx="1.5" cy="8.5" r="1"/><circle cx="4.5" cy="8.5" r="1"/></svg>`;
 
-export const VYBIT_LOGO_SVG = `<svg width="26" height="27" viewBox="0 0 210 221" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const CONVEY_LOGO_SVG = `<svg width="26" height="27" viewBox="0 0 210 221" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path class="eb-fill" d="M141.54 137.71L103.87 140.38C102.98 140.44 102.2 140.97 101.8 141.77C101.41 142.57 101.47 143.51 101.96 144.25C102.27 144.72 109.46 155.39 121.96 155.39C122.3 155.39 122.65 155.39 123 155.37C138.61 154.64 143.83 141.66 144.05 141.11C144.36 140.31 144.24 139.41 143.73 138.72C143.22 138.03 142.4 137.65 141.54 137.71Z"/>
     <path class="eb-eye-l eb-fill" d="M80.6401 93.03C76.7801 93.22 73.8 96.5 73.99 100.36L74.7501 115.96C74.9401 119.85 78.2701 122.84 82.1501 122.61C85.9801 122.38 88.9101 119.11 88.7301 115.28L87.9701 99.68C87.7801 95.82 84.5001 92.84 80.6401 93.03Z"/>
     <path class="eb-eye-r eb-fill" d="M149.46 96.67L150.32 111.72C150.54 115.58 153.85 118.53 157.71 118.31C161.57 118.09 164.52 114.78 164.3 110.92L163.44 95.87C163.22 92.03 159.94 89.08 156.09 89.28C152.22 89.48 149.24 92.79 149.47 96.67H149.46Z"/>

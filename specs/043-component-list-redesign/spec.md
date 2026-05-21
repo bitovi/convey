@@ -159,7 +159,7 @@ A single hidden iframe extracts all ghosts sequentially:
 
 Before implementing single-iframe reuse:
 
-- [ ] Does `setCurrentStory` work when `?vybit-ghost=1` is in the initial URL?
+- [ ] Does `setCurrentStory` work when `?convey-ghost=1` is in the initial URL?
 - [ ] Are stylesheets correctly swapped between stories? (CSS from story A may linger)
 - [ ] Does `css-collector.ts` re-collect correctly after an in-place story switch?
 - [ ] Angular Storybook compatibility (SB10)?

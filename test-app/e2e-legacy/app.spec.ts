@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Test App', () => {
   test('loads the page with header', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('h1').first()).toContainText('VyBit Interactive Tutorial');
+    await expect(page.locator('h1').first()).toContainText('Convey Interactive Tutorial');
   });
 
   test('renders all tutorial sections', async ({ page }) => {

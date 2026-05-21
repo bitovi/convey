@@ -899,7 +899,7 @@ function cleanup(): void {
  * dropped ghost element, even if the target app's own build doesn't include them.
  */
 export function injectGhostCss(componentName: string, css: string): void {
-  const id = `vybit-ghost-css-${componentName}`;
+  const id = `convey-ghost-css-${componentName}`;
   // Remove any existing ghost CSS for this component (refreshes on re-drop)
   const existing = document.getElementById(id);
   if (existing) existing.remove();

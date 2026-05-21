@@ -117,13 +117,13 @@ async function boot() {
   // Include import.meta.env.BASE_URL so it works on GitHub Pages with a subpath.
   const fakeScript = document.createElement('script');
   fakeScript.setAttribute('src', `${window.location.origin}${import.meta.env.BASE_URL}overlay.js`);
-  fakeScript.setAttribute('type', 'text/x-vybit-stub');
+  fakeScript.setAttribute('type', 'text/x-convey-stub');
   document.body.appendChild(fakeScript);
 
   // Ensure panel starts closed for tutorial Step 3 — but only if the user
   // hasn't already completed that step (so refresh preserves panel state).
   try {
-    const progress = JSON.parse(localStorage.getItem('vybit-tutorial-progress') || '[]');
+    const progress = JSON.parse(localStorage.getItem('convey-tutorial-progress') || '[]');
     if (!Array.isArray(progress) || !progress.includes(3)) {
       sessionStorage.removeItem('tw-inspector-panel-open');
     }

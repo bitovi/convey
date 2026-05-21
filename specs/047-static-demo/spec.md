@@ -2,11 +2,11 @@
 
 ## Goal
 
-Ship a serverless, static build of VyBit that runs entirely in the browser on GitHub Pages. Visitors click elements, scrub Tailwind values, see live previews, and see console logs showing exactly what the MCP agent would receive — all without a running server.
+Ship a serverless, static build of Convey that runs entirely in the browser on GitHub Pages. Visitors click elements, scrub Tailwind values, see live previews, and see console logs showing exactly what the MCP agent would receive — all without a running server.
 
 ## Motivation
 
-- **Marketing**: let people experience VyBit without cloning, installing, or running services
+- **Marketing**: let people experience Convey without cloning, installing, or running services
 - **Credibility**: a live interactive demo is worth more than a video or screenshot
 - **Low friction onboarding**: visitors understand the product in 30 seconds
 
@@ -246,7 +246,7 @@ Triggered on push to `main` (or a `demo` branch).
 
 **Goal:** Production-ready demo on GitHub Pages.
 
-1. Add a banner/header explaining what VyBit is and how to use the demo
+1. Add a banner/header explaining what Convey is and how to use the demo
 2. Pre-open the panel on load (skip requiring the user to find the toggle)
 3. Auto-select an interesting element on first load so visitors immediately see chips
 4. Add a "View MCP output" hint pointing to the browser console

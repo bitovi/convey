@@ -205,7 +205,7 @@
 
       // Create extractor with iframe visible in the source pane
       var ext = createStoryExtractor({ iframeContainer: sourcePane });
-      var src = '/storybook/iframe.html?id=' + encodeURIComponent(entry.story.id) + '&viewMode=story&vybit-ghost=1';
+      var src = '/storybook/iframe.html?id=' + encodeURIComponent(entry.story.id) + '&viewMode=story&convey-ghost=1';
 
       return new Promise(function (resolve) {
         var timeout = setTimeout(function () {

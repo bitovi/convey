@@ -1,20 +1,20 @@
 // In-memory clipboard for copy/paste of DOM elements.
 // Stores ghost HTML + CSS so pasted elements render correctly.
 
-export interface VyBitClipboard {
+export interface ConveyClipboard {
   ghostHtml: string;
   ghostCss: string;
   sourceComponentName: string;
   sourceClasses: string;
 }
 
-let clipboard: VyBitClipboard | null = null;
+let clipboard: ConveyClipboard | null = null;
 
-export function setClipboard(data: VyBitClipboard): void {
+export function setClipboard(data: ConveyClipboard): void {
   clipboard = data;
 }
 
-export function getClipboard(): VyBitClipboard | null {
+export function getClipboard(): ConveyClipboard | null {
   return clipboard;
 }
 
@@ -48,7 +48,7 @@ export async function extractGhostCssForElement(
   const ghostName = el.dataset.twDroppedComponent
     ?? el.closest('[data-tw-dropped-component]')?.getAttribute('data-tw-dropped-component');
   if (ghostName) {
-    const existingStyle = document.getElementById(`vybit-ghost-css-${ghostName}`);
+    const existingStyle = document.getElementById(`convey-ghost-css-${ghostName}`);
     if (existingStyle?.textContent) {
       return existingStyle.textContent;
     }

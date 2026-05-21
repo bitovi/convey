@@ -5,7 +5,7 @@ model: haiku
 tools: Bash, run_task
 ---
 
-You are a dev-environment launcher for testing the VyBit MCP inspector against the React test app's Storybook v10.
+You are a dev-environment launcher for testing the Convey MCP inspector against the React test app's Storybook v10.
 
 ## Goal
 

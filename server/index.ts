@@ -18,14 +18,14 @@ import { registerMcpTools } from "./mcp-tools.js";
 import { checkTailwindAvailable } from "./tailwind.js";
 import { detectStorybookUrl } from "./storybook.js";
 
-// --- Resolve project root (precedence: --cwd flag, VYBIT_PROJECT_ROOT, cwd) ---
+// --- Resolve project root (precedence: --cwd flag, CONVEY_PROJECT_ROOT, cwd) ---
 const argv = process.argv.slice(2);
 let desiredProjectRoot = process.cwd();
 const cwdFlagIndex = argv.findIndex(a => a === "--cwd" || a === "-C");
 if (cwdFlagIndex !== -1 && argv[cwdFlagIndex + 1]) {
   desiredProjectRoot = path.resolve(argv[cwdFlagIndex + 1]);
-} else if (process.env.VYBIT_PROJECT_ROOT) {
-  desiredProjectRoot = path.resolve(process.env.VYBIT_PROJECT_ROOT);
+} else if (process.env.CONVEY_PROJECT_ROOT) {
+  desiredProjectRoot = path.resolve(process.env.CONVEY_PROJECT_ROOT);
 }
 
 if (desiredProjectRoot !== process.cwd()) {
@@ -41,12 +41,12 @@ if (desiredProjectRoot !== process.cwd()) {
 // --- Startup check: tailwindcss must be resolvable from cwd ---
 const tailwindCheck = checkTailwindAvailable();
 if (!tailwindCheck.ok) {
-  console.error("VyBit: tailwindcss not found — cannot start");
+  console.error("Convey: tailwindcss not found — cannot start");
   console.error(`cwd: ${process.cwd()}`);
-  console.error("VyBit must run from your project directory so it can find tailwindcss in node_modules.");
-  console.error('If your app runs in Docker, run VyBit inside the container:');
-  console.error('  docker exec -i <container> npx @bitovi/vybit');
-  console.error("See: https://github.com/bitovi/vybit#running-inside-docker");
+  console.error("Convey must run from your project directory so it can find tailwindcss in node_modules.");
+  console.error('If your app runs in Docker, run Convey inside the container:');
+  console.error('  docker exec -i <container> npx @bitovi/convey');
+  console.error("See: https://github.com/bitovi/convey#running-inside-docker");
   process.exit(1);
 }
 
@@ -131,7 +131,7 @@ httpServer.listen(port, () => {
 // Allows external clients to connect with: --transport http
 function createMcpServerWithTools(): McpServer {
   const s = new McpServer(
-    { name: "vybit", version: "0.1.0" },
+    { name: "convey", version: "0.1.0" },
     { capabilities: { tools: {} } },
   );
   registerMcpTools(s, {
@@ -169,7 +169,7 @@ console.error(`[mcp] HTTP transport available at http://localhost:${port}/mcp`);
 
 // --- MCP Server (stdio) ---
 const mcp = new McpServer(
-  { name: "vybit", version: "0.1.0" },
+  { name: "convey", version: "0.1.0" },
   { capabilities: { tools: {} } },
 );
 

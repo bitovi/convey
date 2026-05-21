@@ -96,7 +96,7 @@ export function useStoryProbe(stories: StoryEntry[], enabled = true): StoryProbe
         return;
       }
       indexRef.current = idx;
-      iframe.src = `${STORYBOOK_BASE}/iframe.html?id=${stories[idx].id}&viewMode=story&vybit-ghost=1`;
+      iframe.src = `${STORYBOOK_BASE}/iframe.html?id=${stories[idx].id}&viewMode=story&convey-ghost=1`;
     }
 
     // Set a per-story timeout — if storyPrepared never fires, move to next

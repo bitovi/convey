@@ -17,7 +17,7 @@ interface BadgeProps {
 }
 ```
 
-Today, VyBit's ArgsForm renders all props as primitives — `children` gets a text input, `iconLeft` gets nothing useful. Users can't compose components into slots.
+Today, Convey's ArgsForm renders all props as primitives — `children` gets a text input, `iconLeft` gets nothing useful. Users can't compose components into slots.
 
 ## Goals
 

@@ -16,22 +16,22 @@ import type { RequestHandler } from "express";
 
 const VALID_STATUSES = new Set<string>(['staged', 'committed', 'implementing', 'implemented', 'error']);
 
-/** Collect all process.env keys starting with VYBIT_ into a plain object */
-function collectVybitEnv(): Record<string, string> {
+/** Collect all process.env keys starting with CONVEY_ into a plain object */
+function collectConveyEnv(): Record<string, string> {
   const env: Record<string, string> = {};
   for (const [key, value] of Object.entries(process.env)) {
-    if (key.startsWith('VYBIT_') && value !== undefined) {
+    if (key.startsWith('CONVEY_') && value !== undefined) {
       env[key] = value;
     }
   }
   return env;
 }
 
-/** Build a JS snippet that sets window.__VYBIT_ENV__ */
-function vybitEnvScript(): string {
-  const env = collectVybitEnv();
+/** Build a JS snippet that sets window.__CONVEY_ENV__ */
+function conveyEnvScript(): string {
+  const env = collectConveyEnv();
   if (Object.keys(env).length === 0) return '';
-  return `window.__VYBIT_ENV__=${JSON.stringify(env)};`;
+  return `window.__CONVEY_ENV__=${JSON.stringify(env)};`;
 }
 
 export function createApp(packageRoot: string, initialStorybookUrl: string | null = null): express.Express {
@@ -56,9 +56,9 @@ export function createApp(packageRoot: string, initialStorybookUrl: string | nul
     const overlayPath = path.join(packageRoot, "overlay", "dist", "overlay.js");
     res.set("Cache-Control", "no-store");
     res.set("Content-Type", "application/javascript");
-    const preamble = vybitEnvScript();
+    const preamble = conveyEnvScript();
     if (!preamble) {
-      // No VYBIT_* vars — serve the file directly (fast path)
+      // No CONVEY_* vars — serve the file directly (fast path)
       return res.sendFile(overlayPath, (err) => {
         if (err) {
           console.error("[http] Failed to serve overlay.js:", err);
@@ -66,7 +66,7 @@ export function createApp(packageRoot: string, initialStorybookUrl: string | nul
         }
       });
     }
-    // Prepend VYBIT_* env vars to the overlay bundle
+    // Prepend CONVEY_* env vars to the overlay bundle
     try {
       const js = fs.readFileSync(overlayPath, "utf-8");
       res.send(preamble + "\n" + js);
@@ -294,10 +294,10 @@ export function createApp(packageRoot: string, initialStorybookUrl: string | nul
     });
   } else {
     const panelDist = path.join(packageRoot, "panel", "dist");
-    // Serve panel index.html with VYBIT_* env injected
+    // Serve panel index.html with CONVEY_* env injected
     const servePanelHtml: RequestHandler = (_req, res) => {
       const htmlPath = path.join(panelDist, "index.html");
-      const preamble = vybitEnvScript();
+      const preamble = conveyEnvScript();
       if (!preamble) {
         return res.sendFile(htmlPath, (err) => {
           if (err && !res.headersSent) res.status(404).end();

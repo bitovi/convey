@@ -244,7 +244,7 @@ ghostCss?: string;            // NEW — injected alongside ghost in target app
 **`overlay/src/drop-zone.ts`**
 - When receiving `COMPONENT_ARM`, store `ghostCss` alongside `ghostHtml`.
 - When rendering the cursor-follower ghost, inject `ghostCss` as a `<style>` tag inside the ghost container.
-- When dropping the component into the target app, inject `ghostCss` as a `<style id="vybit-ghost-css-{componentName}">` tag into the page head. This ensures all classes resolve — both Tailwind utilities and component library CSS — even if the target app's own build doesn't include them.
+- When dropping the component into the target app, inject `ghostCss` as a `<style id="convey-ghost-css-{componentName}">` tag into the page head. This ensures all classes resolve — both Tailwind utilities and component library CSS — even if the target app's own build doesn't include them.
 
 ### Panel
 

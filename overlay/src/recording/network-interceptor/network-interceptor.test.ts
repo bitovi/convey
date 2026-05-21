@@ -70,7 +70,7 @@ describe('createNetworkInterceptor', () => {
     await expect(fetch('https://api.example.com')).rejects.toThrow('network down');
   });
 
-  it('filters out VyBit server requests', async () => {
+  it('filters out Convey server requests', async () => {
     fetchMock.mockResolvedValueOnce({ ok: false, status: 500, statusText: 'Error' });
 
     await fetch('http://localhost:3333/api/something');

@@ -19,7 +19,7 @@ let cacheFilePath: string | null = null;
 
 function getCacheDir(): string {
   if (!cacheDir) {
-    cacheDir = path.join(process.cwd(), "node_modules", ".cache", "vybit");
+    cacheDir = path.join(process.cwd(), "node_modules", ".cache", "convey");
   }
   return cacheDir;
 }

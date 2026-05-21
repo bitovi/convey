@@ -4,7 +4,7 @@
 
 ## Problem
 
-Design tools let you select multiple elements and act on them together. Currently VyBit only supports single-element selection.
+Design tools let you select multiple elements and act on them together. Currently Convey only supports single-element selection.
 
 ## Solution
 

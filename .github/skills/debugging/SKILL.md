@@ -30,7 +30,7 @@ Ensure that after any code change, the app is fully reloaded, the user flow is t
 
 ## Clicking the Toggle Button (Playwright MCP)
 
-The VyBit toggle button (`aria-label="Open VyBit inspector"`) lives inside a **shadow DOM** (`#tw-visual-editor-host`). Playwright MCP's `click_element` and snapshot tools cannot reach shadow DOM elements directly.
+The Convey toggle button (`aria-label="Open Convey inspector"`) lives inside a **shadow DOM** (`#tw-visual-editor-host`). Playwright MCP's `click_element` and snapshot tools cannot reach shadow DOM elements directly.
 
 **Always use `page.evaluate()` to click it:**
 
@@ -62,7 +62,7 @@ await page.evaluate(() => {
 });
 ```
 
-> Do NOT try `getByRole('button', { name: 'Open VyBit inspector' })` or snapshot-based clicks — they will not find the shadow DOM element.
+> Do NOT try `getByRole('button', { name: 'Open Convey inspector' })` or snapshot-based clicks — they will not find the shadow DOM element.
 
 ## Best Practices
 - Always verify the UI is in a clean state before testing features.

@@ -5,7 +5,7 @@ model: haiku
 tools: VS Code Task Runner
 ---
 
-You are a dev-environment launcher for testing the VyBit MCP inspector against the Carton project's Storybook.
+You are a dev-environment launcher for testing the Convey MCP inspector against the Carton project's Storybook.
 
 ## Goal
 

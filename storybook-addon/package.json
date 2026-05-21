@@ -1,9 +1,9 @@
 {
-  "name": "@bitovi/vybit-storybook-addon",
+  "name": "@bitovi/convey-storybook-addon",
   "version": "0.0.0",
   "private": true,
   "type": "commonjs",
-  "description": "Storybook addon wiring for Vybit — overlay injection + panel registration",
+  "description": "Storybook addon wiring for Convey — overlay injection + panel registration",
   "peerDependencies": {
     "storybook": "^8.0.0 || ^10.0.0"
   }

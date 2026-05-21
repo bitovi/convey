@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 /**
  * Minimal Storybook config for the static demo.
- * Excludes the VyBit addon — ghost extraction iframes use ?vybit-ghost=1
+ * Excludes the Convey addon — ghost extraction iframes use ?convey-ghost=1
  * which skips the overlay injection anyway, and there's no server to talk to.
  */
 const config: StorybookConfig = {

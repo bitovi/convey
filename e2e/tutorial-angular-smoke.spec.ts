@@ -5,7 +5,7 @@ test.describe('Tutorial smoke tests (Angular)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await page.waitForTimeout(2000);
-    await page.evaluate(() => localStorage.removeItem('vybit-tutorial-progress'));
+    await page.evaluate(() => localStorage.removeItem('convey-tutorial-progress'));
     await page.reload();
     await page.waitForTimeout(2000);
   });
@@ -34,7 +34,7 @@ test.describe('Tutorial smoke tests (Angular)', () => {
     await expect(page.locator(`text=0 of ${TOTAL_STEPS} completed`)).toBeVisible({ timeout: 5000 });
 
     // Verify localStorage is cleared
-    const progress = await page.evaluate(() => localStorage.getItem('vybit-tutorial-progress'));
+    const progress = await page.evaluate(() => localStorage.getItem('convey-tutorial-progress'));
     expect(JSON.parse(progress ?? '[]')).toEqual([]);
   });
 

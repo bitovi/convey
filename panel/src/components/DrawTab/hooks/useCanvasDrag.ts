@@ -50,7 +50,7 @@ export function useCanvasDrag({ insertMode, onDragStart, onDragEnd }: UseCanvasD
     if (target) {
       try {
         target.postMessage({
-          __vybitDrag: true,
+          __conveyDrag: true,
           type: 'DRAG_MOVE',
           screenX: e.screenX,
           screenY: e.screenY,
@@ -68,7 +68,7 @@ export function useCanvasDrag({ insertMode, onDragStart, onDragEnd }: UseCanvasD
     if (target) {
       try {
         target.postMessage({
-          __vybitDrag: true,
+          __conveyDrag: true,
           type: 'DRAG_END',
           screenX: e.screenX,
           screenY: e.screenY,
@@ -93,7 +93,7 @@ export function useCanvasDrag({ insertMode, onDragStart, onDragEnd }: UseCanvasD
         if (target) {
           try {
             target.postMessage({
-              __vybitDrag: true,
+              __conveyDrag: true,
               type: 'DRAG_END',
               screenX: 0,
               screenY: 0,
@@ -146,7 +146,7 @@ export function useCanvasDrag({ insertMode, onDragStart, onDragEnd }: UseCanvasD
       if (target) {
         try {
           target.postMessage({
-            __vybitDrag: true,
+            __conveyDrag: true,
             type: 'DRAG_START',
             componentName: '__canvas__',
             storyId: '',
@@ -172,7 +172,7 @@ export function useCanvasDrag({ insertMode, onDragStart, onDragEnd }: UseCanvasD
       if (target) {
         try {
           target.postMessage({
-            __vybitDrag: true,
+            __conveyDrag: true,
             type: 'DRAG_MOVE',
             screenX: e.screenX,
             screenY: e.screenY,

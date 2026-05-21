@@ -107,13 +107,13 @@ function App() {
       <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="text-xl font-bold text-gray-900">VyBit Interactive Tutorial</h1>
+            <h1 className="text-xl font-bold text-gray-900">Convey Interactive Tutorial</h1>
             <span style={{ display: 'flex', alignItems: 'center', lineHeight: 0 }}>
               <GitHubButton
-                href="https://github.com/bitovi/vybit"
+                href="https://github.com/bitovi/convey"
                 data-icon="octicon-star"
                 data-show-count="true"
-                aria-label="Star bitovi/vybit on GitHub"
+                aria-label="Star bitovi/convey on GitHub"
               >
                 Star
               </GitHubButton>
@@ -138,13 +138,13 @@ function App() {
         {/* ── Section 1: Welcome ── */}
         <TutorialSection
           step={1}
-          title="Welcome to VyBit"
+          title="Welcome to Convey"
           completed={completedSteps.has(1)}
           onMarkComplete={() => completeStep(1)}
           instructions={
             <>
               <p>
-                <a href="https://github.com/bitovi/vybit" className="text-blue-500 hover:underline">VyBit</a> is a visual editing tool that works alongside your running app. You select elements, describe changes in plain language or tweak styles visually, and VyBit sends precise instructions to an AI coding agent that implements the changes in your source code.
+                <a href="https://github.com/bitovi/convey" className="text-blue-500 hover:underline">Convey</a> is a visual editing tool that works alongside your running app. You select elements, describe changes in plain language or tweak styles visually, and Convey sends precise instructions to an AI coding agent that implements the changes in your source code.
               </p>
               <p className="mt-3">
                 This tutorial will walk you through the most common features. Each section has a small exercise — try them in any order. 
@@ -169,14 +169,14 @@ function App() {
           instructions={
             <>
               <p>
-                See the round button in the bottom-right corner of the page? That's the <strong>VyBit toggle button</strong>. Click it to open the inspector panel. The panel will slide in as a sidebar on the right side of the page.
+                See the round button in the bottom-right corner of the page? That's the <strong>Convey toggle button</strong>. Click it to open the inspector panel. The panel will slide in as a sidebar on the right side of the page.
               </p>
               <p className="mt-3">Once open, you'll see three buttons at the top of the panel:</p>
               <p className="mt-3">
                 <EditIcon /> <strong>Edit</strong> — The main working mode. Select elements, inspect their styles, send change messages, edit text, and tweak Tailwind classes from here.
               </p>
               <p className="mt-3">
-                <BugReportIcon /> <strong>Bug Report</strong> — Record and describe issues. Pick an element, describe what's wrong, and VyBit captures a timeline snapshot for context.
+                <BugReportIcon /> <strong>Bug Report</strong> — Record and describe issues. Pick an element, describe what's wrong, and Convey captures a timeline snapshot for context.
               </p>
               <p className="mt-3">
                 <ThemeIcon /> <strong>Theme</strong> — Browse and adjust your project's Tailwind design tokens — colors, spacing, font sizes — and preview changes live across the whole page.
@@ -201,7 +201,7 @@ function App() {
           onMarkComplete={() => completeStep(3)}
           instructions={
             <>
-              <p>Let's make your first change. <strong>Click the issue card below</strong> to select it, then tell VyBit what to do.</p>
+              <p>Let's make your first change. <strong>Click the issue card below</strong> to select it, then tell Convey what to do.</p>
               <ol>
                 <li>Use the <strong>Select</strong> button (<SelectIcon />) at the bottom of the page to enter Select mode</li>
                 <li>Click the card below — it will highlight with a teal border and a small toolbar will appear</li>
@@ -230,7 +230,7 @@ function App() {
           onMarkComplete={() => completeStep(4)}
           instructions={
             <>
-              <p>Sometimes it's easier to talk than type. VyBit has a microphone button for voice messages.</p>
+              <p>Sometimes it's easier to talk than type. Convey has a microphone button for voice messages.</p>
               <ol>
                 <li>Use the <strong>Select</strong> button (<SelectIcon />) at the bottom of the page to enter Select mode</li>
                 <li>Click the <strong>Assign</strong> button below to select it</li>
@@ -392,7 +392,7 @@ function App() {
           onMarkComplete={() => completeStep(9)}
           instructions={
             <>
-              <p>Removing an element is a single keypress. VyBit hides it on the page and queues a delete change for your agent — nothing is permanently removed until the agent writes the code.</p>
+              <p>Removing an element is a single keypress. Convey hides it on the page and queues a delete change for your agent — nothing is permanently removed until the agent writes the code.</p>
               <p className="mt-3">The resolved issue card below is stale and should be cleaned up.</p>
               <ol>
                 <li>Use the <strong>Select</strong> button (<SelectIcon />) at the bottom of the page</li>
@@ -419,7 +419,7 @@ function App() {
           onMarkComplete={() => completeStep(10)}
           instructions={
             <>
-              <p>VyBit lets you copy any element and paste it anywhere on the page. <strong>Cmd+D</strong> gives you an instant duplicate right after the original — no placement flow needed.</p>
+              <p>Convey lets you copy any element and paste it anywhere on the page. <strong>Cmd+D</strong> gives you an instant duplicate right after the original — no placement flow needed.</p>
               <p className="mt-3">The team roster below has two members. Let's add a third slot.</p>
               <ol>
                 <li>Use the <strong>Select</strong> button (<SelectIcon />) at the bottom of the page</li>
@@ -460,7 +460,7 @@ function App() {
           onMarkComplete={() => completeStep(11)}
           instructions={
             <>
-              <p>VyBit can browse your component library and place components directly onto the page.</p>
+              <p>Convey can browse your component library and place components directly onto the page.</p>
               <ol>
                 <li>Use the <strong>Insert</strong> button (<InsertIcon />) at the bottom of the page if not already active</li>
                 <li>In the panel, you'll see the <strong>Components</strong> tab with your available components</li>
@@ -514,7 +514,7 @@ function App() {
           playgroundClassName="bg-indigo-600 text-white rounded-2xl p-12 text-center shadow-xl ring-4 ring-indigo-300"
           instructions={
             <>
-              <p>VyBit isn't just for big changes — you can precisely adjust Tailwind classes too. Scrub spacing values, pick colors from a palette, adjust shadows, and see changes live as you drag.</p>
+              <p>Convey isn't just for big changes — you can precisely adjust Tailwind classes too. Scrub spacing values, pick colors from a palette, adjust shadows, and see changes live as you drag.</p>
               <ol>
                 <li>Use the <strong>Select</strong> button (<SelectIcon />) at the bottom of the page</li>
                 <li>Click the purple banner below (not the text inside it) — it will show its Tailwind properties in the panel</li>
@@ -545,7 +545,7 @@ function App() {
           onMarkComplete={() => completeStep(14)}
           instructions={
             <>
-              <p>Found something broken? VyBit's Bug Report mode captures element context, console errors, network failures, and a visual timeline so the AI agent knows exactly what to fix.</p>
+              <p>Found something broken? Convey's Bug Report mode captures element context, console errors, network failures, and a visual timeline so the AI agent knows exactly what to fix.</p>
               <ol>
                 <li>First, click <strong>"Refresh Invoice"</strong> below — it will trigger a failed API call and a console error</li>
                 <li>In the panel header, switch to <strong>Bug Report</strong> mode (<BugReportIcon />)</li>
@@ -602,7 +602,7 @@ function App() {
             <>
               <h2 className="text-2xl font-bold text-gray-900 mb-3">You did it!</h2>
               <div className="text-sm text-gray-600 leading-relaxed max-w-lg mx-auto">
-                <p>You've explored every major VyBit feature:</p>
+                <p>You've explored every major Convey feature:</p>
                 <ul className="text-left inline-block mt-3 space-y-1">
                   <li>✓ Selecting elements and sending change messages</li>
                   <li>✓ Voice messages</li>
@@ -623,12 +623,12 @@ function App() {
                 <p className="mt-4 font-medium text-gray-900">
                   Ready to try it for real?{' '}
                   <a
-                    href="https://github.com/bitovi/vybit"
+                    href="https://github.com/bitovi/convey"
                     className="text-teal-600 underline hover:text-teal-800"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Install VyBit
+                    Install Convey
                   </a>{' '}
                   and connect it to your project.
                 </p>
@@ -667,7 +667,7 @@ function App() {
           instructions={
             <>
               <p>
-                VyBit can edit your project's Tailwind theme — not just individual elements. Click the <strong>Theme</strong> button (<ThemeIcon />) in the panel to open the Theme editor. From there you can adjust global design tokens: colors, font sizes, font weights, spacing, border radius, and font families. Changes preview live across the entire page.
+                Convey can edit your project's Tailwind theme — not just individual elements. Click the <strong>Theme</strong> button (<ThemeIcon />) in the panel to open the Theme editor. From there you can adjust global design tokens: colors, font sizes, font weights, spacing, border radius, and font families. Changes preview live across the entire page.
               </p>
               <ol>
                 <li>Open the panel and click the <strong>Theme</strong> button (<ThemeIcon />) — it's the palette icon in the mode toggle bar</li>

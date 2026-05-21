@@ -2,7 +2,7 @@ import { addons } from 'storybook/preview-api';
 
 // Ghost iframes are created by StoryExtractor for component extraction.
 // They must not inject the overlay or trigger story-rendered events.
-const isGhostIframe = new URLSearchParams(window.location.search).get('vybit-ghost') === '1';
+const isGhostIframe = new URLSearchParams(window.location.search).get('convey-ghost') === '1';
 
 let injected = false;
 
@@ -10,10 +10,10 @@ export const decorators = [
   (StoryFn: any, context: any) => {
     if (!isGhostIframe && !injected) {
       const serverUrl =
-        context.parameters?.vybit?.serverUrl ?? 'http://localhost:3333';
+        context.parameters?.convey?.serverUrl ?? 'http://localhost:3333';
       const script = document.createElement('script');
       script.src = `${serverUrl}/overlay.js`;
-      script.onerror = (err) => console.error('[vybit-addon] overlay.js FAILED to load', err);
+      script.onerror = (err) => console.error('[convey-addon] overlay.js FAILED to load', err);
       document.head.appendChild(script);
       injected = true;
     }

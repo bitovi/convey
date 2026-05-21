@@ -47,7 +47,7 @@ export function connect(): void {
       // but we still need to bridge the REGISTER to the parent window
       // so page-level listeners (e.g. tutorial progress) can observe it.
       if (window.parent !== window) {
-        try { window.parent.postMessage({ __vybit: true, type: 'REGISTER', role: 'panel' }, '*'); } catch {}
+        try { window.parent.postMessage({ __convey: true, type: 'REGISTER', role: 'panel' }, '*'); } catch {}
       }
     }
 
@@ -152,7 +152,7 @@ function sendRaw(data: object): void {
   // Bridge outgoing messages to the parent window so page-level listeners
   // (e.g. tutorial progress) can observe panel activity.
   if (window.parent !== window) {
-    try { window.parent.postMessage({ __vybit: true, ...data }, '*'); } catch {}
+    try { window.parent.postMessage({ __convey: true, ...data }, '*'); } catch {}
   }
 }
 

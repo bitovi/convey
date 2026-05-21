@@ -177,7 +177,7 @@ When the user copies an element (Cmd+C) and pastes (Cmd+V), the toolbar enters a
 | Step | Action | Select button | Insert button | Page behavior |
 |---|---|---|---|---|
 | 1 | User selects element | Teal (engaged) | Gray | Element locked |
-| 2 | Cmd+C | Teal (engaged) | Gray | Element copied to VyBit clipboard; toast "Copied" |
+| 2 | Cmd+C | Teal (engaged) | Gray | Element copied to Convey clipboard; toast "Copied" |
 | 3a | Cmd+V (locked insert) | — | — | Ghost placed immediately; toast "Pasted"; overrides clear |
 | 3b | Cmd+V (no locked insert) | **Green (completed)** | **Orange (picking)** | Select mode turned off; crosshair drop-zone activated; toast "Click to place" |
 | 4 | User clicks placement | Gray | Gray | Ghost placed; overrides cleared by mode reset |

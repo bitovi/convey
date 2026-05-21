@@ -2,7 +2,7 @@
 
 ## Overview
 
-A first-class Storybook addon that embeds Vybit inside Storybook's UI. Designers can click elements in the story canvas, inspect and change Tailwind classes in the inspector panel, and queue changes for the AI agent — all without leaving Storybook.
+A first-class Storybook addon that embeds Convey inside Storybook's UI. Designers can click elements in the story canvas, inspect and change Tailwind classes in the inspector panel, and queue changes for the AI agent — all without leaving Storybook.
 
 The overlay is injected into Storybook's story iframe. The inspector panel appears as a native addon panel on the right side of the canvas. The agent runs alongside Storybook and picks up queued changes normally via `implement_next_change`.
 
@@ -45,7 +45,7 @@ However, the locally-installed code is **minimal wiring only**. It tells Storybo
 **1. Install the package**
 
 ```bash
-npm install -D @bitovi/vybit
+npm install -D @bitovi/convey
 ```
 
 **2. Configure `.storybook/main.ts`**
@@ -54,7 +54,7 @@ npm install -D @bitovi/vybit
 export default {
   addons: [
     // ... other addons
-    '@bitovi/vybit/storybook-addon',
+    '@bitovi/convey/storybook-addon',
   ],
 };
 ```
@@ -64,9 +64,9 @@ That's it. The MCP agent config already handles starting the server:
 ```json
 {
   "mcpServers": {
-    "vybit": {
+    "convey": {
       "command": "npx",
-      "args": ["@bitovi/vybit"],
+      "args": ["@bitovi/convey"],
       "cwd": "/path/to/your/project"
     }
   }
@@ -80,8 +80,8 @@ The `npx` invocation starts the server when the agent connects. The locally-inst
 ```ts
 // .storybook/preview.ts
 export const parameters = {
-  vybit: {
-    serverUrl: 'http://localhost:4000',  // only needed if running vybit on a non-default port
+  convey: {
+    serverUrl: 'http://localhost:4000',  // only needed if running convey on a non-default port
   },
 };
 ```
@@ -90,7 +90,7 @@ export const parameters = {
 
 ## Package Distribution
 
-The addon is exported from the existing `@bitovi/vybit` package at the subpath `@bitovi/vybit/storybook-addon`. This requires two changes to the root `package.json`:
+The addon is exported from the existing `@bitovi/convey` package at the subpath `@bitovi/convey/storybook-addon`. This requires two changes to the root `package.json`:
 
 **Add `storybook-addon/` to `files`:**
 ```json
@@ -148,7 +148,7 @@ One-time setup:
       addons: ['../storybook-addon']   ← or npm package name once published
    (Optional) Add to .storybook/preview.ts:
       export const parameters = {
-        vybit: { serverUrl: 'http://localhost:3333' }
+        convey: { serverUrl: 'http://localhost:3333' }
       }
       │
       ▼
@@ -167,7 +167,7 @@ Runtime:
       │  └── Injects <script src="http://localhost:3333/overlay.js"> once
       │  └── Overlay boots: shadow host, toggle button, WS connects to ws://localhost:3333
       ▼
-5. "Vybit" panel tab appears on the right side of the canvas
+5. "Convey" panel tab appears on the right side of the canvas
       │  └── manager.tsx has registered an AddonPanel
       │  └── Panel renders as <iframe src="http://localhost:3333/panel/">
       │  └── Panel iframe registers as 'panel' over WS → receives QUEUE_UPDATE
@@ -243,7 +243,7 @@ let injected = false;
 export const decorators = [
   (StoryFn: any, context: any) => {
     const serverUrl =
-      context.parameters?.vybit?.serverUrl ?? 'http://localhost:3333';
+      context.parameters?.convey?.serverUrl ?? 'http://localhost:3333';
 
     if (!injected) {
       const script = document.createElement('script');
@@ -270,24 +270,24 @@ Runs in Storybook's manager (shell) window. Registers the inspector panel.
 import { addons, types } from '@storybook/manager-api';
 import { AddonPanel } from '@storybook/components';
 
-const ADDON_ID = 'vybit';
+const ADDON_ID = 'convey';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
 addons.register(ADDON_ID, (api) => {
   const serverUrl =
-    api.getCurrentParameter<{ serverUrl?: string }>('vybit')?.serverUrl
+    api.getCurrentParameter<{ serverUrl?: string }>('convey')?.serverUrl
     ?? 'http://localhost:3333';
 
   addons.add(PANEL_ID, {
     type: types.PANEL,
-    title: 'Vybit',
-    paramKey: 'vybit',
+    title: 'Convey',
+    paramKey: 'convey',
     render: ({ active }) => (
       <AddonPanel active={active ?? false}>
         <iframe
           src={`${serverUrl}/panel/`}
           style={{ width: '100%', height: '100%', border: 'none' }}
-          title="Vybit Panel"
+          title="Convey Panel"
         />
       </AddonPanel>
     ),
@@ -344,12 +344,12 @@ Complete user-facing setup. All fields are optional — defaults work for the st
 ```ts
 // .storybook/main.ts
 export default {
-  addons: ['../storybook-addon'],  // or '@bitovi/vybit/storybook-addon' once published
+  addons: ['../storybook-addon'],  // or '@bitovi/convey/storybook-addon' once published
 };
 
 // .storybook/preview.ts  (only needed for non-default server port)
 export const parameters = {
-  vybit: {
+  convey: {
     serverUrl: 'http://localhost:3333',  // default
   },
 };

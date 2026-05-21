@@ -123,7 +123,7 @@ describe('createEventCapture', () => {
     handle.teardown();
   });
 
-  it('skips mutations from VyBit shadow host', async () => {
+  it('skips mutations from Convey shadow host', async () => {
     const onSnapshot = vi.fn();
     const handle = createEventCapture(onSnapshot);
 
@@ -138,7 +138,7 @@ describe('createEventCapture', () => {
     handle.teardown();
   });
 
-  it('skips click events inside VyBit shadow DOM', () => {
+  it('skips click events inside Convey shadow DOM', () => {
     const onSnapshot = vi.fn();
     const handle = createEventCapture(onSnapshot);
 
