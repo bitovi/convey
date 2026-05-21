@@ -1,4 +1,4 @@
-# Convey (we are renaming and under construction)
+# Convey
 
 [![CI](https://img.shields.io/github/actions/workflow/status/bitovi/convey/ci.yml?branch=main&label=CI)](https://github.com/bitovi/convey/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@bitovi/convey)](https://www.npmjs.com/package/@bitovi/convey)
