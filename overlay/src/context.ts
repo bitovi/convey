@@ -125,7 +125,7 @@ function renderSiblingNode(el: HTMLElement, indent: number, originalClassMap: Ma
 
   const text = getInnerText(el);
 
-  if (!el.id && (!el.className || !el.className.trim()) && !text) {
+  if (!el.id && (typeof el.className !== 'string' || !el.className.trim()) && !text) {
     return `${pad}<${tag}>...</${tag}>`;
   }
 
