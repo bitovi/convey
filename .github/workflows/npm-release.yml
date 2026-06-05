@@ -1,0 +1,37 @@
+name: Release
+
+# Publishes to npm via the org's reusable workflow: uploads a STAGED release over
+# OIDC (no tokens). Nothing goes live until a maintainer approves with 2FA at
+# npmjs.com or `npm stage approve`. https://docs.npmjs.com/staged-publishing
+#
+# One-time setup on npmjs.com (per package):
+#   1. The package must ALREADY EXIST — run `npm publish` manually once first.
+#   2. Add a Trusted Publisher (package Settings → Trusted Publisher → GitHub
+#      Actions). Use THIS repo and THIS filename — not bitovi/.github and not
+#      npm-stage-publish.yml; npm authorizes the workflow that STARTS the run.
+#      Case-sensitive, incl. the .yml; if you rename this file, update npm too.
+#      https://docs.npmjs.com/trusted-publishers
+#
+# THEN: push a `v*` tag. Defaults publish a PUBLIC package from the repo root.
+# Change anything by uncommenting a line in the `with:` block below.
+
+on:
+  push:
+    tags: ["v*"]        # triggers when you push a version tag, e.g. v1.2.3
+  workflow_dispatch:
+
+jobs:
+  stage:
+    # @main tracks the latest. For stability, pin to a release tag, e.g. ...@v1
+    uses: bitovi/.github/.github/workflows/npm-stage-publish.yml@main
+    permissions:
+      contents: read
+      id-token: write    # REQUIRED for OIDC publishing — do not remove
+    # --- Optional settings: uncomment ONLY the lines you want to change ---
+    with:
+    #   access: restricted                   # use for a private/paid package (default: public)
+    #   dist-tag: next                       # publish under this tag instead of "latest"
+    #   node-version: "22.14.0"              # change the Node version used to publish
+    #   working-directory: packages/my-pkg   # set if your package is NOT at the repo root
+      run-build: false                     # skip the build step if your package builds via prepare/prepack (npm runs it during publish)
+      run-tests: false                     # skip tests in the release job (rely on CI having tested the tagged commit)
