@@ -1,6 +1,6 @@
 {
   "name": "@bitovi/convey",
-  "version": "0.17.6",
+  "version": "0.17.4",
   "description": "Browser overlay + inspector panel + MCP server for visually editing Tailwind CSS classes on a running React app",
   "keywords": [
     "tailwind",
