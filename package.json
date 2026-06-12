@@ -75,7 +75,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/ws": "^8.5.0",
-    "esbuild": "^0.27.4",
+    "esbuild": "^0.28.1",
     "fake-indexeddb": "^6.2.5",
     "html-to-image": "^1.11.13",
     "jsdom": "^29.0.1",
