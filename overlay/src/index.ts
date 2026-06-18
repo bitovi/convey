@@ -171,6 +171,14 @@ function getServerOrigin(): string {
 	return "http://localhost:3333";
 }
 
+function getScriptFlag(attr: string): boolean {
+	const scripts = document.querySelectorAll('script[src*="overlay.js"]');
+	for (const s of scripts) {
+		if ((s as HTMLScriptElement).hasAttribute(attr)) return true;
+	}
+	return false;
+}
+
 const SERVER_ORIGIN = getServerOrigin();
 debugLog('tw-overlay', `SERVER_ORIGIN resolved to: ${SERVER_ORIGIN}`);
 debugLog('tw-overlay', `Script tags with "overlay.js":`, Array.from(document.querySelectorAll('script[src*="overlay.js"]')).map(s => (s as HTMLScriptElement).src));
@@ -178,6 +186,10 @@ debugLog('tw-overlay', `Script tags with "overlay.js":`, Array.from(document.que
 // When running inside a Storybook iframe, the panel is already shown in
 // the Storybook addon tab — suppress the overlay's own panel container.
 const insideStorybook = !!(window as any).__STORYBOOK_PREVIEW__;
+
+// data-select-only: hide the toggle button, auto-activate select mode,
+// and never open the panel iframe. Useful for element-inspection-only setups.
+const selectOnly = getScriptFlag('data-select-only');
 
 async function fetchTailwindConfig(): Promise<any> {
 	if (dom.tailwindConfigCache) {
@@ -434,7 +446,7 @@ async function finalizeSelection(targetEl: HTMLElement): Promise<void> {
 
 	updateInstanceCount(state.currentEquivalentNodes.length);
 
-	if (!insideStorybook) {
+	if (!insideStorybook && !selectOnly) {
 		const panelUrl = `${SERVER_ORIGIN}/panel`;
 		if (!dom.activeContainer.isOpen()) {
 			dom.activeContainer.open(panelUrl);
@@ -749,7 +761,7 @@ function init(): void {
 		sendToPanel: (msg) => sendTo('panel', msg),
 		setSelectMode: (on) => setSelectMode(on),
 		openPanel: () => {
-			if (!insideStorybook) {
+			if (!insideStorybook && !selectOnly) {
 				const panelUrl = `${SERVER_ORIGIN}/panel`;
 				if (!dom.activeContainer.isOpen()) dom.activeContainer.open(panelUrl);
 			}
@@ -830,7 +842,7 @@ function init(): void {
 	btn.setAttribute("aria-label", "Open Convey inspector");
 	btn.innerHTML = CONVEY_LOGO_SVG;
 	btn.addEventListener("click", () => toggleInspect(btn));
-	if (insideStorybook) {
+	if (insideStorybook || selectOnly) {
 		btn.style.display = 'none';
 	}
 	dom.shadowRoot.appendChild(btn);
@@ -921,8 +933,15 @@ function init(): void {
 	window.addEventListener("resize", repositionAll);
 	window.addEventListener("scroll", repositionAll, { capture: true, passive: true });
 
+	// select-only mode: auto-activate select mode without opening the panel
+	if (selectOnly) {
+		state.active = true;
+		showBottomToolbar();
+		setSelectMode(true);
+	}
+
 	// Auto-open panel if it was open before the last page refresh
-	if (sessionStorage.getItem(PANEL_OPEN_KEY) === "1") {
+	if (!selectOnly && sessionStorage.getItem(PANEL_OPEN_KEY) === "1") {
 		state.active = true;
 		btn.classList.add("active");
 		showBottomToolbar();
