@@ -14,7 +14,7 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@tailwindcss/postcss": "^4.2.1",
-    "postcss": "^8.5.0",
+    "postcss": "^8.5.25",
     "tailwindcss": "^4.2.1",
     "tslib": "^2.3.0"
   },
