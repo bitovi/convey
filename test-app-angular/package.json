@@ -13,12 +13,12 @@
   "private": true,
   "packageManager": "npm@10.8.2",
   "dependencies": {
-    "@angular/common": "^21.2.0",
+    "@angular/common": "^22.1.0",
     "@angular/compiler": "^21.2.0",
     "@angular/core": "^21.2.0",
-    "@angular/forms": "^21.2.0",
-    "@angular/platform-browser": "^21.2.0",
-    "@angular/router": "^21.2.0",
+    "@angular/forms": "^22.1.0",
+    "@angular/platform-browser": "^22.1.0",
+    "@angular/router": "^22.1.0",
     "@tailwindcss/postcss": "^4.2.2",
     "postcss": "^8.5.8",
     "rxjs": "~7.8.0",
@@ -26,7 +26,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.5",
+    "@angular/build": "^22.1.2",
     "@angular/cli": "^21.2.5",
     "@angular/compiler-cli": "^21.2.0",
     "@storybook/angular": "^10.3.3",
